@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-background: #fff8f1;
+  --color-inverse-on-surface: #feefd1;
+  --color-surface-dim: #e7d9bb;
+  --color-surface-container-low: #fff2db;
+  --color-outline-variant: #c2c7c9;
+  --color-on-background: #221b08;
+  --color-surface-variant: #f0e1c3;
+  --color-on-surface: #221b08;
+  --color-on-error: #ffffff;
+  --color-primary-container: #b6d4dc;
+  --color-tertiary-fixed: #f2e1c1;
+  --color-on-primary-fixed: #001f25;
+  --color-primary: #476369;
+  --color-secondary-fixed: #cbe7ef;
+  --color-error-container: #ffdad6;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-secondary-container: #4d676e;
+  --color-inverse-primary: #aeccd3;
+  --color-on-primary-container: #415d63;
+  --color-on-secondary: #ffffff;
+  --color-surface-bright: #fff8f1;
+  --color-on-tertiary-fixed-variant: #51452e;
+  --color-on-surface-variant: #42484a;
+  --color-on-tertiary: #ffffff;
+  --color-surface-container: #fcecce;
+  --color-surface: #fff8f1;
+  --color-inverse-surface: #38301b;
+  --color-secondary: #486369;
+  --color-error: #ba1a1a;
+  --color-surface-tint: #476369;
+  --color-surface-container-highest: #f0e1c3;
+  --color-tertiary-fixed-dim: #d5c5a6;
+  --color-primary-fixed-dim: #aeccd3;
+  --color-secondary-fixed-dim: #afcbd3;
+  --color-secondary-container: #c8e4ed;
+  --color-on-primary-fixed-variant: #2f4b51;
+  --color-tertiary-container: #decdae;
+  --color-surface-container-high: #f6e7c9;
+  --color-outline: #72787a;
+  --color-on-error-container: #93000a;
+  --color-on-tertiary-fixed: #231a07;
+  --color-on-tertiary-container: #63573e;
+  --color-on-primary: #ffffff;
+  --color-primary-fixed: #c9e8ef;
+  --color-on-secondary-fixed: #021f25;
+  --color-tertiary: #695d44;
+  --color-on-secondary-fixed-variant: #314b51;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-headline: var(--font-space-grotesk), sans-serif;
+  --font-body: var(--font-plus-jakarta-sans), sans-serif;
+  --font-label: var(--font-plus-jakarta-sans), sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
