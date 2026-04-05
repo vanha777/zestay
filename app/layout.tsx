@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -35,6 +36,14 @@ export default function RootLayout({
       </head>
       <body className="font-body text-on-surface bg-surface min-h-full flex flex-col">
         {children}
+        {/* Start of HubSpot Embed Code */}
+        <Script
+          type="text/javascript"
+          id="hs-script-loader"
+          src="//js-ap1.hs-scripts.com/443026822.js"
+          strategy="afterInteractive"
+        />
+        {/* End of HubSpot Embed Code */}
       </body>
     </html>
   );
