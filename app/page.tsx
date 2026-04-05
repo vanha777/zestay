@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -35,9 +36,9 @@ export default function Home() {
               About
             </a>
           </div>
-          <button className="bg-on-background text-surface px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-95 duration-150 ease-in-out">
+          <Link href="/book" className="bg-on-background text-surface px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:scale-95 duration-150 ease-in-out inline-block border-none">
             Book Now
-          </button>
+          </Link>
         </div>
       </nav>
 
@@ -163,9 +164,9 @@ export default function Home() {
                         </span>
                       </p>
                     </div>
-                    <button className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity">
+                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
                       Book
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -204,9 +205,9 @@ export default function Home() {
                         </span>
                       </p>
                     </div>
-                    <button className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity">
+                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
                       Book
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -245,9 +246,9 @@ export default function Home() {
                         </span>
                       </p>
                     </div>
-                    <button className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity">
+                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
                       Book
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>
