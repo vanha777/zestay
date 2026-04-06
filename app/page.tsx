@@ -78,7 +78,7 @@ export default function Home() {
                   Stay Length
                 </label>
                 <select className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium">
-                  <option>2-4 weeks</option>
+                  <option>4 weeks</option>
                   <option>1-3 months</option>
                   <option>3+ months</option>
                 </select>
