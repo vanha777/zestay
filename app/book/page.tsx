@@ -1,5 +1,6 @@
 import Script from "next/script";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function BookPage() {
   return (
@@ -11,8 +12,9 @@ export default function BookPage() {
             <span className="material-symbols-outlined text-base">arrow_back</span>
             Back
           </Link>
-          <div className="text-2xl font-bold tracking-tighter text-[#221b08] font-headline">
-            Zestay
+          <div className="flex items-center gap-3">
+            <Image src="/zestayLogo.png" alt="Zestay Logo" width={150} height={50} className="h-10 w-auto" priority />
+            <span className="text-2xl font-bold tracking-tighter text-[#221b08] font-headline">Zestay</span>
           </div>
           <div className="w-[66px]"></div> {/* Spacer for center alignment */}
         </div>

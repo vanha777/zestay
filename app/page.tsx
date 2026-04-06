@@ -7,8 +7,9 @@ export default function Home() {
       {/* Top Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#fff8f1]/80 backdrop-blur-md">
         <div className="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-          <div className="text-2xl font-bold tracking-tighter text-[#221b08] font-headline">
-            Zestay
+          <div className="flex items-center gap-3">
+            <Image src="/zestayLogo.png" alt="Zestay Logo" width={150} height={50} className="h-10 w-auto" priority />
+            <span className="text-2xl font-bold tracking-tighter text-[#221b08] font-headline">Zestay</span>
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a
@@ -62,11 +63,16 @@ export default function Home() {
                 <label className="text-[10px] uppercase font-bold tracking-widest text-primary block">
                   Location
                 </label>
-                <input
-                  className="w-full bg-transparent border-none p-0 focus:ring-0 placeholder:text-on-surface-variant/50 font-medium"
-                  placeholder="Where to?"
-                  type="text"
-                />
+                <select 
+                  className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium text-on-surface-variant/80"
+                  defaultValue=""
+                >
+                  <option value="" disabled>Where to?</option>
+                  <option value="melbourne">Melbourne</option>
+                  <option value="sydney">Sydney</option>
+                  <option value="perth">Perth</option>
+                  <option value="brisbane">Brisbane</option>
+                </select>
               </div>
               <div className="flex-1 w-full space-y-1 px-4 border-r border-outline-variant/30">
                 <label className="text-[10px] uppercase font-bold tracking-widest text-primary block">
@@ -78,12 +84,12 @@ export default function Home() {
                   <option>Long term</option>
                 </select>
               </div>
-              <button className="w-full md:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-bold font-headline flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
+              <Link href="/book" className="w-full md:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-bold font-headline flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                 <span className="material-symbols-outlined text-sm">
                   search
                 </span>
                 Find Space
-              </button>
+              </Link>
             </div>
           </div>
           <div className="lg:col-span-5 relative">
@@ -446,8 +452,9 @@ export default function Home() {
       <footer className="bg-[#fcecce] w-full py-12 px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between items-start gap-8 max-w-7xl mx-auto">
           <div className="max-w-xs">
-            <div className="text-xl font-bold text-[#221b08] font-headline mb-6">
-              Zestay
+            <div className="mb-6 flex items-center gap-3">
+              <Image src="/zestayLogo.png" alt="Zestay Logo" width={150} height={50} className="h-10 w-auto" />
+              <span className="text-xl font-bold text-[#221b08] font-headline">Zestay</span>
             </div>
             <p className="text-[#42484a] text-sm leading-relaxed mb-6 font-['Plus_Jakarta_Sans']">
               Elevating the human experience through intentional living and
