@@ -48,13 +48,13 @@ export default function Home() {
         <section className="relative px-6 pt-12 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <h1 className="text-6xl md:text-7xl font-headline font-bold text-on-background tracking-tighter leading-[0.95] mb-8">
-              Your Home, <br />
-              <span className="text-primary italic">Better Together.</span>
+              Land in Australia. <br />
+              <span className="text-primary italic">Walk into your room.</span>
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
-              Elevated coliving spaces designed for modern nomads, creative souls,
-              and community seekers. Experience the perfect balance of private
-              sanctuary and shared connection.
+              Furnished rooms in Melbourne's best neighbourhoods.
+              Flexible stays. All bills sorted. No landlords, no drama —
+              just book online and you're in.
             </p>
 
             {/* Search Bar */}
@@ -63,15 +63,14 @@ export default function Home() {
                 <label className="text-[10px] uppercase font-bold tracking-widest text-primary block">
                   Location
                 </label>
-                <select 
+                <select
                   className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium text-on-surface-variant/80"
                   defaultValue=""
                 >
                   <option value="" disabled>Where to?</option>
-                  <option value="melbourne">Melbourne</option>
-                  <option value="sydney">Sydney</option>
-                  <option value="perth">Perth</option>
-                  <option value="brisbane">Brisbane</option>
+                  <option value="melbourne">Melbourne (available now)</option>
+                  <option value="sydney">Sydney (coming soon)</option>
+                  <option value="brisbane">Brisbane (coming soon)</option>
                 </select>
               </div>
               <div className="flex-1 w-full space-y-1 px-4 border-r border-outline-variant/30">
@@ -79,16 +78,16 @@ export default function Home() {
                   Stay Length
                 </label>
                 <select className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium">
-                  <option>1-3 Months</option>
-                  <option>3-6 Months</option>
-                  <option>Long term</option>
+                  <option>2-4 weeks</option>
+                  <option>1-3 months</option>
+                  <option>3+ months</option>
                 </select>
               </div>
               <Link href="/book" className="w-full md:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-bold font-headline flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
                 <span className="material-symbols-outlined text-sm">
                   search
                 </span>
-                Find Space
+                Find a Room
               </Link>
             </div>
           </div>
@@ -103,13 +102,15 @@ export default function Home() {
               />
             </div>
             {/* Floating Decorative Element */}
-            <div className="absolute -bottom-8 -left-8 bg-primary-container p-8 rounded-2xl shadow-xl max-w-[200px] hidden md:block">
-              <p className="font-headline font-bold text-3xl text-on-primary-container leading-none">
-                12+
-              </p>
-              <p className="text-sm font-medium text-on-primary-container/80 mt-1">
-                Global Hubs
-              </p>
+            <div className="absolute -bottom-8 -left-8 bg-primary-container p-6 rounded-2xl shadow-xl max-w-[240px] hidden md:block">
+              <div className="font-headline font-bold text-lg text-on-primary-container leading-tight mb-2">
+                Inner-city locations <br />
+                Bills included
+              </div>
+              <div className="text-sm font-medium text-on-primary-container/80 space-y-1">
+                Book before you land <br />
+                All WHM housemates
+              </div>
             </div>
           </div>
         </section>
@@ -147,16 +148,15 @@ export default function Home() {
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Amsterdam
+                    Fitzroy, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
                   <h4 className="font-headline text-2xl font-bold mb-2">
-                    The Jordaan Loft
+                    Brunswick Street House
                   </h4>
                   <p className="text-on-surface-variant text-sm mb-6">
-                    Canal-side living with a dedicated creative studio and communal
-                    terrace.
+                    Brunswick Street vibes. Trams, coffee, nightlife — all on your doorstep.
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
@@ -164,14 +164,14 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        €1,200
+                        $310
                         <span className="text-sm font-normal text-on-surface-variant">
-                          /mo
+                          /week — bills included
                         </span>
                       </p>
                     </div>
                     <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      Book
+                      See Rooms
                     </Link>
                   </div>
                 </div>
@@ -188,16 +188,15 @@ export default function Home() {
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Berlin
+                    Collingwood, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
                   <h4 className="font-headline text-2xl font-bold mb-2">
-                    Mitte Central
+                    Smith Street Terrace
                   </h4>
                   <p className="text-on-surface-variant text-sm mb-6">
-                    Industrial charm meets high-speed tech. Featuring the city&apos;s
-                    best rooftop coworking.
+                    Warehouse conversions and the best brunch scene in Melbourne.
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
@@ -205,14 +204,14 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        €1,050
+                        $290
                         <span className="text-sm font-normal text-on-surface-variant">
-                          /mo
+                          /week — bills included
                         </span>
                       </p>
                     </div>
                     <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      Book
+                      See Rooms
                     </Link>
                   </div>
                 </div>
@@ -229,16 +228,15 @@ export default function Home() {
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Lisbon
+                    St Kilda, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
                   <h4 className="font-headline text-2xl font-bold mb-2">
-                    Santos Horizon
+                    Acland Street Apartment
                   </h4>
                   <p className="text-on-surface-variant text-sm mb-6">
-                    Sunset views and surf community. A sanctuary for digital nomads
-                    near the coast.
+                    Beach life meets city access. Luna Park, Acland Street, sunsets.
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
@@ -246,14 +244,14 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        €980
+                        $320
                         <span className="text-sm font-normal text-on-surface-variant">
-                          /mo
+                          /week — bills included
                         </span>
                       </p>
                     </div>
                     <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      Book
+                      See Rooms
                     </Link>
                   </div>
                 </div>
@@ -262,73 +260,89 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Why Zestay: Sky Blue Accents */}
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
               <div className="bg-primary-container p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  diversity_3
+                  group
                 </span>
                 <h5 className="font-headline font-bold text-xl text-on-background">
-                  Deep Community
+                  Live with people like you
                 </h5>
                 <p className="text-sm text-on-primary-container/80 mt-2">
-                  Curated events that turn neighbors into lifelong friends.
+                  Your housemates are other working holiday makers. Same boat, same adventure, easy friendships.
                 </p>
               </div>
               <div className="bg-surface-container-highest p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  all_inclusive
+                  calendar_month
                 </span>
                 <h5 className="font-headline font-bold text-xl text-on-background">
-                  True Flexibility
+                  Actually flexible
                 </h5>
                 <p className="text-sm text-on-surface-variant mt-2">
-                  Stay for a month or a year. Pivot when your life does.
+                  Stay as long as it makes sense. Leave when you're ready. Your plans can change — your housing keeps up.
                 </p>
               </div>
               <div className="bg-surface-container-high p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  check_circle
+                  bed
                 </span>
                 <h5 className="font-headline font-bold text-xl text-on-background">
-                  Fully Furnished
+                  Move-in ready
                 </h5>
                 <p className="text-sm text-on-surface-variant mt-2">
-                  Designer spaces that feel like home from minute one.
+                  Bed, desk, wardrobe, WiFi. Everything you need, nothing you don't. Show up with your suitcase, that's it.
                 </p>
               </div>
               <div className="bg-primary-container/40 p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  bolt
+                  payments
                 </span>
                 <h5 className="font-headline font-bold text-xl text-on-background">
-                  Zero Hassle
+                  All bills, all included
                 </h5>
                 <p className="text-sm text-on-primary-container/80 mt-2">
-                  One bill covers everything from Wi-Fi to cleaning.
+                  Rent, power, water, internet — one price, done. No utility accounts to set up. No surprise invoices.
+                </p>
+              </div>
+              <div className="col-span-2 bg-surface-container-highest p-8 rounded-[2rem] flex flex-col justify-end mt-4">
+                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
+                  public
+                </span>
+                <h5 className="font-headline font-bold text-xl text-on-background">
+                  Book from anywhere
+                </h5>
+                <p className="text-sm text-on-surface-variant mt-2">
+                  Sort your room before you even get on the plane. No inspections. No awkward group chats. Just confirm and go.
                 </p>
               </div>
             </div>
 
             <div className="order-1 lg:order-2 space-y-8">
-              <h2 className="text-primary font-headline text-lg font-bold tracking-widest uppercase">
-                Why Zestay?
+              <h2 className="text-primary font-headline text-5xl font-bold tracking-tighter leading-tight">
+                Finding a room in Australia is weirdly hard.
               </h2>
-              <h3 className="text-5xl font-headline font-bold text-on-background tracking-tighter leading-tight">
-                Living, redefined for the modern age.
-              </h3>
-              <p className="text-lg text-on-surface-variant leading-relaxed">
-                We believe that where you live should inspire how you live.
-                We&apos;ve stripped away the friction of traditional renting—deposits,
-                utilities, long-term contracts—and replaced it with a seamless,
-                designer experience centered around you.
-              </p>
+              <div className="text-lg text-on-surface-variant leading-relaxed space-y-4">
+                <p>
+                  Hostels are chaos. Flatshares want references you don't have.
+                  Airbnb costs a fortune. And signing a 12-month lease when you
+                  don't know what next month looks like? Nope.
+                </p>
+                <p>
+                  We built Zestay because we've been there.
+                </p>
+                <p>
+                  Private rooms in great neighbourhoods, flexible terms,
+                  everything included — and you can book it from your couch
+                  in London or Lyon before you even pack.
+                </p>
+              </div>
               <div className="pt-4">
-                <button className="bg-on-background text-surface px-8 py-4 rounded-xl font-headline font-bold text-lg hover:scale-95 duration-150 ease-in-out">
-                  Our Mission
-                </button>
+                <Link href="/book" className="bg-on-background text-surface px-8 py-4 rounded-xl font-headline font-bold text-lg hover:scale-95 duration-150 ease-in-out inline-block">
+                  See what's available
+                </Link>
               </div>
             </div>
           </div>
@@ -354,17 +368,13 @@ export default function Home() {
                       fill
                     />
                   </div>
-                  <div>
-                    <h6 className="font-bold text-on-background">Sarah J.</h6>
-                    <p className="text-xs text-primary font-bold uppercase tracking-widest">
-                      Lisbon Resident
-                    </p>
+                  <div className="flex flex-col justify-center">
+                    <h6 className="font-bold text-on-background">Tom, UK &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;I moved to Lisbon knowing no one. Within a week at Zestay, I
-                  had a group of friends for surfing and a collaborator for my
-                  startup. It&apos;s more than a room.&quot;
+                  &quot;Booked from Manchester, landed at Tullamarine, had my keys that night.
+                  First week in Australia and I actually slept properly.&quot;
                 </p>
               </div>
 
@@ -379,17 +389,13 @@ export default function Home() {
                       fill
                     />
                   </div>
-                  <div>
-                    <h6 className="font-bold text-on-background">Marc L.</h6>
-                    <p className="text-xs text-primary font-bold uppercase tracking-widest">
-                      Berlin Resident
-                    </p>
+                  <div className="flex flex-col justify-center">
+                    <h6 className="font-bold text-on-background">Camille, France &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;The design is what brought me in, but the convenience is why
-                  I stay. Having a workspace and a beautiful bedroom under one
-                  roof changed my productivity.&quot;
+                  &quot;I tried Flatmates for weeks — nothing. Found Zestay,
+                  booked a room in Fitzroy, moved in two days later. Life saver.&quot;
                 </p>
               </div>
 
@@ -404,17 +410,13 @@ export default function Home() {
                       fill
                     />
                   </div>
-                  <div>
-                    <h6 className="font-bold text-on-background">Elena R.</h6>
-                    <p className="text-xs text-primary font-bold uppercase tracking-widest">
-                      Amsterdam Resident
-                    </p>
+                  <div className="flex flex-col justify-center">
+                    <h6 className="font-bold text-on-background">Liam, Ireland &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;I love the curated events. Last week we had a communal pasta
-                  night and a guest lecture from a local designer. It&apos;s truly
-                  inspiring living.&quot;
+                  &quot;It's just... easy? Good room, great area, nice people.
+                  Exactly what you need when you first land.&quot;
                 </p>
               </div>
             </div>
@@ -428,19 +430,19 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-50 pointer-events-none"></div>
             <div className="relative z-10">
               <h2 className="text-surface font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-8">
-                Ready to find <br />
-                your tribe?
+                Your Australia starts <br />
+                with a good room.
               </h2>
               <p className="text-surface/70 text-xl max-w-xl mx-auto mb-12">
-                Applications for our upcoming Fall cohort are now open in Lisbon,
-                Berlin, and London.
+                Hawthorn. Camberwell. Fitzroy. Collingwood. St Kilda. Richmond. <br />
+                Rooms open now — book online, move in this week.
               </p>
               <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <button className="bg-primary-container text-on-primary-container px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform">
-                  Apply Now
-                </button>
+                <Link href="/book" className="bg-primary-container text-on-primary-container px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
+                  Browse Rooms
+                </Link>
                 <button className="bg-transparent text-surface border border-surface/20 px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:bg-surface/10 transition-colors">
-                  Schedule a Tour
+                  Get notified about new spots
                 </button>
               </div>
             </div>
@@ -457,8 +459,8 @@ export default function Home() {
               <span className="text-xl font-bold text-[#221b08] font-headline">Zestay</span>
             </div>
             <p className="text-[#42484a] text-sm leading-relaxed mb-6 font-['Plus_Jakarta_Sans']">
-              Elevating the human experience through intentional living and
-              community-first spaces.
+              Private rooms for working holiday makers in Australia.
+              Your base. Your terms. Your Australia.
             </p>
             <div className="flex gap-4">
               <span className="material-symbols-outlined text-[#476369] cursor-pointer hover:opacity-70">
@@ -473,7 +475,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 gap-16">
             <div>
               <h5 className="text-[#221b08] font-bold text-xs uppercase tracking-widest mb-6">
                 Explore
@@ -484,7 +486,7 @@ export default function Home() {
                     className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity"
                     href="#"
                   >
-                    Homes
+                    Rooms (Melbourne, Sydney, Brisbane)
                   </a>
                 </li>
                 <li>
@@ -492,7 +494,7 @@ export default function Home() {
                     className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity"
                     href="#"
                   >
-                    Living
+                    How It Works
                   </a>
                 </li>
                 <li>
@@ -500,55 +502,15 @@ export default function Home() {
                     className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity"
                     href="#"
                   >
-                    Community
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h5 className="text-[#221b08] font-bold text-xs uppercase tracking-widest mb-6">
-                Company
-              </h5>
-              <ul className="space-y-4">
-                <li>
-                  <a
-                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity font-['Plus_Jakarta_Sans']"
-                    href="#"
-                  >
-                    Privacy Policy
+                    For Landlords
                   </a>
                 </li>
                 <li>
                   <a
-                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity font-['Plus_Jakarta_Sans']"
+                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity"
                     href="#"
                   >
-                    Terms of Service
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity font-['Plus_Jakarta_Sans']"
-                    href="#"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity font-['Plus_Jakarta_Sans']"
-                    href="#"
-                  >
-                    Careers
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="text-[#42484a] text-sm hover:underline decoration-[#b6d4dc] underline-offset-4 opacity-80 hover:opacity-100 transition-opacity font-['Plus_Jakarta_Sans']"
-                    href="#"
-                  >
-                    Press
+                    About / Contact
                   </a>
                 </li>
               </ul>
@@ -559,22 +521,30 @@ export default function Home() {
             <h5 className="text-[#221b08] font-bold text-xs uppercase tracking-widest mb-6">
               Newsletter
             </h5>
+            <p className="text-[#42484a] text-sm mb-4 font-['Plus_Jakarta_Sans']">
+              Get notified when new rooms open
+            </p>
             <div className="flex gap-2">
               <input
                 className="bg-surface p-3 rounded-xl border-none text-sm w-48 focus:ring-2 focus:ring-primary"
                 placeholder="Email address"
                 type="email"
               />
-              <button className="bg-[#221b08] text-surface p-3 rounded-xl flex items-center justify-center">
-                <span className="material-symbols-outlined">send</span>
+              <button className="bg-[#221b08] text-surface p-3 rounded-xl flex items-center justify-center font-bold text-sm px-4">
+                Notify Me
               </button>
             </div>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-outline-variant/10 text-center">
+        <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-outline-variant/10 text-center flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[#42484a] text-xs font-['Plus_Jakarta_Sans'] opacity-60">
             © 2024 Zestay Coliving. All rights reserved.
           </p>
+          <div className="flex gap-4">
+            <a href="#" className="text-[#42484a] opacity-60 hover:opacity-100 text-xs font-['Plus_Jakarta_Sans'] hover:underline">Instagram</a>
+            <a href="#" className="text-[#42484a] opacity-60 hover:opacity-100 text-xs font-['Plus_Jakarta_Sans'] hover:underline">TikTok</a>
+            <a href="#" className="text-[#42484a] opacity-60 hover:opacity-100 text-xs font-['Plus_Jakarta_Sans'] hover:underline">Facebook</a>
+          </div>
         </div>
       </footer>
     </>
