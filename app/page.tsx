@@ -357,13 +357,11 @@ export default function Home() {
               {/* Quote 1 */}
               <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-primary-container relative">
-                    <Image
-                      alt="Resident portrait"
-                      className="w-full h-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUwZTLrYWSur-o7bjOZF2z_rk5tt31bu4Wv9whHBsE6OyrHKRD3h18r7cPpTx4NUDWYINVH13jIB03Nb8dRtHrAg_UVMLIEGFFTQZ7gV2cr3DusHEz8nSOys8WS8BLhWSKziee_PbzCjNhHsyEM3sZHRtwP7AWnNDw3D2e6VZ6-zKgapa10BBPHwabPin1uHhIcRA-Ry9kt_e3e9iFXIU32ZA0PaMc8Ue5qUTBlNUGFaDhDToxPNh5d0Vx1yqzAgVGX1iX53Mxwzc"
-                      fill
-                    />
+                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
                   </div>
                   <div className="flex flex-col justify-center">
                     <h6 className="font-bold text-on-background">Pranav, UK &rarr; Melbourne</h6>
@@ -377,13 +375,11 @@ export default function Home() {
               {/* Quote 2 */}
               <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-primary-container relative">
-                    <Image
-                      alt="Resident portrait"
-                      className="w-full h-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmhCle73ZZN6hqxD8hJKr9orDVwj6ky7nky2PKeSkydJ6aiKcW0GK9BE0vNc1MIKwjX501LPHzE-6Xu6KIz6Iqsd3cye4YeSdcbfMPBrPwm0T3sVJmRs22eYeqhmq5287ZbW5qhWqy52oLyyotREYzF6M9m-9chYH-KRscpT9DR7KxFcRFrudfCPn8YXAQAlAeu2rpnvjvp9P2BmB26OU5CpL9VRA1OXorkOrYz8p1VwTNxPq8nuhP-B1FEyP7LpR2gB5hPWaw8oE"
-                      fill
-                    />
+                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
                   </div>
                   <div className="flex flex-col justify-center">
                     <h6 className="font-bold text-on-background">Jason, Sydney &rarr; Melbourne</h6>
@@ -397,13 +393,11 @@ export default function Home() {
               {/* Quote 3 */}
               <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden bg-primary-container relative">
-                    <Image
-                      alt="Resident portrait"
-                      className="w-full h-full object-cover"
-                      src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqqYvsBQgB5wySPLSnW5WBcMJe8G6qobhGJREShUBDKjRbdWhHxgK0vYoR6nYoDrVSIq91HTkQX4D_V9JkSZWloHs6DU1oAZKFRpYXPvN55_XxZlk6H1cAUIEVicSpLOlwqc-rd7m8CqA18ihWjUS-teqT2RjTPd9WfQc8mu_FRRleyONu9fhXEqWAcCn2IhkeKESXdbD2VBGyWFzT14DO9m1RiGVG55dJmh7Epp1HNY9gh5cHsVLm7cfZYqTt6Y775xUbpJtUBv8"
-                      fill
-                    />
+                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
+                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
                   </div>
                   <div className="flex flex-col justify-center">
                     <h6 className="font-bold text-on-background">Sia, Fiji &rarr; Melbourne</h6>
