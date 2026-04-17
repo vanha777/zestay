@@ -366,12 +366,11 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Tom, UK &rarr; Melbourne</h6>
+                    <h6 className="font-bold text-on-background">Pranav, UK &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;Booked from Manchester, landed at Tullamarine, had my keys that night.
-                  First week in Australia and I actually slept properly.&quot;
+                  &quot;Getting off a 24-hour flight and walking straight into a beautifully furnished home was a lifesaver. The space was exactly as advertised, the utilities were already sorted, and having a welcoming from Patrick & Sofia made the entire relocation effortless.&quot;
                 </p>
               </div>
 
@@ -387,12 +386,11 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Camille, France &rarr; Melbourne</h6>
+                    <h6 className="font-bold text-on-background">Jason, Sydney &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;I tried Flatmates for weeks — nothing. Found Zestay,
-                  booked a room in Fitzroy, moved in two days later. Life saver.&quot;
+                  &quot;I wanted to spend some time in Melbourne before my holiday to Taiwan. The hosts were incredibly flexible and reasonable to deal with from day one. The location is fantastic too—with all the amenities practically on your doorstep, you really don't need a car. An absolutely stress-free stay.&quot;
                 </p>
               </div>
 
@@ -408,12 +406,11 @@ export default function Home() {
                     />
                   </div>
                   <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Liam, Ireland &rarr; Melbourne</h6>
+                    <h6 className="font-bold text-on-background">Sia, Fiji &rarr; Melbourne</h6>
                   </div>
                 </div>
                 <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;It's just... easy? Good room, great area, nice people.
-                  Exactly what you need when you first land.&quot;
+                  &quot;Relocating from Fiji for a job placement, I didn't want to risk signing a long-term lease right away. Finding Sofia and Zestay on Flatmates was the perfect solution. It was incredibly convenient—just a 10-minute walk to work! It gave me a flexible, stress-free base until my role was secure and I was ready to find my own home. Highly recommended.&quot;
                 </p>
               </div>
             </div>
