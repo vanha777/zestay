@@ -25,22 +25,14 @@ export default function AboutPage() {
           </p>
         </div>
         <div className="relative">
-          {/* Placeholder for Founders Image - Use an organic, wide shape */}
-          <div className="w-full h-[500px] bg-secondary-container rounded-[3rem] overflow-hidden relative flex items-center justify-center">
-            {/* When the user has a real image of Patrick & Sofia, they can uncomment the Image tag below */}
-            {/* <Image 
-              src="/founders.jpeg" 
-              alt="Patrick and Sofia, founders of Zestay" 
-              fill 
-              className="object-cover"
-            /> */}
-            <div className="text-center p-8">
-              <svg className="w-16 h-16 mx-auto text-secondary mb-4 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-              <p className="text-secondary font-headline font-bold text-lg">Patrick & Sofia</p>
-              <p className="text-secondary/70 text-sm font-body">Founders Placeholder (Add Photo)</p>
-            </div>
+          {/* Founders Image */}
+          <div className="w-full h-[500px] rounded-[3rem] overflow-hidden relative flex items-center justify-center group">
+            <Image
+              src="/stock/founders2.png"
+              alt="Patrick and Sofia, founders of Zestay"
+              fill
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+            />
           </div>
           {/* Decorative Blob */}
           <div className="absolute -z-10 -bottom-10 -left-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
@@ -62,7 +54,7 @@ export default function AboutPage() {
           <div className="text-center">
             <h3 className="font-headline font-bold text-2xl text-primary mb-4">Total Transparency</h3>
             <p className="text-surface/80 leading-relaxed font-body text-sm">
-              The price you see is the price you pay. No hidden connection fees, no end-of-lease cleaning traps. 
+              The price you see is the price you pay. No hidden connection fees, no end-of-lease cleaning traps.
             </p>
           </div>
           <div className="text-center">
