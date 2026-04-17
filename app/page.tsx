@@ -48,13 +48,13 @@ export default function Home() {
         <section className="relative px-6 pt-12 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-7">
             <h1 className="text-6xl md:text-7xl font-headline font-bold text-on-background tracking-tighter leading-[0.95] mb-8">
-              Land in Australia. <br />
-              <span className="text-primary italic">Walk into your room.</span>
+              Modern co-living. <br />
+              <span className="text-primary italic">Live better, together.</span>
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
-              Furnished rooms in Melbourne's best neighbourhoods.
-              Flexible stays. All bills sorted. No landlords, no drama —
-              just book online and you're in.
+              Designer co-living for the modern professional.
+              Beautifully furnished rooms in Australia's best neighbourhoods.
+              Flexible terms, all bills included, and a seamless booking process.
             </p>
 
             {/* Search Bar */}
@@ -108,8 +108,8 @@ export default function Home() {
                 Bills included
               </div>
               <div className="text-sm font-medium text-on-primary-container/80 space-y-1">
-                Book before you land <br />
-                All WHM housemates
+                Book before you arrive <br />
+                Like-minded housemates
               </div>
             </div>
           </div>
@@ -142,13 +142,13 @@ export default function Home() {
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUbEAG7j4ljiuC2jRFcMWhVEb78ZCf0HYErmaJ2YeO8yvp7VIKGLzCXy5Jx2T2NdNYK6P4MkA0BjHhOkzpvmhzQLb7UJrMhoyFC7hqdrM8qTANFzWVaIi_BlwR441EX11PVyDSth7RowmADEX1HDZc8S_v5ios8QEDmLJkbXvCCXYT-dzFMBL_d-AyistV1jFPoD4qtpi_lim4C_1CnAnORvahvjmwYj7vz_kCa8wXcoyLVNwSnOGJLhvqczMvuX1rJ83qIzr4vt8"
+                    src="/house/brunswick.jpeg"
                     alt="Chic sunlit bedroom in a minimalist apartment"
                     width={600}
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Fitzroy, Melbourne
+                    Brunswick, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
@@ -164,7 +164,7 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        $310
+                        $380
                         <span className="text-sm font-normal text-on-surface-variant">
                           /week — bills included
                         </span>
@@ -182,21 +182,21 @@ export default function Home() {
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNDT-4UJlKJyqWVkfciu4pCKrXhEy4xgE4vXJBjFRmpvN1iOlj9-ZbBTqNc64nSFMdVQPlkdcd2ThhvovrOVO1iNL2oO99BqkI4vuA1bZITy3hAltPnuCzVvzheLlOwF_FxIhuINOWgqAVY2cRKTR37ktOvOsSTii7wz_8hmgwOmA7NYDNxgp6z_hLHcxHuq1Qca56scwAWughIYs4lThNcD8EmfWr9jK2wY-YZ6lpcWqE3hLzkaNsUgwWrF-cNZsjnFUddU_rgYM"
+                    src="/house/hawthorn.png"
                     alt="Spacious loft bedroom with industrial windows"
                     width={600}
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Collingwood, Melbourne
+                    Hawthorn East, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
                   <h4 className="font-headline text-2xl font-bold mb-2">
-                    Smith Street Terrace
+                    Hawthorn East Residence
                   </h4>
                   <p className="text-on-surface-variant text-sm mb-6">
-                    Warehouse conversions and the best brunch scene in Melbourne.
+                    Classic brick veneer comfort on leafy streets. Spacious living with easy access to local cafes and city trains.
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
@@ -204,7 +204,7 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        $290
+                        $320
                         <span className="text-sm font-normal text-on-surface-variant">
                           /week — bills included
                         </span>
@@ -222,21 +222,21 @@ export default function Home() {
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIVvS9BDrofnkOcuHo8bJZS77x84bdceQtR6nLLd80SwB5BFb9FP0lWfVnIJK8ZYlHX2O6MwKJtn6CJP7DCVW7Z3fsx4pzI93xInz12u7lbEPTFXN6Gvrr0ARDfQga5U3ySg9PhfZPAIVhuryi_-NQ4t54simvQrD1-B1sSBVl9MlS8U4Nxj_DWl2DhVBEgT4mccJe-uyqajduJTuPX0ALJ4s3AuYqYameGpDjrn5vFr_bWZrCgFzW8_ZX6XxeYzTPoN3MPhk1OUo"
+                    src="/house/hawthornEast.png"
                     alt="Modern high-end apartment room with views of Lisbon rooftops"
                     width={600}
                     height={400}
                   />
                   <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    St Kilda, Melbourne
+                    Hawthorn, Melbourne
                   </div>
                 </div>
                 <div className="p-8">
                   <h4 className="font-headline text-2xl font-bold mb-2">
-                    Acland Street Apartment
+                    Hawthorn Heritage House
                   </h4>
                   <p className="text-on-surface-variant text-sm mb-6">
-                    Beach life meets city access. Luna Park, Acland Street, sunsets.
+                    A beautifully restored classic weatherboard home. Enjoy high ceilings, period charm, and a short stroll to the bustling Glenferrie Road precinct.
                   </p>
                   <div className="flex justify-between items-center">
                     <div>
@@ -244,7 +244,7 @@ export default function Home() {
                         From
                       </p>
                       <p className="text-xl font-headline font-bold text-on-background">
-                        $320
+                        $350
                         <span className="text-sm font-normal text-on-surface-variant">
                           /week — bills included
                         </span>
@@ -268,10 +268,10 @@ export default function Home() {
                   group
                 </span>
                 <h5 className="font-headline font-bold text-xl text-on-background">
-                  Live with people like you
+                  A community of peers
                 </h5>
                 <p className="text-sm text-on-primary-container/80 mt-2">
-                  Your housemates are other working holiday makers. Same boat, same adventure, easy friendships.
+                  Share your living space with professionals, relocators, and explorers. Build meaningful connections with like-minded people.
                 </p>
               </div>
               <div className="bg-surface-container-highest p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
@@ -282,7 +282,7 @@ export default function Home() {
                   Actually flexible
                 </h5>
                 <p className="text-sm text-on-surface-variant mt-2">
-                  Stay as long as it makes sense. Leave when you're ready. Your plans can change — your housing keeps up.
+                  Stay as long as you need. Whether it's a few months or a longer relocation, your housing adapts seamlessly to your timeline.
                 </p>
               </div>
               <div className="bg-surface-container-high p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
@@ -322,21 +322,18 @@ export default function Home() {
 
             <div className="order-1 lg:order-2 space-y-8">
               <h2 className="text-primary font-headline text-5xl font-bold tracking-tighter leading-tight">
-                Finding a room in Australia is weirdly hard.
+                Quality housing, simplified.
               </h2>
               <div className="text-lg text-on-surface-variant leading-relaxed space-y-4">
                 <p>
-                  Hostels are chaos. Flatshares want references you don't have.
-                  Airbnb costs a fortune. And signing a 12-month lease when you
-                  don't know what next month looks like? Nope.
+                  Securing a great place to stay shouldn't require long-term commitments or endless paperwork.
+                  Traditional leases trap you into 12-month contracts, while short-term options are often costly or lack community.
                 </p>
                 <p>
-                  We built Zestay because we've been there.
+                  Zestay bridges that gap. We provide a seamless housing experience tailored for those who value both freedom and comfort.
                 </p>
                 <p>
-                  Private rooms in great neighbourhoods, flexible terms,
-                  everything included — and you can book it from your couch
-                  in London or Lyon before you even pack.
+                  Whether you're relocating for work, looking for a medium-term base, or just exploring a new city, our thoughtfully furnished spaces offer flexible terms and a community ready to welcome you.
                 </p>
               </div>
               <div className="pt-4">
@@ -459,18 +456,18 @@ export default function Home() {
               <span className="text-xl font-bold text-[#221b08] font-headline">Zestay</span>
             </div>
             <p className="text-[#42484a] text-sm leading-relaxed mb-6 font-['Plus_Jakarta_Sans']">
-              Private rooms for working holiday makers in Australia.
-              Your base. Your terms. Your Australia.
+              Premium private rooms for professionals, relocators, and explorers in Australia.
+              Your space. Your terms. Your journey.
             </p>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/profile.php?id=61579994953333" target="_blank" rel="noreferrer" className="text-[#476369] hover:opacity-70 transition-opacity">
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                  <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
                 </svg>
               </a>
               <a href="https://www.instagram.com/zestayau/" target="_blank" rel="noreferrer" className="text-[#476369] hover:opacity-70 transition-opacity">
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                  <path fillRule="evenodd" clipRule="evenodd" d="M12.026 2.001c3.275 0 3.664.013 4.954.072 1.192.055 1.839.255 2.271.423.574.223.984.49 1.414.92.43.43.697.84.92 1.414.168.432.368 1.079.423 2.271.059 1.29.072 1.679.072 4.954s-.013 3.664-.072 4.954c-.055 1.192-.255 1.839-.423 2.271-.223.574-.49.984-.92 1.414-.43.43-.84.697-1.414.92-.432.168-1.079.368-2.271.423-1.29.059-1.679.072-4.954.072s-3.664-.013-4.954-.072c-1.192-.055-1.839-.255-2.271-.423-.574-.223-.984-.49-1.414-.92-.43-.43-.697-.84-.92-1.414-.168-.432-.368-1.079-.423-2.271-.059-1.29-.072-1.679-.072-4.954s.013-3.664.072-4.954c.055-1.192.255-1.839.423-2.271.223-.574.49-.984.92-1.414.43-.43.84-.697 1.414-.92.432-.168 1.079-.368 2.271-.423 1.29-.059 1.679-.072 4.954-.072zm0 1.802c-3.221 0-3.606.012-4.876.07-1.066.049-1.646.228-2.031.378-.512.199-.877.438-1.26.82-.382.383-.621.748-.82 1.26-.15.385-.329.965-.378 2.031-.058 1.27-.07 1.655-.07 4.876s.012 3.606.07 4.876c.049 1.066.228 1.646.378 2.031.199.512.438.877.82 1.26.383.382.748.621 1.26.82.385.15.965.329 2.031.378 1.27.058 1.655.07 4.876.07s3.606-.012 4.876-.07c1.066-.049 1.646-.228 2.031-.378.512-.199.877-.438 1.26-.82.382-.383.621-.748.82-1.26.15-.385.329-.965.378-2.031.058-1.27.07-1.655.07-4.876s-.012-3.606-.07-4.876c-.049-1.066-.228-1.646-.378-2.031-.199-.512-.438-.877-.82-1.26-.383-.382-.748-.621-1.26-.82-.385-.15-.965-.329-2.031-.378-1.27-.058-1.655-.07-4.876-.07zm0 3.064c-2.836 0-5.134 2.298-5.134 5.134s2.298 5.134 5.134 5.134 5.134-2.298 5.134-5.134-2.298-5.134-5.134-5.134zm0 8.466c-1.84 0-3.332-1.492-3.332-3.332s1.492-3.332 3.332-3.332 3.332 1.492 3.332 3.332-1.492 3.332-3.332 3.332zm4.18-7.903c-.664 0-1.202.538-1.202 1.202s.538 1.202 1.202 1.202 1.202-.538 1.202-1.202-.538-1.202-1.202-1.202z"/>
+                  <path fillRule="evenodd" clipRule="evenodd" d="M12.026 2.001c3.275 0 3.664.013 4.954.072 1.192.055 1.839.255 2.271.423.574.223.984.49 1.414.92.43.43.697.84.92 1.414.168.432.368 1.079.423 2.271.059 1.29.072 1.679.072 4.954s-.013 3.664-.072 4.954c-.055 1.192-.255 1.839-.423 2.271-.223.574-.49.984-.92 1.414-.43.43-.84.697-1.414.92-.432.168-1.079.368-2.271.423-1.29.059-1.679.072-4.954.072s-3.664-.013-4.954-.072c-1.192-.055-1.839-.255-2.271-.423-.574-.223-.984-.49-1.414-.92-.43-.43-.697-.84-.92-1.414-.168-.432-.368-1.079-.423-2.271-.059-1.29-.072-1.679-.072-4.954s.013-3.664.072-4.954c.055-1.192.255-1.839.423-2.271.223-.574.49-.984.92-1.414.43-.43.84-.697 1.414-.92.432-.168 1.079-.368 2.271-.423 1.29-.059 1.679-.072 4.954-.072zm0 1.802c-3.221 0-3.606.012-4.876.07-1.066.049-1.646.228-2.031.378-.512.199-.877.438-1.26.82-.382.383-.621.748-.82 1.26-.15.385-.329.965-.378 2.031-.058 1.27-.07 1.655-.07 4.876s.012 3.606.07 4.876c.049 1.066.228 1.646.378 2.031.199.512.438.877.82 1.26.383.382.748.621 1.26.82.385.15.965.329 2.031.378 1.27.058 1.655.07 4.876.07s3.606-.012 4.876-.07c1.066-.049 1.646-.228 2.031-.378.512-.199.877-.438 1.26-.82.382-.383.621-.748.82-1.26.15-.385.329-.965.378-2.031.058-1.27.07-1.655.07-4.876s-.012-3.606-.07-4.876c-.049-1.066-.228-1.646-.378-2.031-.199-.512-.438-.877-.82-1.26-.383-.382-.748-.621-1.26-.82-.385-.15-.965-.329-2.031-.378-1.27-.058-1.655-.07-4.876-.07zm0 3.064c-2.836 0-5.134 2.298-5.134 5.134s2.298 5.134 5.134 5.134 5.134-2.298 5.134-5.134-2.298-5.134-5.134-5.134zm0 8.466c-1.84 0-3.332-1.492-3.332-3.332s1.492-3.332 3.332-3.332 3.332 1.492 3.332 3.332-1.492 3.332-3.332 3.332zm4.18-7.903c-.664 0-1.202.538-1.202 1.202s.538 1.202 1.202 1.202 1.202-.538 1.202-1.202-.538-1.202-1.202-1.202z" />
                 </svg>
               </a>
               {/* <span className="material-symbols-outlined text-[#476369] cursor-pointer hover:opacity-70">
