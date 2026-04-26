@@ -8,11 +8,11 @@ export default function Home() {
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="relative px-6 pt-12 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <section className="relative px-6 md:pl-16 md:pr-32 pt-12 pb-24 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
           <div className="lg:col-span-7">
-            <h1 className="text-6xl md:text-7xl font-headline font-bold text-on-background tracking-tighter leading-[0.95] mb-8">
+            <h1 className="text-5xl md:text-[5rem] font-headline font-bold text-on-surface tracking-tighter leading-[1.05] mb-8">
               Modern co-living. <br />
-              <span className="text-primary italic">Live better, together.</span>
+              <span className="text-primary italic font-normal tracking-tight">Live better, together.</span>
             </h1>
             <p className="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
               Designer co-living for the modern professional.
@@ -55,7 +55,7 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:col-span-5 relative">
-            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden rotate-2 hover:rotate-0 transition-transform duration-700 shadow-2xl">
+            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden rotate-1 hover:rotate-0 transition-transform duration-1000 shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
               <Image
                 alt="Stylish coliving interior"
                 className="w-full h-full object-cover"
@@ -101,7 +101,7 @@ export default function Home() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Card 1 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
+              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -141,7 +141,7 @@ export default function Home() {
               </div>
 
               {/* Card 2 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
+              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -181,7 +181,7 @@ export default function Home() {
               </div>
 
               {/* Card 3 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
+              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -318,7 +318,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Quote 1 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
+              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -336,7 +336,7 @@ export default function Home() {
               </div>
 
               {/* Quote 2 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
+              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -354,7 +354,7 @@ export default function Home() {
               </div>
 
               {/* Quote 3 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
+              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -375,12 +375,12 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-24 px-6">
-          <div className="max-w-7xl mx-auto bg-on-background rounded-[3rem] p-12 md:p-24 text-center overflow-hidden relative">
+        <section className="py-32 px-6">
+          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
             {/* Abstract Sky Gradient Background Decor */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-50 pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-96 h-96 bg-surface rounded-full blur-[120px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
             <div className="relative z-10">
-              <h2 className="text-surface font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-8">
+              <h2 className="text-on-primary-fixed font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
                 Your Australia starts <br />
                 with a good room.
               </h2>
