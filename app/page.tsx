@@ -1,406 +1,280 @@
 import Image from "next/image";
 import Link from "next/link";
+import AnimatedPartners from "@/components/AnimatedPartners";
 
-export default function Home() {
+export default function B2BLandingPage() {
   return (
-    <>
-
-
-      <main className="pt-20">
-        {/* Hero Section */}
-        <section className="relative px-6 pt-12 pb-24 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7">
-            <h1 className="text-6xl md:text-7xl font-headline font-bold text-on-background tracking-tighter leading-[0.95] mb-8">
-              Modern co-living. <br />
-              <span className="text-primary italic">Live better, together.</span>
+    <main className="bg-surface text-on-surface">
+      {/* Hero Section */}
+      <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid md:grid-cols-12 gap-12 items-center">
+          <div className="md:col-span-7 z-10">
+            <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tighter mb-8 text-on-background font-headline">
+              Above-Market Rent.<br />
+              <span className="text-primary italic">Guaranteed.</span><br />
+              Zero Vacancy.
             </h1>
-            <p className="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
-              Designer co-living for the modern professional.
-              Beautifully furnished rooms in Australia's best neighbourhoods.
-              Flexible terms, all bills included, and a seamless booking process.
+            <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
+              We know this sounds different — here’s exactly how it works. Zestay provides stable, long-term corporate tenancies with pre-agreed annual increases and zero management fees.
             </p>
-
-            {/* Search Bar */}
-            <div className="bg-surface-container-high p-4 rounded-xl shadow-sm max-w-2xl flex flex-col md:flex-row gap-4 items-center border border-outline-variant/20">
-              <div className="flex-1 w-full space-y-1 px-4 border-r border-outline-variant/30">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-primary block">
-                  Location
-                </label>
-                <select
-                  className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium text-on-surface-variant/80"
-                  defaultValue=""
-                >
-                  <option value="" disabled>Where to?</option>
-                  <option value="melbourne">Melbourne (available now)</option>
-                  <option value="sydney">Sydney (coming soon)</option>
-                  <option value="brisbane">Brisbane (coming soon)</option>
-                </select>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a className="bg-on-background text-surface px-8 py-4 rounded-full font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/10" href="#submit">
+                Submit Your Property
+              </a>
+              <div className="flex items-center gap-3 px-6 py-4">
+                <span className="material-symbols-outlined text-primary">verified</span>
+                <span className="text-sm font-semibold text-secondary">Melbourne-based &amp; RTA Compliant</span>
               </div>
-              <div className="flex-1 w-full space-y-1 px-4 border-r border-outline-variant/30">
-                <label className="text-[10px] uppercase font-bold tracking-widest text-primary block">
-                  Stay Length
-                </label>
-                <select className="w-full bg-transparent border-none p-0 focus:ring-0 font-medium">
-                  <option>4 weeks</option>
-                  <option>1-3 months</option>
-                  <option>3+ months</option>
-                </select>
-              </div>
-              <Link href="/book" className="w-full md:w-auto bg-primary text-on-primary px-8 py-4 rounded-xl font-bold font-headline flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
-                <span className="material-symbols-outlined text-sm">
-                  search
-                </span>
-                Find a Room
-              </Link>
             </div>
           </div>
-          <div className="lg:col-span-5 relative">
-            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden rotate-2 hover:rotate-0 transition-transform duration-700 shadow-2xl">
+          <div className="md:col-span-5 relative">
+            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl rotate-2 md:rotate-3 translate-x-4 md:translate-x-8">
               <Image
-                alt="Stylish coliving interior"
+                alt="Premium Melbourne property interior"
                 className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR7AQy2b_5z-TFbto4GzAa9WkiOefRJ6KfyXdYNGVJ3TqLOBMp6SfXc1xtCVuEdEZboP_fsyUdXqZhTosJb3l7flnt4bXtpEyc95o3_IbhrIVVJews_aL9V3Jnt1Qlujhzn6IZE7AUDbHBDmOKtFY3xoqEC0SYPl3eOu1BmBFqZ33zonTleUn6wSmTZeL_0V7jRIZ2m1q0FP0oOdRUqfOx_zqhUzGvCBwYBlEWO7Re_soefpSO2i9SS_veSGonTKfRbhOFGk36ioU"
+                src="/b2b/hero.jpeg"
                 width={800}
                 height={1000}
+                priority
               />
             </div>
-            {/* Floating Decorative Element */}
-            <div className="absolute -bottom-8 -left-8 bg-primary-container p-6 rounded-2xl shadow-xl max-w-[240px] hidden md:block">
-              <div className="font-headline font-bold text-lg text-on-primary-container leading-tight mb-2">
-                Inner-city locations <br />
-                Bills included
-              </div>
-              <div className="text-sm font-medium text-on-primary-container/80 space-y-1">
-                Book before you arrive <br />
-                Like-minded housemates
-              </div>
+            <div className="absolute -bottom-6 -left-6 bg-primary-container p-8 rounded-2xl shadow-xl hidden md:block">
+              <div className="text-4xl font-bold text-on-primary-container mb-1">10+</div>
+              <div className="text-xs uppercase tracking-widest font-bold text-on-primary-container/70">Properties Managed</div>
             </div>
           </div>
-        </section>
+        </div>
+        {/* Abstract Bg Element */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[5rem]"></div>
+      </header>
 
-        {/* Featured Stays: Bento Grid */}
-        <section className="bg-surface-container-low py-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-16">
-              <div className="max-w-xl">
-                <h2 className="text-primary font-headline text-lg font-bold tracking-widest uppercase mb-4">
-                  Featured Stays
-                </h2>
-                <h3 className="text-4xl md:text-5xl font-headline font-bold text-on-background tracking-tight">
-                  Spaces that inspire your best work and life.
-                </h3>
+      {/* The Deal Section */}
+      <section className="py-24 bg-surface" id="the-deal">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <div className="mb-16 md:mb-24 max-w-2xl">
+            <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-4 font-headline">The Partnership</h2>
+            <h3 className="text-4xl md:text-5xl font-bold text-on-background leading-tight font-headline">The ultimate hands-off landlord experience.</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+            {[
+              { icon: 'trending_up', title: 'Above-market rent', desc: 'Consistently above current asking prices, reflective of our corporate model.' },
+              { icon: 'payments', title: 'Guaranteed rent', desc: 'Paid automatically every month. No chasing arrears, no tenant excuses.' },
+              { icon: 'event_available', title: 'Zero vacancy', desc: 'Lease starts Day 1. We assume all vacancy risk for the entire term.' },
+              { icon: 'show_chart', title: '4% Fixed annual increases', desc: 'Predictable growth built into the contract from the start.' },
+              { icon: 'engineering', title: 'End-to-end management', desc: 'Zero occupant contact. We handle all minor maintenance and cleaning.' },
+              { icon: 'gavel', title: 'RTA Compliant', desc: 'Everything done by the book under standard Victorian tenancy laws.' },
+              { icon: 'shield', title: 'Public Liability', desc: 'Full insurance coverage specifically tailored for our co-living model.' },
+              { icon: 'check_box_outline_blank', title: 'No alterations', desc: 'We never make structural changes. Your property remains exactly as it is.' },
+            ].map((feature, i) => (
+              <div key={i} className="flex flex-col gap-4">
+                <div className="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined">{feature.icon}</span>
+                </div>
+                <h4 className="font-bold font-headline text-xl">{feature.title}</h4>
+                <p className="text-on-surface-variant text-sm leading-relaxed">{feature.desc}</p>
               </div>
-              <a
-                className="hidden md:flex items-center gap-2 font-bold text-primary hover:underline underline-offset-8"
-                href="#"
-              >
-                View All Locations
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Co-living Section */}
+      <section className="py-24 bg-surface-container-low rounded-[3rem] mx-4 md:mx-12 overflow-hidden">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-8 leading-tight font-headline">Quiet, Quality Co-living — <br /><span className="text-primary italic">Not a Rooming House.</span></h2>
+            <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
+              Zestay operates small, quiet, quality co-living spaces. We are not a boarding house. Each property houses a <span className="font-bold text-on-surface">maximum of 3 carefully vetted tenants</span> at any one time. Think of it as a well-managed share house with a professional operator responsible for everything.
+            </p>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-4">
+                <span className="material-symbols-outlined text-primary mt-1">groups</span>
+                <div>
+                  <span className="font-bold block">Max 3 occupants</span>
+                  <span className="text-sm text-on-surface-variant">Strict limits to ensure low-impact living and property longevity.</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="material-symbols-outlined text-primary mt-1">work</span>
+                <div>
+                  <span className="font-bold block">Working professionals only</span>
+                  <span className="text-sm text-on-surface-variant">We target high-income earners who value peace and quiet.</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="material-symbols-outlined text-primary mt-1">fact_check</span>
+                <div>
+                  <span className="font-bold block">Rigorous 100-point vetting</span>
+                  <span className="text-sm text-on-surface-variant">Employment, identity, and behavioral screening for every tenant.</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-4">
+                <span className="material-symbols-outlined text-primary mt-1">assignment_ind</span>
+                <div>
+                  <span className="font-bold block">Zestay as sole named tenant</span>
+                  <span className="text-sm text-on-surface-variant">We take full legal and financial accountability for the property.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="relative group">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] md:aspect-auto md:h-[600px]">
+              <Image
+                alt="Shared kitchen area"
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                src="/b2b/kitchen.jpeg"
+                width={800}
+                height={800}
+              />
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Card 1 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <Image
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="/house/brunswick.jpeg"
-                    alt="Chic sunlit bedroom in a minimalist apartment"
-                    width={600}
-                    height={400}
-                  />
-                  <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Brunswick, Melbourne
-                  </div>
-                </div>
-                <div className="p-8">
-                  <h4 className="font-headline text-2xl font-bold mb-2">
-                    Brunswick Street House
-                  </h4>
-                  <p className="text-on-surface-variant text-sm mb-6">
-                    Brunswick Street vibes. Trams, coffee, nightlife — all on your doorstep.
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-[10px] uppercase font-bold text-outline">
-                        From
-                      </p>
-                      <p className="text-xl font-headline font-bold text-on-background">
-                        $380
-                        <span className="text-sm font-normal text-on-surface-variant">
-                          /week — bills included
-                        </span>
-                      </p>
-                    </div>
-                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      See Rooms
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <Image
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="/house/hawthorn.png"
-                    alt="Spacious loft bedroom with industrial windows"
-                    width={600}
-                    height={400}
-                  />
-                  <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Hawthorn East, Melbourne
-                  </div>
-                </div>
-                <div className="p-8">
-                  <h4 className="font-headline text-2xl font-bold mb-2">
-                    Hawthorn East Residence
-                  </h4>
-                  <p className="text-on-surface-variant text-sm mb-6">
-                    Classic brick veneer comfort on leafy streets. Spacious living with easy access to local cafes and city trains.
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-[10px] uppercase font-bold text-outline">
-                        From
-                      </p>
-                      <p className="text-xl font-headline font-bold text-on-background">
-                        $320
-                        <span className="text-sm font-normal text-on-surface-variant">
-                          /week — bills included
-                        </span>
-                      </p>
-                    </div>
-                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      See Rooms
-                    </Link>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3 */}
-              <div className="bg-surface-container-highest rounded-xl overflow-hidden group border border-outline-variant/30">
-                <div className="aspect-[16/10] overflow-hidden relative">
-                  <Image
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    src="/house/hawthornEast.png"
-                    alt="Modern high-end apartment room with views of Lisbon rooftops"
-                    width={600}
-                    height={400}
-                  />
-                  <div className="absolute top-4 left-4 bg-on-background text-surface text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                    Hawthorn, Melbourne
-                  </div>
-                </div>
-                <div className="p-8">
-                  <h4 className="font-headline text-2xl font-bold mb-2">
-                    Hawthorn Heritage House
-                  </h4>
-                  <p className="text-on-surface-variant text-sm mb-6">
-                    A beautifully restored classic weatherboard home. Enjoy high ceilings, period charm, and a short stroll to the bustling Glenferrie Road precinct.
-                  </p>
-                  <div className="flex justify-between items-center">
-                    <div>
-                      <p className="text-[10px] uppercase font-bold text-outline">
-                        From
-                      </p>
-                      <p className="text-xl font-headline font-bold text-on-background">
-                        $350
-                        <span className="text-sm font-normal text-on-surface-variant">
-                          /week — bills included
-                        </span>
-                      </p>
-                    </div>
-                    <Link href="/book" className="bg-primary-container text-on-primary-container px-5 py-2 rounded-xl font-bold text-sm hover:opacity-80 transition-opacity inline-block">
-                      See Rooms
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary-container rounded-full flex items-center justify-center p-4 text-center text-on-primary-container font-bold text-xs leading-tight border-8 border-surface-container-low">
+              MELBOURNE LOCAL
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-24 px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
-              <div className="bg-primary-container p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
-                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  group
-                </span>
-                <h5 className="font-headline font-bold text-xl text-on-background">
-                  A community of peers
-                </h5>
-                <p className="text-sm text-on-primary-container/80 mt-2">
-                  Share your living space with professionals, relocators, and explorers. Build meaningful connections with like-minded people.
-                </p>
+      {/* Process Section */}
+      <section className="py-24" id="how-it-works">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <h2 className="text-4xl md:text-5xl font-bold font-headline text-center mb-20">The Onboarding Flow</h2>
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+            <div className="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-primary-container -z-10"></div>
+            {[
+              { num: 1, title: 'Submit Property', desc: 'Tell us about your asset.' },
+              { num: 2, title: 'Offer in 48hrs', desc: 'A fixed-price rental offer.' },
+              { num: 3, title: 'Standard Lease', desc: 'Terms agreed via RTA.' },
+              { num: 4, title: 'Sign & Bond', desc: 'Security and agreement locked.' },
+              { num: 5, title: 'Hands-off Management', desc: 'We take it from here.' },
+            ].map((step, i) => (
+              <div key={i} className="flex flex-col items-center text-center gap-6 group">
+                <div className="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">{step.num}</div>
+                <div>
+                  <h5 className="font-bold text-lg mb-2">{step.title}</h5>
+                  <p className="text-xs text-on-surface-variant">{step.desc}</p>
+                </div>
               </div>
-              <div className="bg-surface-container-highest p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
-                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  calendar_month
-                </span>
-                <h5 className="font-headline font-bold text-xl text-on-background">
-                  Actually flexible
-                </h5>
-                <p className="text-sm text-on-surface-variant mt-2">
-                  Stay as long as you need. Whether it's a few months or a longer relocation, your housing adapts seamlessly to your timeline.
-                </p>
-              </div>
-              <div className="bg-surface-container-high p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
-                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  bed
-                </span>
-                <h5 className="font-headline font-bold text-xl text-on-background">
-                  Move-in ready
-                </h5>
-                <p className="text-sm text-on-surface-variant mt-2">
-                  Bed, desk, wardrobe, WiFi. Everything you need, nothing you don't. Show up with your suitcase, that's it.
-                </p>
-              </div>
-              <div className="bg-primary-container/40 p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
-                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  payments
-                </span>
-                <h5 className="font-headline font-bold text-xl text-on-background">
-                  All bills, all included
-                </h5>
-                <p className="text-sm text-on-primary-container/80 mt-2">
-                  Rent, power, water, internet — one price, done. No utility accounts to set up. No surprise invoices.
-                </p>
-              </div>
-              <div className="col-span-2 bg-surface-container-highest p-8 rounded-[2rem] flex flex-col justify-end mt-4">
-                <span className="material-symbols-outlined text-4xl mb-4 text-primary">
-                  public
-                </span>
-                <h5 className="font-headline font-bold text-xl text-on-background">
-                  Book from anywhere
-                </h5>
-                <p className="text-sm text-on-surface-variant mt-2">
-                  Sort your room before you even get on the plane. No inspections. No awkward group chats. Just confirm and go.
-                </p>
-              </div>
-            </div>
-
-            <div className="order-1 lg:order-2 space-y-8">
-              <h2 className="text-primary font-headline text-5xl font-bold tracking-tighter leading-tight">
-                Quality housing, simplified.
-              </h2>
-              <div className="text-lg text-on-surface-variant leading-relaxed space-y-4">
-                <p>
-                  Securing a great place to stay shouldn't require long-term commitments or endless paperwork.
-                  Traditional leases trap you into 12-month contracts, while short-term options are often costly or lack community.
-                </p>
-                <p>
-                  Zestay bridges that gap. We provide a seamless housing experience tailored for those who value both freedom and comfort.
-                </p>
-                <p>
-                  Whether you're relocating for work, looking for a medium-term base, or just exploring a new city, our thoughtfully furnished spaces offer flexible terms and a community ready to welcome you.
-                </p>
-              </div>
-              <div className="pt-4">
-                <Link href="/book" className="bg-on-background text-surface px-8 py-4 rounded-xl font-headline font-bold text-lg hover:scale-95 duration-150 ease-in-out inline-block">
-                  See what's available
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Testimonials */}
-        <section className="bg-surface-container py-24 px-6 overflow-hidden">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-              <h3 className="text-4xl font-headline font-bold text-on-background">
-                Voices from the Community
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Quote 1 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+      {/* Legitimacy Block */}
+      <section className="py-12 bg-on-background text-surface">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="text-center md:text-left">
+            <p className="text-surface/60 text-sm font-medium mb-1">Registered Operator</p>
+            <p className="text-xl font-bold">Zestay</p>
+            <p className="text-primary-container text-sm">ABN 41 424 818 899 | Melbourne-based</p>
+          </div>
+          <div className="h-12 w-px bg-surface/20 hidden md:block"></div>
+          <div className="text-center md:text-left">
+            <p className="text-surface/60 text-sm font-medium mb-1">Reference Assets</p>
+            <p className="text-lg">Managing agent references from <AnimatedPartners /></p>
+            <p className="text-xs opacity-60">Available on request for property managers</p>
+          </div>
+          <div className="h-12 w-px bg-surface/20 hidden md:block"></div>
+          <div className="text-center">
+            <div className="text-3xl font-bold text-primary-container">10+</div>
+            <p className="text-xs uppercase tracking-widest opacity-60">Properties Operating</p>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-surface-container" id="faq">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <h2 className="text-4xl font-bold font-headline mb-16 text-center">Agent &amp; Landlord FAQ</h2>
+          <div className="grid md:grid-cols-2 gap-x-12 gap-y-8">
+            {[
+              { q: "What kind of people live there?", a: "Strictly working professionals. Our average tenant is 28-35 years old, earning $85k+, who values a clean, quiet environment over a standard party house." },
+              { q: "Is this a rooming house?", a: "No. We host a maximum of 3 tenants per property. We operate under standard Residential Tenancies Act (RTA) leases, not rooming house regulations." },
+              { q: "What happens if there's damage?", a: "Zestay is the sole tenant. We are contractually liable for the property's condition and maintain a 24/7 maintenance response team for any issues." },
+              { q: "Can you make alterations?", a: "No structural changes are made. We may add high-quality furniture, but the property's bones remain exactly as they were when we signed." },
+              { q: "Is this legal?", a: "Absolutely. We use standard Victorian RTA leases with specific head-lease provisions that permit our sub-tenancy model for vetted professionals." },
+              { q: "Do I still work with my PM?", a: "Yes. We act as the 'Perfect Tenant'. Your PM still manages the property, collects rent from us, and conducts routine inspections. We just make their job easier." },
+            ].map((faq, i) => (
+              <div key={i} className="bg-surface p-8 rounded-2xl shadow-sm border border-outline-variant/20">
+                <h5 className="font-bold mb-3 text-primary">{faq.q}</h5>
+                <p className="text-on-surface-variant text-sm">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lead Capture Form */}
+      <section className="py-24" id="submit">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <div className="bg-on-background rounded-[3rem] p-8 md:p-20 text-surface grid lg:grid-cols-2 gap-16 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+            <div>
+              <h2 className="text-4xl md:text-5xl font-headline font-bold mb-8 leading-tight">Secure your<br />guaranteed income.</h2>
+              <p className="text-surface/70 text-lg mb-12">Submit your property details and our Melbourne team will provide a rental appraisal and offer within 48 hours.</p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-sm">check</span>
                   </div>
-                  <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Pranav, UK &rarr; Melbourne</h6>
+                  <span>No management fees</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-sm">check</span>
+                  </div>
+                  <span>Long-term 2-5 year leases</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+                    <span className="material-symbols-outlined text-sm">check</span>
+                  </div>
+                  <span>Professional tenant vetting</span>
+                </div>
+              </div>
+            </div>
+            <div className="bg-surface text-on-surface p-8 md:p-12 rounded-[2rem] shadow-2xl z-10">
+              <form className="grid grid-cols-1 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Property Address</label>
+                  <input className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all" placeholder="123 Example St, Richmond" type="text" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Bedrooms</label>
+                    <select className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary">
+                      <option>2 Bedrooms</option>
+                      <option>3 Bedrooms</option>
+                      <option>4+ Bedrooms</option>
+                    </select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Current Rent</label>
+                    <input className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="$750/pw" type="text" />
                   </div>
                 </div>
-                <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;Getting off a 24-hour flight and walking straight into a beautifully furnished home was a lifesaver. The space was exactly as advertised, the utilities were already sorted, and having a welcoming from Patrick & Sofia made the entire relocation effortless.&quot;
-                </p>
-              </div>
-
-              {/* Quote 2 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Are you the owner or PM?</label>
+                  <select className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary">
+                    <option>Owner</option>
+                    <option>Property Manager</option>
+                  </select>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Full Name</label>
+                    <input className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="Jane Doe" type="text" />
                   </div>
-                  <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Jason, Sydney &rarr; Melbourne</h6>
+                  <div className="space-y-2">
+                    <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Contact Number</label>
+                    <input className="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="0400 000 000" type="tel" />
                   </div>
                 </div>
-                <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;I wanted to spend some time in Melbourne before my holiday to Taiwan. The hosts were incredibly flexible and reasonable to deal with from day one. The location is fantastic too—with all the amenities practically on your doorstep, you really don't need a car. An absolutely stress-free stay.&quot;
-                </p>
-              </div>
-
-              {/* Quote 3 */}
-              <div className="bg-surface p-8 rounded-[2rem] border border-outline-variant/20 shadow-sm">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <h6 className="font-bold text-on-background">Sia, Fiji &rarr; Melbourne</h6>
-                  </div>
-                </div>
-                <p className="text-on-surface-variant italic leading-relaxed">
-                  &quot;Relocating from Fiji for a job placement, I didn't want to risk signing a long-term lease right away. Finding Sofia and Zestay on Flatmates was the perfect solution. It was incredibly convenient—just a 10-minute walk to work! It gave me a flexible, stress-free base until my role was secure and I was ready to find my own home. Highly recommended.&quot;
-                </p>
-              </div>
+                <button className="w-full bg-on-background text-surface font-bold py-5 rounded-full mt-4 hover:scale-[1.01] active:scale-95 transition-all shadow-xl shadow-on-background/10" type="submit">Submit Your Property</button>
+              </form>
             </div>
           </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-24 px-6">
-          <div className="max-w-7xl mx-auto bg-on-background rounded-[3rem] p-12 md:p-24 text-center overflow-hidden relative">
-            {/* Abstract Sky Gradient Background Decor */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent opacity-50 pointer-events-none"></div>
-            <div className="relative z-10">
-              <h2 className="text-surface font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-none mb-8">
-                Your Australia starts <br />
-                with a good room.
-              </h2>
-              <p className="text-surface/70 text-xl max-w-xl mx-auto mb-12">
-                Hawthorn. Camberwell. Fitzroy. Collingwood. St Kilda. Richmond. <br />
-                Rooms open now — book online, move in this week.
-              </p>
-              <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <Link href="/book" className="bg-primary-container text-on-primary-container px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
-                  Browse Rooms
-                </Link>
-                <button className="bg-transparent text-surface border border-surface/20 px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:bg-surface/10 transition-colors">
-                  Get notified about new spots
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-
-    </>
+        </div>
+      </section>
+    </main>
   );
 }

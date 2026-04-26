@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Zestay | Premium Co-living for Landlords &amp; Property Managers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#486369",
+                    "background": "#fff8f1",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#fcecce",
+                    "outline": "#72787a",
+                    "tertiary": "#695d44",
+                    "on-tertiary-fixed-variant": "#51452e",
+                    "on-secondary-fixed-variant": "#314b51",
+                    "tertiary-container": "#decdae",
+                    "surface-container-high": "#f6e7c9",
+                    "on-primary-fixed-variant": "#2f4b51",
+                    "surface-bright": "#fff8f1",
+                    "surface-variant": "#f0e1c3",
+                    "tertiary-fixed-dim": "#d5c5a6",
+                    "primary": "#476369",
+                    "on-background": "#221b08",
+                    "primary-fixed-dim": "#aeccd3",
+                    "on-primary-fixed": "#001f25",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#476369",
+                    "surface-dim": "#e7d9bb",
+                    "surface": "#fff8f1",
+                    "secondary-fixed": "#cbe7ef",
+                    "primary-container": "#b6d4dc",
+                    "on-primary-container": "#415d63",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#42484a",
+                    "on-tertiary-container": "#63573e",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#c8e4ed",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "outline-variant": "#c2c7c9",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#feefd1",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#231a07",
+                    "on-surface": "#221b08",
+                    "surface-container-low": "#fff2db",
+                    "on-secondary-container": "#4d676e",
+                    "secondary-fixed-dim": "#afcbd3",
+                    "primary-fixed": "#c9e8ef",
+                    "inverse-primary": "#aeccd3",
+                    "tertiary-fixed": "#f2e1c1",
+                    "surface-container-highest": "#f0e1c3",
+                    "on-secondary-fixed": "#021f25",
+                    "inverse-surface": "#38301b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fff8f1; color: #221b08; }
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-nav { background: rgba(255, 248, 241, 0.8); backdrop-filter: blur(20px); }
+        .hero-gradient { background: linear-gradient(135deg, #c9e8ef 0%, #476369 100%); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 glass-nav">
+<div class="flex justify-between items-center px-6 md:px-12 py-4 w-full max-w-[1440px] mx-auto">
+<div class="text-2xl font-bold text-on-background tracking-tighter font-headline">Zestay</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 rounded-lg px-2" href="#how-it-works">How it Works</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 rounded-lg px-2" href="#the-deal">Solutions</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300 rounded-lg px-2" href="#faq">Trust &amp; Security</a>
+<a class="bg-on-background text-surface px-6 py-2.5 rounded-full font-semibold hover:opacity-90 transition-all active:scale-95" href="#submit">Partner with Us</a>
+</div>
+<div class="md:hidden">
+<span class="material-symbols-outlined text-on-background">menu</span>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12 grid md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 z-10">
+<h1 class="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tighter mb-8 text-on-background">
+                    Above-Market Rent.<br/>
+<span class="text-primary italic">Guaranteed.</span><br/>
+                    Zero Vacancy.
+                </h1>
+<p class="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
+                    We know this sounds different — here’s exactly how it works. Zestay provides stable, long-term corporate tenancies with pre-agreed annual increases and zero management fees.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="bg-on-background text-surface px-8 py-4 rounded-full font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/10" href="#submit">Submit Your Property</a>
+<div class="flex items-center gap-3 px-6 py-4">
+<span class="material-symbols-outlined text-primary">verified</span>
+<span class="text-sm font-semibold text-secondary">Melbourne-based &amp; RTA Compliant</span>
+</div>
+</div>
+</div>
+<div class="md:col-span-5 relative">
+<div class="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl rotate-2 md:rotate-3 translate-x-4 md:translate-x-8">
+<img alt="Premium Melbourne property interior" class="w-full h-full object-cover" data-alt="Modern spacious Melbourne apartment interior with high ceilings, light wood floors, large windows, and minimalist luxury furniture in soft neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtArpl-2GIy8bfJ5X6QD66HUhuMxCd8Tq1icb_RDKn3ynVYaG_k-9D1vhH2ayMFaZ4jjjatKsLHGErstq0d75nMnlERI5K-zVMMEPrZ8KuxWhFBdPtSQKS46BlcUEy3ieM7HH-8FYIKw8QXOXPQvKHOsV_ViOu088yDARRNI-K6wHsOd2ag29GQ6V-mo1yVo-MSLJzSJLQEFZ4T2HAmgzgdAuOaNyzlqkqa7yo_sWln6K3Amsl-B84Iixnm94CI0F8PQcv2EKDFxQ"/>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-primary-container p-8 rounded-2xl shadow-xl hidden md:block">
+<div class="text-4xl font-bold text-on-primary-container mb-1">20+</div>
+<div class="text-xs uppercase tracking-widest font-bold text-on-primary-container/70">Properties Managed</div>
+</div>
+</div>
+</div>
+<!-- Abstract Bg Element -->
+<div class="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[5rem]"></div>
+</header>
+<!-- The Deal Section -->
+<section class="py-24 bg-surface" id="the-deal">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12">
+<div class="mb-16 md:mb-24 max-w-2xl">
+<h2 class="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-4">The Partnership</h2>
+<h3 class="text-4xl md:text-5xl font-bold text-on-background leading-tight">The ultimate hands-off landlord experience.</h3>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+<!-- Feature 1 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h4 class="font-bold text-xl">Above-market rent</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Consistently above current asking prices, reflective of our corporate model.</p>
+</div>
+<!-- Feature 2 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<h4 class="font-bold text-xl">Guaranteed rent</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Paid automatically every month. No chasing arrears, no tenant excuses.</p>
+</div>
+<!-- Feature 3 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<h4 class="font-bold text-xl">Zero vacancy</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Lease starts Day 1. We assume all vacancy risk for the entire term.</p>
+</div>
+<!-- Feature 4 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">show_chart</span>
+</div>
+<h4 class="font-bold text-xl">4% Fixed annual increases</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Predictable growth built into the contract from the start.</p>
+</div>
+<!-- Feature 5 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">engineering</span>
+</div>
+<h4 class="font-bold text-xl">End-to-end management</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Zero occupant contact. We handle all minor maintenance and cleaning.</p>
+</div>
+<!-- Feature 6 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<h4 class="font-bold text-xl">RTA Compliant</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Everything done by the book under standard Victorian tenancy laws.</p>
+</div>
+<!-- Feature 7 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">shield</span>
+</div>
+<h4 class="font-bold text-xl">Public Liability</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Full insurance coverage specifically tailored for our co-living model.</p>
+</div>
+<!-- Feature 8 -->
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 bg-primary-container rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">check_box_outline_blank</span>
+</div>
+<h4 class="font-bold text-xl">No alterations</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">We never make structural changes. Your property remains exactly as it is.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Co-living Section -->
+<section class="py-24 bg-surface-container-low rounded-[3rem] mx-4 md:mx-12 overflow-hidden">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12 grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-3xl md:text-5xl font-bold mb-8 leading-tight">Quiet, Quality Co-living — <span class="text-primary italic">Not a Rooming House.</span></h2>
+<p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                    Zestay operates small, quiet, quality co-living spaces. We are not a boarding house. Each property houses a <span class="font-bold text-on-surface">maximum of 3 carefully vetted tenants</span> at any one time. Think of it as a well-managed share house with a professional operator responsible for everything.
+                </p>
+<ul class="space-y-6">
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">groups</span>
+<div>
+<span class="font-bold block">Max 3 occupants</span>
+<span class="text-sm text-on-surface-variant">Strict limits to ensure low-impact living and property longevity.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">work</span>
+<div>
+<span class="font-bold block">Working professionals only</span>
+<span class="text-sm text-on-surface-variant">We target high-income earners who value peace and quiet.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">fact_check</span>
+<div>
+<span class="font-bold block">Rigorous 100-point vetting</span>
+<span class="text-sm text-on-surface-variant">Employment, identity, and behavioral screening for every tenant.</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">assignment_ind</span>
+<div>
+<span class="font-bold block">Zestay as sole named tenant</span>
+<span class="text-sm text-on-surface-variant">We take full legal and financial accountability for the property.</span>
+</div>
+</li>
+</ul>
+</div>
+<div class="relative group">
+<div class="rounded-[2.5rem] overflow-hidden shadow-2xl">
+<img alt="Shared kitchen area" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A clean, sunlit high-end designer kitchen and dining area in a modern Melbourne townhouse with marble island and wood accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQwaBCpNkYtVkg3Pt19liMj-69Ky5co-lijB9Y6RsESNfwKk9e6P1kFMNmd4hA1FikmF3soATEV_t6QjeDYr5R5gQaVvVzwnZrIFjD7qzuWsCowtWqmLD9hFsCoXG_FOaaSk4iManXQUiNMBipT9-athyJgGEnVh87e9PD8_Uksr5ZhyCP77jFEJ-MKkoqSe7P2LDG0VVitLeT6yoeVdWWvSbg8DZQXds_Q-I6oi3LKllbOM__oDu2nkmJhrPCY8NpHuceg9EBDEs"/>
+</div>
+<div class="absolute -top-8 -right-8 w-32 h-32 bg-primary-container rounded-full flex items-center justify-center p-4 text-center text-on-primary-container font-bold text-xs leading-tight border-8 border-surface-container-low">
+                    MELBOURNE LOCAL
+                </div>
+</div>
+</div>
+</section>
+<!-- Process Section -->
+<section class="py-24" id="how-it-works">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12">
+<h2 class="text-4xl md:text-5xl font-bold text-center mb-20">The Onboarding Flow</h2>
+<div class="grid grid-cols-1 md:grid-cols-5 gap-4 relative">
+<!-- Vertical Line for mobile, Horizontal for desktop -->
+<div class="hidden md:block absolute top-10 left-0 w-full h-[2px] bg-primary-container -z-10"></div>
+<div class="flex flex-col items-center text-center gap-6 group">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">1</div>
+<div>
+<h5 class="font-bold text-lg mb-2">Submit Property</h5>
+<p class="text-xs text-on-surface-variant">Tell us about your asset.</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-6 group">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">2</div>
+<div>
+<h5 class="font-bold text-lg mb-2">Offer in 48hrs</h5>
+<p class="text-xs text-on-surface-variant">A fixed-price rental offer.</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-6 group">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">3</div>
+<div>
+<h5 class="font-bold text-lg mb-2">Standard Lease</h5>
+<p class="text-xs text-on-surface-variant">Terms agreed via RTA.</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-6 group">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">4</div>
+<div>
+<h5 class="font-bold text-lg mb-2">Sign &amp; Bond</h5>
+<p class="text-xs text-on-surface-variant">Security and agreement locked.</p>
+</div>
+</div>
+<div class="flex flex-col items-center text-center gap-6 group">
+<div class="w-20 h-20 bg-surface-container-high rounded-full flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300">5</div>
+<div>
+<h5 class="font-bold text-lg mb-2">Hands-off Management</h5>
+<p class="text-xs text-on-surface-variant">We take it from here.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Legitimacy Block -->
+<section class="py-12 bg-on-background text-surface">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<p class="text-surface/60 text-sm font-medium mb-1">Registered Operator</p>
+<p class="text-xl font-bold">Athena Irons Holding Pty Ltd t/a Zestay</p>
+<p class="text-primary-container text-sm">ABN 41 424 818 899 | Melbourne-based</p>
+</div>
+<div class="h-12 w-px bg-surface/20 hidden md:block"></div>
+<div class="text-center md:text-left">
+<p class="text-surface/60 text-sm font-medium mb-1">Reference Assets</p>
+<p class="text-lg">Managing agent references from <span class="font-bold text-primary-container">Nelson Alexander</span></p>
+<p class="text-xs opacity-60">Available on request for property managers</p>
+</div>
+<div class="h-12 w-px bg-surface/20 hidden md:block"></div>
+<div class="text-center">
+<div class="text-3xl font-bold text-primary-container">20+</div>
+<p class="text-xs uppercase tracking-widest opacity-60">Properties Operating</p>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24 bg-surface-container" id="faq">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12">
+<h2 class="text-4xl font-bold mb-16 text-center">Agent &amp; Landlord FAQ</h2>
+<div class="grid md:grid-cols-2 gap-x-12 gap-y-8">
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">What kind of people live there?</h5>
+<p class="text-on-surface-variant text-sm">Strictly working professionals. Our average tenant is 28-35 years old, earning $85k+, who values a clean, quiet environment over a standard party house.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">Is this a rooming house?</h5>
+<p class="text-on-surface-variant text-sm">No. We host a maximum of 3 tenants per property. We operate under standard Residential Tenancies Act (RTA) leases, not rooming house regulations.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">What happens if there's damage?</h5>
+<p class="text-on-surface-variant text-sm">Zestay is the sole tenant. We are contractually liable for the property's condition and maintain a 24/7 maintenance response team for any issues.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">Can you make alterations?</h5>
+<p class="text-on-surface-variant text-sm">No structural changes are made. We may add high-quality furniture, but the property's bones remain exactly as they were when we signed.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">Is this legal?</h5>
+<p class="text-on-surface-variant text-sm">Absolutely. We use standard Victorian RTA leases with specific head-lease provisions that permit our sub-tenancy model for vetted professionals.</p>
+</div>
+<div class="bg-surface p-8 rounded-2xl shadow-sm">
+<h5 class="font-bold mb-3 text-primary">Do I still work with my PM?</h5>
+<p class="text-on-surface-variant text-sm">Yes. We act as the 'Perfect Tenant'. Your PM still manages the property, collects rent from us, and conducts routine inspections. We just make their job easier.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Lead Capture Form -->
+<section class="py-24" id="submit">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12">
+<div class="bg-on-background rounded-[3rem] p-8 md:p-20 text-surface grid lg:grid-cols-2 gap-16 overflow-hidden relative">
+<!-- Decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+<div>
+<h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">Secure your<br/>guaranteed income.</h2>
+<p class="text-surface/70 text-lg mb-12">Submit your property details and our Melbourne team will provide a rental appraisal and offer within 48 hours.</p>
+<div class="space-y-6">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span>No management fees</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span>Long-term 2-5 year leases</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full border border-surface/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span>Professional tenant vetting</span>
+</div>
+</div>
+</div>
+<div class="bg-surface text-on-surface p-8 md:p-12 rounded-[2rem] shadow-2xl z-10">
+<form class="grid grid-cols-1 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Property Address</label>
+<input class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary transition-all" placeholder="123 Example St, Richmond" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Bedrooms</label>
+<select class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary">
+<option>2 Bedrooms</option>
+<option>3 Bedrooms</option>
+<option>4+ Bedrooms</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Current Rent</label>
+<input class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="$750/pw" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Are you the owner or PM?</label>
+<select class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary">
+<option>Owner</option>
+<option>Property Manager</option>
+</select>
+</div>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Full Name</label>
+<input class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="Jane Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Contact Number</label>
+<input class="w-full bg-surface-container-high border-none rounded-xl p-4 focus:ring-2 focus:ring-primary" placeholder="0400 000 000" type="tel"/>
+</div>
+</div>
+<button class="w-full bg-on-background text-surface font-bold py-5 rounded-full mt-4 hover:scale-[1.01] active:scale-95 transition-all shadow-xl shadow-on-background/10" type="submit">Submit Your Property</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container rounded-t-[24px] w-full">
+<div class="max-w-[1440px] mx-auto px-12 py-16 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-4">
+<div class="text-xl font-bold text-on-background font-headline">Zestay</div>
+<p class="text-sm text-on-surface-variant text-center md:text-left">© 2024 Zestay Pty Ltd. ABN 12 345 678 901. Registered in Australia.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-on-surface-variant text-sm hover:text-on-background transition-colors" href="#">Privacy</a>
+<a class="text-on-surface-variant text-sm hover:text-on-background transition-colors" href="#">Terms</a>
+<a class="text-on-surface-variant text-sm hover:text-on-background transition-colors" href="#">Compliance</a>
+<a class="text-on-surface-variant text-sm hover:text-on-background transition-colors" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>
