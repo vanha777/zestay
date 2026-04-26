@@ -43,7 +43,7 @@ export default function B2BLandingPage() {
               <Image
                 alt="Premium Melbourne property interior"
                 className="w-full h-full object-cover"
-                src="/b2b/photo-1522771739844-6a9f6d5f14af.avif"
+                src="/b2b/hero1.png"
                 width={800}
                 height={1000}
                 priority
@@ -114,7 +114,7 @@ export default function B2BLandingPage() {
               <Image
                 alt="Shared kitchen area"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                src="/b2b/kitchen.jpeg"
+                src="/b2b/photo-1522771739844-6a9f6d5f14af.avif"
                 width={800}
                 height={800}
               />
