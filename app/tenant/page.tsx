@@ -1,5 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import FadeIn from "@/components/animations/FadeIn";
+import StaggerContainer from "@/components/animations/StaggerContainer";
+import StaggerItem from "@/components/animations/StaggerItem";
+
 
 export default function Home() {
   return (
@@ -9,7 +13,7 @@ export default function Home() {
       <main className="pt-20">
         {/* Hero Section */}
         <section className="relative px-6 md:pl-16 md:pr-32 pt-12 pb-24 max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
-          <div className="lg:col-span-7">
+          <FadeIn className="lg:col-span-7">
             <h1 className="text-5xl md:text-[5rem] font-headline font-bold text-on-surface tracking-tighter leading-[1.05] mb-8">
               Modern co-living. <br />
               <span className="text-primary italic font-normal tracking-tight">Live better, together.</span>
@@ -53,8 +57,8 @@ export default function Home() {
                 Find a Room
               </Link>
             </div>
-          </div>
-          <div className="lg:col-span-5 relative">
+          </FadeIn>
+          <FadeIn delay={0.2} direction="left" className="lg:col-span-5 relative">
             <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden rotate-1 hover:rotate-0 transition-transform duration-1000 shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
               <Image
                 alt="Stylish coliving interior"
@@ -75,13 +79,13 @@ export default function Home() {
                 Like-minded housemates
               </div>
             </div>
-          </div>
+          </FadeIn>
         </section>
 
         {/* Featured Stays: Bento Grid */}
         <section className="bg-surface-container-low py-24 px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-16">
+            <FadeIn className="flex justify-between items-end mb-16">
               <div className="max-w-xl">
                 <h2 className="text-primary font-headline text-lg font-bold tracking-widest uppercase mb-4">
                   Featured Stays
@@ -97,11 +101,11 @@ export default function Home() {
                 View All Locations
                 <span className="material-symbols-outlined">arrow_forward</span>
               </a>
-            </div>
+            </FadeIn>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Card 1 */}
-              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
+              <StaggerItem className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -138,10 +142,9 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              </div>
-
+              </StaggerItem>
               {/* Card 2 */}
-              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
+              <StaggerItem className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -178,10 +181,9 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              </div>
-
+              </StaggerItem>
               {/* Card 3 */}
-              <div className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
+              <StaggerItem className="bg-surface rounded-[1.5rem] overflow-hidden group shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-all">
                 <div className="aspect-[16/10] overflow-hidden relative">
                   <Image
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -218,15 +220,15 @@ export default function Home() {
                     </Link>
                   </div>
                 </div>
-              </div>
-            </div>
+              </StaggerItem>
+            </StaggerContainer>
           </div>
         </section>
 
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
-              <div className="bg-primary-container p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
+            <StaggerContainer className="order-2 lg:order-1 grid grid-cols-2 gap-4">
+              <StaggerItem className="bg-primary-container p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
                   group
                 </span>
@@ -236,8 +238,8 @@ export default function Home() {
                 <p className="text-sm text-on-primary-container/80 mt-2">
                   Share your living space with professionals, relocators, and explorers. Build meaningful connections with like-minded people.
                 </p>
-              </div>
-              <div className="bg-surface-container-highest p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
+              </StaggerItem>
+              <StaggerItem className="bg-surface-container-highest p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
                   calendar_month
                 </span>
@@ -247,8 +249,8 @@ export default function Home() {
                 <p className="text-sm text-on-surface-variant mt-2">
                   Stay as long as you need. Whether it's a few months or a longer relocation, your housing adapts seamlessly to your timeline.
                 </p>
-              </div>
-              <div className="bg-surface-container-high p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
+              </StaggerItem>
+              <StaggerItem className="bg-surface-container-high p-8 rounded-[2rem] aspect-square flex flex-col justify-end">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
                   bed
                 </span>
@@ -258,8 +260,8 @@ export default function Home() {
                 <p className="text-sm text-on-surface-variant mt-2">
                   Bed, desk, wardrobe, WiFi. Everything you need, nothing you don't. Show up with your suitcase, that's it.
                 </p>
-              </div>
-              <div className="bg-primary-container/40 p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
+              </StaggerItem>
+              <StaggerItem className="bg-primary-container/40 p-8 rounded-[2rem] aspect-square flex flex-col justify-end translate-y-8">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
                   payments
                 </span>
@@ -269,8 +271,8 @@ export default function Home() {
                 <p className="text-sm text-on-primary-container/80 mt-2">
                   Rent, power, water, internet — one price, done. No utility accounts to set up. No surprise invoices.
                 </p>
-              </div>
-              <div className="col-span-2 bg-surface-container-highest p-8 rounded-[2rem] flex flex-col justify-end mt-4">
+              </StaggerItem>
+              <StaggerItem className="col-span-2 bg-surface-container-highest p-8 rounded-[2rem] flex flex-col justify-end mt-4">
                 <span className="material-symbols-outlined text-4xl mb-4 text-primary">
                   public
                 </span>
@@ -280,10 +282,10 @@ export default function Home() {
                 <p className="text-sm text-on-surface-variant mt-2">
                   Sort your room before you even get on the plane. No inspections. No awkward group chats. Just confirm and go.
                 </p>
-              </div>
-            </div>
+              </StaggerItem>
+            </StaggerContainer>
 
-            <div className="order-1 lg:order-2 space-y-8">
+            <FadeIn className="order-1 lg:order-2 space-y-8">
               <h2 className="text-primary font-headline text-5xl font-bold tracking-tighter leading-tight">
                 Quality housing, simplified.
               </h2>
@@ -304,21 +306,21 @@ export default function Home() {
                   See what's available
                 </Link>
               </div>
-            </div>
+            </FadeIn>
           </div>
         </section>
 
         {/* Testimonials */}
         <section className="bg-surface-container py-24 px-6 overflow-hidden">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
+            <FadeIn className="text-center mb-16">
               <h3 className="text-4xl font-headline font-bold text-on-background">
                 Voices from the Community
               </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            </FadeIn>
+            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Quote 1 */}
-              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
+              <StaggerItem className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -333,10 +335,10 @@ export default function Home() {
                 <p className="text-on-surface-variant italic leading-relaxed">
                   &quot;Getting off a 24-hour flight and walking straight into a beautifully furnished home was a lifesaver. The space was exactly as advertised, the utilities were already sorted, and having a welcoming from Patrick & Sofia made the entire relocation effortless.&quot;
                 </p>
-              </div>
+              </StaggerItem>
 
               {/* Quote 2 */}
-              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
+              <StaggerItem className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -351,10 +353,10 @@ export default function Home() {
                 <p className="text-on-surface-variant italic leading-relaxed">
                   &quot;I wanted to spend some time in Melbourne before my holiday to Taiwan. The hosts were incredibly flexible and reasonable to deal with from day one. The location is fantastic too—with all the amenities practically on your doorstep, you really don't need a car. An absolutely stress-free stay.&quot;
                 </p>
-              </div>
+              </StaggerItem>
 
               {/* Quote 3 */}
-              <div className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
+              <StaggerItem className="bg-surface p-10 rounded-[2rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] transition-all border-none">
                 <div className="flex items-center gap-4 mb-6">
                   <div className="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-on-surface-variant/40">
@@ -369,14 +371,14 @@ export default function Home() {
                 <p className="text-on-surface-variant italic leading-relaxed">
                   &quot;Relocating from Fiji for a job placement, I didn't want to risk signing a long-term lease right away. Finding Sofia and Zestay on Flatmates was the perfect solution. It was incredibly convenient—just a 10-minute walk to work! It gave me a flexible, stress-free base until my role was secure and I was ready to find my own home. Highly recommended.&quot;
                 </p>
-              </div>
-            </div>
+              </StaggerItem>
+            </StaggerContainer>
           </div>
         </section>
 
         {/* CTA Section */}
         <section className="py-32 px-6">
-          <div className="max-w-[1440px] mx-auto bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
+          <FadeIn className="max-w-[1440px] mx-auto bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
             {/* Abstract Sky Gradient Background Decor */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-surface rounded-full blur-[120px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
             <div className="relative z-10">
@@ -397,7 +399,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-          </div>
+          </FadeIn>
         </section>
       </main>
 

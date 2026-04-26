@@ -82,7 +82,7 @@ const itemVariants = {
       ease: "easeOut",
     },
   },
-};
+} as any;
 
 export default function BentoPartnership() {
   const [rotationIndex, setRotationIndex] = useState(0);

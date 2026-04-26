@@ -1,4 +1,8 @@
 import Image from "next/image";
+import FadeIn from "@/components/animations/FadeIn";
+import StaggerContainer from "@/components/animations/StaggerContainer";
+import StaggerItem from "@/components/animations/StaggerItem";
+
 
 export const metadata = {
   title: "About | Zestay",
@@ -10,7 +14,7 @@ export default function AboutPage() {
     <div className="pt-20">
       {/* Hero Section */}
       <section className="relative px-6 md:pl-16 md:pr-32 py-24 md:py-32 max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-        <div>
+        <FadeIn delay={0.1}>
           <span className="text-primary font-headline font-bold tracking-widest uppercase text-xs mb-6 inline-block bg-primary-container px-4 py-2 rounded-full">
             Our Story
           </span>
@@ -23,8 +27,8 @@ export default function AboutPage() {
           <p className="text-on-surface-variant text-xl leading-relaxed font-body">
             We believed there had to be a better way for modern professionals and relocators to land in Australia and immediately feel at home. So, we built it.
           </p>
-        </div>
-        <div className="relative">
+        </FadeIn>
+        <FadeIn delay={0.3} direction="left" className="relative">
           {/* Founders Image */}
           <div className="w-full h-[550px] rounded-[2.5rem] overflow-hidden relative flex items-center justify-center group shadow-[0_12px_40px_rgba(41,58,62,0.12)] rotate-1">
             <Image
@@ -36,22 +40,22 @@ export default function AboutPage() {
           </div>
           {/* Decorative Blob */}
           <div className="absolute -z-10 -bottom-10 -left-10 w-64 h-64 bg-primary-fixed rounded-full blur-3xl opacity-60"></div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Values Section */}
       <section className="px-6 py-32 bg-surface-container-low text-on-surface rounded-[3rem] mx-4 md:ml-12 md:mr-24 mb-24 relative overflow-hidden">
-        <div className="max-w-[1440px] mx-auto text-center mb-20">
+        <FadeIn className="max-w-[1440px] mx-auto text-center mb-20">
           <h2 className="font-headline text-4xl md:text-6xl font-bold tracking-tighter mb-6 text-on-surface">
             The Zestay Guarantee
           </h2>
           <p className="text-on-surface-variant text-xl max-w-2xl mx-auto font-body leading-relaxed">
             We manage every property personally. When you live with us, you are relying on real people who genuinely care about your experience, not a faceless agency.
           </p>
-        </div>
+        </FadeIn>
 
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
+        <StaggerContainer className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+          <StaggerItem className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
             <div className="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-primary mx-auto mb-6">
               <span className="material-symbols-outlined">visibility</span>
             </div>
@@ -59,8 +63,8 @@ export default function AboutPage() {
             <p className="text-on-surface-variant leading-relaxed font-body text-base">
               The price you see is the price you pay. No hidden connection fees, no end-of-lease cleaning traps.
             </p>
-          </div>
-          <div className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
+          </StaggerItem>
+          <StaggerItem className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
             <div className="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-primary mx-auto mb-6">
               <span className="material-symbols-outlined">bolt</span>
             </div>
@@ -68,8 +72,8 @@ export default function AboutPage() {
             <p className="text-on-surface-variant leading-relaxed font-body text-base">
               We live and breathe Melbourne real estate. If something breaks, we fix it fast. We have trades on standby.
             </p>
-          </div>
-          <div className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
+          </StaggerItem>
+          <StaggerItem className="text-center bg-surface p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] transition-all duration-300 hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] hover:-translate-y-2">
             <div className="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-primary mx-auto mb-6">
               <span className="material-symbols-outlined">chair</span>
             </div>
@@ -77,8 +81,8 @@ export default function AboutPage() {
             <p className="text-on-surface-variant leading-relaxed font-body text-base">
               We furnish our homes the way we want to live. Premium mattresses, beautiful art, and comfortable spaces.
             </p>
-          </div>
-        </div>
+          </StaggerItem>
+        </StaggerContainer>
       </section>
     </div>
   );

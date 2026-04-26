@@ -1,6 +1,8 @@
 import Script from "next/script";
 import Link from "next/link";
 import Image from "next/image";
+import FadeIn from "@/components/animations/FadeIn";
+
 
 export default function BookPage() {
   return (
@@ -22,7 +24,7 @@ export default function BookPage() {
 
       {/* Main Content */}
       <main className="flex-1 w-full flex items-center justify-center p-4 pt-28 pb-12">
-        <div className="w-full max-w-3xl bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-[#221b08]/10">
+        <FadeIn className="w-full max-w-3xl bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-[#221b08]/10">
           <div className="mb-8 text-center">
             <h1 className="text-4xl md:text-5xl font-headline font-bold text-[#221b08] mb-4 tracking-tight">Complete Your Booking</h1>
             <p className="text-[#42484a] max-w-lg mx-auto leading-relaxed">
@@ -40,7 +42,7 @@ export default function BookPage() {
               data-portal-id="443026822"
             ></div>
           </div>
-        </div>
+        </FadeIn>
       </main>
     </div>
   );

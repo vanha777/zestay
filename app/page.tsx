@@ -2,6 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import AnimatedPartners from "@/components/AnimatedPartners";
 import BentoPartnership from "@/components/BentoPartnership";
+import FadeIn from "@/components/animations/FadeIn";
+import StaggerContainer from "@/components/animations/StaggerContainer";
+import StaggerItem from "@/components/animations/StaggerItem";
+
 
 export default function B2BLandingPage() {
   return (
@@ -10,25 +14,31 @@ export default function B2BLandingPage() {
       <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-surface">
         <div className="max-w-[1440px] mx-auto px-6 md:pl-16 md:pr-32 grid md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7 z-10">
-            <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
-              Above-Market Rent.<br />
-              <span className="text-primary italic font-normal tracking-tight">Guaranteed.</span><br />
-              Zero Vacancy.
-            </h1>
-            <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
-              We know this sounds different — here’s exactly how it works. Zestay provides stable, long-term corporate tenancies with pre-agreed annual increases and zero management fees.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <a className="bg-on-background text-surface px-8 py-4 rounded-[1.5rem] font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-[0_12px_40px_rgba(41,58,62,0.08)]" href="#submit">
-                Submit Your Property
-              </a>
-              <div className="flex items-center gap-3 px-6 py-4">
-                <span className="material-symbols-outlined text-primary">verified</span>
-                <span className="text-sm font-semibold text-secondary">Melbourne-based &amp; RTA Compliant</span>
+            <FadeIn delay={0.1}>
+              <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
+                Above-Market Rent.<br />
+                <span className="text-primary italic font-normal tracking-tight">Guaranteed.</span><br />
+                Zero Vacancy.
+              </h1>
+            </FadeIn>
+            <FadeIn delay={0.2}>
+              <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
+                We know this sounds different — here’s exactly how it works. Zestay provides stable, long-term corporate tenancies with pre-agreed annual increases and zero management fees.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.3}>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a className="bg-on-background text-surface px-8 py-4 rounded-[1.5rem] font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-[0_12px_40px_rgba(41,58,62,0.08)]" href="#submit">
+                  Submit Your Property
+                </a>
+                <div className="flex items-center gap-3 px-6 py-4">
+                  <span className="material-symbols-outlined text-primary">verified</span>
+                  <span className="text-sm font-semibold text-secondary">Melbourne-based &amp; RTA Compliant</span>
+                </div>
               </div>
-            </div>
+            </FadeIn>
           </div>
-          <div className="md:col-span-5 relative">
+          <FadeIn delay={0.4} direction="left" className="md:col-span-5 relative">
             <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_12px_40px_rgba(41,58,62,0.08)] rotate-2 md:rotate-3 translate-x-4 md:translate-x-8">
               <Image
                 alt="Premium Melbourne property interior"
@@ -43,7 +53,7 @@ export default function B2BLandingPage() {
               <div className="text-4xl font-headline font-bold text-on-primary-container mb-1 tracking-tighter">10+</div>
               <div className="text-xs uppercase tracking-widest font-bold text-primary font-body">Properties Managed</div>
             </div>
-          </div>
+          </FadeIn>
         </div>
         {/* Abstract Bg Element */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[5rem]"></div>
@@ -52,10 +62,10 @@ export default function B2BLandingPage() {
       {/* The Deal Section */}
       <section className="py-32 bg-surface" id="the-deal">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="mb-20 md:mb-32 max-w-2xl md:pl-12">
+          <FadeIn className="mb-20 md:mb-32 max-w-2xl md:pl-12">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Partnership</h2>
             <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">The ultimate hands-off landlord experience.</h3>
-          </div>
+          </FadeIn>
           <BentoPartnership />
         </div>
       </section>
@@ -63,7 +73,7 @@ export default function B2BLandingPage() {
       {/* Co-living Section */}
       <section className="py-32 bg-surface-container-low rounded-[3rem] mx-4 md:ml-12 md:mr-24 overflow-hidden relative">
         <div className="max-w-[1440px] mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-20 items-center">
-          <div>
+          <FadeIn direction="right">
             <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">Quiet, Quality Co-living — <br /><span className="text-primary italic font-normal tracking-tight">Not a Rooming House.</span></h2>
             <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
               Zestay operates small, quiet, quality co-living spaces. We are not a boarding house. Each property houses a <span className="font-bold text-on-surface">maximum of 3 carefully vetted tenants</span> at any one time. Think of it as a well-managed share house with a professional operator responsible for everything.
@@ -98,8 +108,8 @@ export default function B2BLandingPage() {
                 </div>
               </li>
             </ul>
-          </div>
-          <div className="relative group">
+          </FadeIn>
+          <FadeIn delay={0.2} direction="left" className="relative group">
             <div className="rounded-[2.5rem] overflow-hidden shadow-[0_12px_40px_rgba(41,58,62,0.12)] aspect-[4/3] md:aspect-auto md:h-[650px] rotate-1">
               <Image
                 alt="Shared kitchen area"
@@ -112,15 +122,17 @@ export default function B2BLandingPage() {
             <div className="absolute -top-12 -right-12 w-40 h-40 bg-primary-fixed rounded-full flex items-center justify-center p-6 text-center text-on-primary-fixed font-bold text-sm tracking-widest leading-tight border-[12px] border-surface-container-low shadow-lg">
               MELBOURNE<br />LOCAL
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Process Section */}
       <section className="py-32" id="how-it-works">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">The Onboarding Flow</h2>
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+          <FadeIn>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">The Onboarding Flow</h2>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-primary-container -z-10"></div>
             {[
               { num: 1, title: 'Submit Property', desc: 'Tell us about your asset.' },
@@ -129,15 +141,15 @@ export default function B2BLandingPage() {
               { num: 4, title: 'Sign & Bond', desc: 'Security and agreement locked.' },
               { num: 5, title: 'Hands-off Management', desc: 'We take it from here.' },
             ].map((step, i) => (
-              <div key={i} className="flex flex-col items-center text-center gap-8 group">
+              <StaggerItem key={i} className="flex flex-col items-center text-center gap-8 group">
                 <div className="w-24 h-24 bg-surface-container rounded-[1.5rem] flex items-center justify-center font-headline text-4xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300 shadow-sm group-hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] group-hover:-translate-y-2">{step.num}</div>
                 <div>
                   <h5 className="font-bold font-headline text-xl mb-2 text-on-surface">{step.title}</h5>
                   <p className="text-sm text-on-surface-variant leading-relaxed">{step.desc}</p>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -166,8 +178,10 @@ export default function B2BLandingPage() {
       {/* FAQ Section */}
       <section className="py-32 bg-surface" id="faq">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">Agent &amp; Landlord FAQ</h2>
-          <div className="grid md:grid-cols-2 gap-x-16 gap-y-10">
+          <FadeIn>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">Agent &amp; Landlord FAQ</h2>
+          </FadeIn>
+          <StaggerContainer className="grid md:grid-cols-2 gap-x-16 gap-y-10">
             {[
               { q: "What kind of people live there?", a: "Strictly working professionals. Our average tenant is 28-35 years old, earning $85k+, who values a clean, quiet environment over a standard party house." },
               { q: "Is this a rooming house?", a: "No. We host a maximum of 3 tenants per property. We operate under standard Residential Tenancies Act (RTA) leases, not rooming house regulations." },
@@ -176,19 +190,19 @@ export default function B2BLandingPage() {
               { q: "Is this legal?", a: "Absolutely. We use standard Victorian RTA leases with specific head-lease provisions that permit our sub-tenancy model for vetted professionals." },
               { q: "Do I still work with my PM?", a: "Yes. We act as the 'Perfect Tenant'. Your PM still manages the property, collects rent from us, and conducts routine inspections. We just make their job easier." },
             ].map((faq, i) => (
-              <div key={i} className="bg-surface-container p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none transition-all hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)]">
+              <StaggerItem key={i} className="bg-surface-container p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.04)] border-none transition-all hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)]">
                 <h5 className="font-bold mb-4 text-primary text-xl font-headline tracking-tight">{faq.q}</h5>
                 <p className="text-on-surface-variant text-base leading-relaxed">{faq.a}</p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
       {/* Lead Capture Form */}
       <section className="py-32 bg-surface" id="submit">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <div className="bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-8 md:p-24 text-on-surface grid lg:grid-cols-2 gap-20 overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
+          <FadeIn className="bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-8 md:p-24 text-on-surface grid lg:grid-cols-2 gap-20 overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
             <div className="absolute top-0 right-0 w-96 h-96 bg-surface rounded-full blur-[120px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
             <div className="z-10">
               <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 leading-[1.05] tracking-tighter text-on-primary-fixed">Secure your<br />guaranteed income.</h2>
@@ -254,7 +268,7 @@ export default function B2BLandingPage() {
                 <button className="w-full bg-on-surface text-surface font-headline font-bold py-6 rounded-[1.5rem] mt-6 hover:scale-[1.01] active:scale-95 transition-all shadow-[0_12px_40px_rgba(41,58,62,0.12)] text-lg" type="submit">Submit Your Property</button>
               </form>
             </div>
-          </div>
+          </FadeIn>
         </div>
       </section>
     </main>
