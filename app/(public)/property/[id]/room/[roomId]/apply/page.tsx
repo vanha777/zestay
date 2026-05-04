@@ -5,6 +5,8 @@ import { useParams, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createClient } from '@/lib/supabase'
 
+import { sendApplicationNotification } from '@/app/actions/notifications'
+
 export default function RentalApplicationPage() {
   const params = useParams()
   const router = useRouter()
@@ -15,14 +17,18 @@ export default function RentalApplicationPage() {
   const [room, setRoom] = useState<any>(null)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
   
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phone: '',
+    address: '',
     dob: '',
     occupation: '',
+    employerName: '',
+    employerPhone: '',
     emergencyContactName: '',
     emergencyContactPhone: '',
     notes: ''
@@ -51,17 +57,59 @@ export default function RentalApplicationPage() {
     fetchData()
   }, [params.id, params.roomId])
 
+  const validatePhone = (phone: string) => {
+    const phoneClean = phone.replace(/[\s\-\(\)]/g, '')
+    const auPhoneRegex = /^(?:\+61|0)4(?:[0-9]){8}$/
+    return auPhoneRegex.test(phoneClean)
+  }
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' })
+    }
   }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     if (e.target.files && e.target.files[0]) {
       setFiles({ ...files, [type]: e.target.files[0] })
+      if (errors[type]) {
+        setErrors({ ...errors, [type]: '' })
+      }
     }
   }
 
+  const nextStep = () => {
+    const newErrors: { [key: string]: string } = {}
+    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required'
+    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required'
+    if (!formData.email.trim()) newErrors.email = 'Email is required'
+    if (!formData.address.trim()) newErrors.address = 'Current address is required'
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required'
+    } else if (!validatePhone(formData.phone)) {
+      newErrors.phone = 'Please enter a valid AU mobile number'
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
+    setStep(2)
+  }
+
   const handleSubmit = async () => {
+    const newErrors: { [key: string]: string } = {}
+    if (!files['id_proof']) newErrors.id_proof = 'ID verification is required'
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
+
     setSubmitting(true)
     try {
       const { data: appData, error: appError } = await supabase
@@ -77,6 +125,20 @@ export default function RentalApplicationPage() {
         .single()
 
       if (appError) throw appError
+
+      // Send Email Notification
+      await sendApplicationNotification({
+        applicantName: `${formData.firstName} ${formData.lastName}`,
+        applicantEmail: formData.email,
+        applicantAddress: formData.address,
+        employerName: formData.employerName,
+        employerPhone: formData.employerPhone,
+        emergencyContactName: formData.emergencyContactName,
+        emergencyContactPhone: formData.emergencyContactPhone,
+        propertyName: property?.address || 'Unknown Property',
+        roomName: room?.name || 'Unknown Room',
+        applicationId: appData.id
+      })
 
       for (const [type, file] of Object.entries(files)) {
         const fileExt = file.name.split('.').pop()
@@ -97,7 +159,7 @@ export default function RentalApplicationPage() {
         }
       }
 
-      setStep(3) // Success
+      setStep(3)
     } catch (err) {
       console.error('Submission error:', err)
       alert('Failed to submit application.')
@@ -137,23 +199,33 @@ export default function RentalApplicationPage() {
               >
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">First Name</label>
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="Jane" />
+                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">First Name *</label>
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.firstName ? 'ring-1 ring-red-500/50' : ''}`} placeholder="Jane" />
+                    {errors.firstName && <p className="text-[9px] text-red-500 ml-1 font-bold uppercase tracking-widest">{errors.firstName}</p>}
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Last Name</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="Doe" />
+                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Last Name *</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.lastName ? 'ring-1 ring-red-500/50' : ''}`} placeholder="Doe" />
+                    {errors.lastName && <p className="text-[9px] text-red-500 ml-1 font-bold uppercase tracking-widest">{errors.lastName}</p>}
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Email Address</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="jane@example.com" />
+                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Email Address *</label>
+                  <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.email ? 'ring-1 ring-red-500/50' : ''}`} placeholder="jane@example.com" />
+                  {errors.email && <p className="text-[9px] text-red-500 ml-1 font-bold uppercase tracking-widest">{errors.email}</p>}
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Phone Number</label>
-                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="+61 400 000 000" />
+                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Phone Number *</label>
+                  <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.phone ? 'ring-1 ring-red-500/50' : ''}`} placeholder="0400 000 000" />
+                  {errors.phone && <p className="text-[9px] text-red-500 ml-1 font-bold uppercase tracking-widest">{errors.phone}</p>}
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Current Address *</label>
+                  <input type="text" name="address" value={formData.address} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.address ? 'ring-1 ring-red-500/50' : ''}`} placeholder="123 Example St, Melbourne VIC 3000" />
+                  {errors.address && <p className="text-[9px] text-red-500 ml-1 font-bold uppercase tracking-widest">{errors.address}</p>}
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
@@ -167,7 +239,7 @@ export default function RentalApplicationPage() {
                   </div>
                 </div>
 
-                <button onClick={() => setStep(2)} className="w-full bg-primary text-on-primary py-4 rounded-xl font-bold text-sm mt-4 hover:opacity-90 transition-opacity">
+                <button onClick={nextStep} className="w-full bg-primary text-on-primary py-4 rounded-xl font-bold text-sm mt-4 hover:opacity-90 transition-opacity">
                   Continue
                 </button>
               </motion.div>
@@ -182,16 +254,42 @@ export default function RentalApplicationPage() {
                 className="space-y-8"
               >
                 <div className="space-y-6">
-                  <div className="p-5 bg-surface-container-low rounded-2xl border border-outline-variant/10">
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-3">ID Verification</p>
+                  <div className={`p-5 bg-surface-container-low rounded-2xl border transition-all ${errors.id_proof ? 'border-red-500/50' : 'border-outline-variant/10'}`}>
+                    <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-1">ID Verification *</p>
+                    <p className="text-[10px] text-outline-variant mb-4 font-medium italic">Please upload a clear copy of your Driver's License or Passport.</p>
                     <input type="file" onChange={(e) => handleFileChange(e, 'id_proof')} className="text-xs w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary/5 file:text-primary" />
                     {files['id_proof'] && <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-medium"><span className="material-symbols-outlined text-[14px]">check</span> {files['id_proof'].name}</p>}
+                    {errors.id_proof && <p className="text-[9px] text-red-500 mt-2 font-bold uppercase tracking-widest">{errors.id_proof}</p>}
                   </div>
 
-                  <div className="p-5 bg-surface-container-low rounded-2xl border border-outline-variant/10">
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-3">Income Proof</p>
-                    <input type="file" onChange={(e) => handleFileChange(e, 'income_proof')} className="text-xs w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary/5 file:text-primary" />
-                    {files['income_proof'] && <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-medium"><span className="material-symbols-outlined text-[14px]">check</span> {files['income_proof'].name}</p>}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10">
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Employment Reference</p>
+                      <div className="space-y-4">
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Reference Name</label>
+                          <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="John Smith" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Phone</label>
+                          <input type="tel" name="employerPhone" value={formData.employerPhone} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="0400 000 000" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10">
+                      <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Emergency Contact</p>
+                      <div className="space-y-4">
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Name</label>
+                          <input type="text" name="emergencyContactName" value={formData.emergencyContactName} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="Jane Smith" />
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Phone</label>
+                          <input type="tel" name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="0400 000 000" />
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div className="space-y-1.5">
