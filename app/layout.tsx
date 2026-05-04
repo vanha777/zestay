@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
@@ -36,12 +34,8 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="font-body text-on-surface bg-surface min-h-screen flex flex-col pt-[82px]">
-        <Nav />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+      <body className="font-body text-on-surface bg-surface min-h-screen">
+        {children}
         {/* Start of HubSpot Embed Code */}
         <Script
           type="text/javascript"

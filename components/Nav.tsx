@@ -40,9 +40,14 @@ export default function Nav() {
             );
           })}
         </div>
-        <Link href="/book" className="bg-on-background text-surface px-6 py-2.5 rounded-[1.5rem] font-headline font-bold text-sm hover:scale-[1.02] active:scale-95 duration-150 ease-in-out inline-block border-none">
-          Book Now
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/login" className="font-headline font-bold text-sm text-on-surface-variant hover:text-on-surface px-4 py-2 transition-all">
+            Login
+          </Link>
+          <Link href="/book" className="bg-on-background text-surface px-6 py-2.5 rounded-[1.5rem] font-headline font-bold text-sm hover:scale-[1.02] active:scale-95 duration-150 ease-in-out inline-block border-none">
+            Book Now
+          </Link>
+        </div>
       </div>
     </nav>
   );
