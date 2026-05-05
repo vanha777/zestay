@@ -10,6 +10,7 @@ export async function sendApplicationNotification({
   applicantAddress,
   employerName,
   employerPhone,
+  employerEmail,
   emergencyContactName,
   emergencyContactPhone,
   propertyName,
