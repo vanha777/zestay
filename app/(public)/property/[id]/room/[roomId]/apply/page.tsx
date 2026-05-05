@@ -213,7 +213,10 @@ export default function RentalApplicationPage() {
         employmentStatus: formData.employmentStatus,
         hasPets: formData.pets,
         isSmoker: formData.smoking,
-        incomeSource: formData.incomeSource
+        incomeSource: formData.incomeSource,
+        visa: formData.visa,
+        universityName: formData.universityName,
+        fieldOfStudy: formData.fieldOfStudy
       })
 
       for (const [type, file] of Object.entries(files)) {
@@ -387,6 +390,32 @@ export default function RentalApplicationPage() {
                       ))}
                     </div>
                   </div>
+
+                  <AnimatePresence>
+                    {formData.nationality === 'other' && (
+                      <motion.div 
+                        initial={{ opacity: 0, height: 0 }} 
+                        animate={{ opacity: 1, height: 'auto' }} 
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:col-span-2 overflow-hidden"
+                      >
+                        <div className="grid md:grid-cols-3 gap-8 pt-6">
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Visa Type</label>
+                            <input type="text" name="visa" value={formData.visa} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="e.g. Student (500)" />
+                          </div>
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">University / Institution</label>
+                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Name of institution" />
+                          </div>
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Course / Field of Study</label>
+                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Your course" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 <div className="pt-10 border-t border-[#F5F5F5] flex justify-end">

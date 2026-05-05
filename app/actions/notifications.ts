@@ -26,7 +26,10 @@ export async function sendApplicationNotification({
   rentalStayDuration,
   hasPets,
   isSmoker,
-  incomeSource
+  incomeSource,
+  visa,
+  universityName,
+  fieldOfStudy
 }: {
   applicantName: string;
   applicantEmail: string;
@@ -50,6 +53,9 @@ export async function sendApplicationNotification({
   hasPets?: string;
   isSmoker?: string;
   incomeSource?: string;
+  visa?: string;
+  universityName?: string;
+  fieldOfStudy?: string;
 }) {
   try {
     const { data, error } = await resend.emails.send({
@@ -64,6 +70,14 @@ export async function sendApplicationNotification({
             <p><strong>Applicant:</strong> ${applicantName}</p>
             <p><strong>Email:</strong> ${applicantEmail}</p>
             <p><strong>Current Address:</strong> ${applicantAddress}</p>
+            ${visa || universityName ? `
+            <div style="margin: 10px 0; padding: 10px; background: #f0f7ff; border-radius: 8px; border-left: 4px solid #0070f3;">
+              <p style="margin: 0; font-weight: bold; font-size: 12px; text-transform: uppercase; color: #0070f3;">International Details</p>
+              ${visa ? `<p style="margin: 5px 0 0;"><strong>Visa:</strong> ${visa}</p>` : ''}
+              ${universityName ? `<p style="margin: 5px 0 0;"><strong>Institution:</strong> ${universityName}</p>` : ''}
+              ${fieldOfStudy ? `<p style="margin: 5px 0 0;"><strong>Course:</strong> ${fieldOfStudy}</p>` : ''}
+            </div>
+            ` : ''}
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
             
             <p><strong>Move-in Date:</strong> ${moveInDate || 'Not specified'}</p>

@@ -143,6 +143,8 @@ export default function ApplicantDetailClient({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
               {infoItem('Nationality', personalInfo.nationality === 'aussie' ? 'Australian' : `International (${personalInfo.visa || 'No Visa Info'})`)}
               {infoItem('Date of Birth', applicantData.dob)}
+              {personalInfo.universityName && infoItem('University', personalInfo.universityName)}
+              {personalInfo.fieldOfStudy && infoItem('Field of Study', personalInfo.fieldOfStudy)}
               {infoItem('Smoking', personalInfo.smoking === 'yes' ? 'Yes' : 'No')}
               {infoItem('Pets', personalInfo.pets === 'yes' ? 'Yes' : 'No')}
               
