@@ -261,7 +261,7 @@ export default function RentalApplicationPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD] font-plus-jakarta-sans text-[#1A1A1A] antialiased pb-24 overflow-x-hidden">
+    <div className="min-h-screen bg-background font-plus-jakarta-sans text-on-background antialiased pb-24 overflow-x-hidden">
       {/* Dynamic Header */}
       <div className="relative h-[45vh] md:h-[55vh] w-full overflow-hidden">
         <div className="absolute inset-0 flex">
@@ -274,7 +274,7 @@ export default function RentalApplicationPage() {
               alt="Property" 
               className="w-full h-full object-cover" 
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/10 to-transparent" />
           </div>
           <div className="relative flex-1 h-full overflow-hidden hidden md:block border-l border-white/10">
             <motion.img 
@@ -285,11 +285,11 @@ export default function RentalApplicationPage() {
               alt="Room" 
               className="w-full h-full object-cover" 
             />
-            <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-black/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-l from-primary/40 via-primary/10 to-transparent" />
           </div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 p-10 md:p-20 bg-gradient-to-t from-black/60 to-transparent">
+        <div className="absolute bottom-0 left-0 right-0 p-10 md:p-20 bg-gradient-to-t from-primary/60 to-transparent">
           <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -314,20 +314,20 @@ export default function RentalApplicationPage() {
 
       <div className="max-w-4xl mx-auto px-6 -mt-16 relative z-10">
         {/* Modern Stepper */}
-        <div className="bg-white/80 backdrop-blur-2xl rounded-3xl p-4 md:p-8 border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] mb-8">
+        <div className="bg-surface-container-lowest/80 backdrop-blur-2xl rounded-3xl p-4 md:p-8 border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] mb-8">
           <div className="flex items-center justify-between gap-4">
             {steps.map((s) => (
               <div key={s.id} className="flex-1 flex flex-col items-center gap-2 group relative">
-                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${step >= s.id ? 'bg-[#1A1A1A] text-white shadow-lg shadow-black/10' : 'bg-[#F5F5F5] text-[#999]'}`}>
+                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${step >= s.id ? 'bg-primary text-on-primary shadow-lg shadow-primary/10' : 'bg-surface-container-high text-outline'}`}>
                   <span className="material-symbols-outlined text-[20px]">{s.icon}</span>
                 </div>
-                <span className={`text-[10px] font-bold uppercase tracking-widest hidden md:block ${step >= s.id ? 'text-[#1A1A1A]' : 'text-[#999]'}`}>{s.title}</span>
+                <span className={`text-[10px] font-bold uppercase tracking-widest hidden md:block ${step >= s.id ? 'text-primary' : 'text-outline'}`}>{s.title}</span>
                 {s.id < 4 && (
-                  <div className="absolute top-5 -right-1/2 w-full h-[1px] bg-[#EEEEEE] hidden md:block -z-10">
+                  <div className="absolute top-5 -right-1/2 w-full h-[1px] bg-outline-variant/30 hidden md:block -z-10">
                     <motion.div 
                       initial={{ width: 0 }}
                       animate={{ width: step > s.id ? '100%' : '0%' }}
-                      className="h-full bg-[#1A1A1A]"
+                      className="h-full bg-primary"
                     />
                   </div>
                 )}
@@ -337,7 +337,7 @@ export default function RentalApplicationPage() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#F0F0F0]">
+        <div className="bg-surface-container-lowest rounded-[2.5rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-outline-variant/10">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
@@ -348,42 +348,42 @@ export default function RentalApplicationPage() {
                 className="space-y-12"
               >
                 <div className="space-y-1">
-                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Tell us about yourself</h2>
-                  <p className="text-[#666] text-sm">Please provide your basic contact and identity details.</p>
+                  <h2 className="text-3xl font-space-grotesk font-bold text-primary">Tell us about yourself</h2>
+                  <p className="text-outline text-sm">Please provide your basic contact and identity details.</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                   {/* Custom Styled Input */}
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">First Name</label>
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.firstName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Jane" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">First Name</label>
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all placeholder:text-outline-variant/50 ${errors.firstName ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} placeholder="Jane" />
                     {errors.firstName && <span className="text-[10px] text-red-500 font-bold uppercase tracking-tight">{errors.firstName}</span>}
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Last Name</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.lastName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Doe" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Last Name</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all placeholder:text-outline-variant/50 ${errors.lastName ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} placeholder="Doe" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Email Address</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.email ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="jane@example.com" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Email Address</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all placeholder:text-outline-variant/50 ${errors.email ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} placeholder="jane@example.com" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Phone Number</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.phone ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="0400 000 000" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Phone Number</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all placeholder:text-outline-variant/50 ${errors.phone ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} placeholder="0400 000 000" />
                   </div>
                   <div className="md:col-span-2 space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Current Address</label>
-                    <input type="text" name="address" value={formData.address} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.address ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="123 Example St, Melbourne" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Current Address</label>
+                    <input type="text" name="address" value={formData.address} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all placeholder:text-outline-variant/50 ${errors.address ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} placeholder="123 Example St, Melbourne" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Date of Birth</label>
-                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Date of Birth</label>
+                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant focus:border-primary" />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Nationality</label>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Nationality</label>
                     <div className="flex gap-4 mt-2">
                       {['aussie', 'other'].map((opt) => (
-                        <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-xs uppercase tracking-widest ${formData.nationality === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl shadow-black/10' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                        <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-xs uppercase tracking-widest ${formData.nationality === opt ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
                           <input type="radio" name="nationality" value={opt} checked={formData.nationality === opt} onChange={handleInputChange} className="hidden" />
                           {opt === 'aussie' ? 'Australian' : 'International'}
                         </label>
@@ -401,16 +401,16 @@ export default function RentalApplicationPage() {
                       >
                         <div className="grid md:grid-cols-3 gap-8 pt-6">
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Visa Type</label>
-                            <input type="text" name="visa" value={formData.visa} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="e.g. Student (500)" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Visa Type</label>
+                            <input type="text" name="visa" value={formData.visa} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="e.g. Student (500)" />
                           </div>
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">University / Institution</label>
-                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Name of institution" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">University / Institution</label>
+                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Name of institution" />
                           </div>
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Course / Field of Study</label>
-                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Your course" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Course / Field of Study</label>
+                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Your course" />
                           </div>
                         </div>
                       </motion.div>
@@ -418,8 +418,8 @@ export default function RentalApplicationPage() {
                   </AnimatePresence>
                 </div>
 
-                <div className="pt-10 border-t border-[#F5F5F5] flex justify-end">
-                  <button onClick={nextStep} className="group relative bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all overflow-hidden active:scale-95">
+                <div className="pt-10 border-t border-outline-variant/10 flex justify-end">
+                  <button onClick={nextStep} className="group relative bg-primary text-on-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 hover:-translate-y-1 transition-all overflow-hidden active:scale-95">
                     <span className="relative z-10 flex items-center gap-2">Continue <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span></span>
                   </button>
                 </div>
@@ -435,32 +435,32 @@ export default function RentalApplicationPage() {
                 className="space-y-12"
               >
                 <div className="space-y-1">
-                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Tenancy Details</h2>
-                  <p className="text-[#666] text-sm">When would you like to move in and for how long?</p>
+                  <h2 className="text-3xl font-space-grotesk font-bold text-primary">Tenancy Details</h2>
+                  <p className="text-outline text-sm">When would you like to move in and for how long?</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Preferred Move-in Date</label>
-                    <input type="date" name="moveInDate" value={formData.moveInDate} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.moveInDate ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Preferred Move-in Date</label>
+                    <input type="date" name="moveInDate" value={formData.moveInDate} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all ${errors.moveInDate ? 'border-red-500/50' : 'border-outline-variant focus:border-primary'}`} />
                   </div>
                   <div className="space-y-3">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Stay Duration</label>
-                    <select name="lengthOfStay" value={formData.lengthOfStay} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent appearance-none">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Stay Duration</label>
+                    <select name="lengthOfStay" value={formData.lengthOfStay} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant focus:border-primary appearance-none">
                       <option value="6">6 Months</option>
                       <option value="12">12 Months</option>
                       <option value="other">Other</option>
                     </select>
                   </div>
 
-                  <div className="space-y-6 md:col-span-2 bg-[#F9F9F9] p-8 rounded-[2rem]">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Lifestyle Preferences</p>
+                  <div className="space-y-6 md:col-span-2 bg-surface-container-low p-8 rounded-[2rem]">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Lifestyle Preferences</p>
                     <div className="grid md:grid-cols-2 gap-8">
                       <div className="space-y-4">
-                        <span className="text-sm font-bold text-[#1A1A1A]">Do you smoke?</span>
+                        <span className="text-sm font-bold text-primary">Do you smoke?</span>
                         <div className="flex gap-4">
                           {['no', 'yes'].map((opt) => (
-                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.smoking === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.smoking === opt ? 'bg-primary border-primary text-on-primary shadow-lg' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
                               <input type="radio" name="smoking" value={opt} checked={formData.smoking === opt} onChange={handleInputChange} className="hidden" />
                               {opt}
                             </label>
@@ -468,10 +468,10 @@ export default function RentalApplicationPage() {
                         </div>
                       </div>
                       <div className="space-y-4">
-                        <span className="text-sm font-bold text-[#1A1A1A]">Do you have pets?</span>
+                        <span className="text-sm font-bold text-primary">Do you have pets?</span>
                         <div className="flex gap-4">
                           {['no', 'yes'].map((opt) => (
-                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.pets === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.pets === opt ? 'bg-primary border-primary text-on-primary shadow-lg' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
                               <input type="radio" name="pets" value={opt} checked={formData.pets === opt} onChange={handleInputChange} className="hidden" />
                               {opt}
                             </label>
@@ -482,14 +482,14 @@ export default function RentalApplicationPage() {
                   </div>
 
                   <div className="md:col-span-2 space-y-6">
-                    <p className="text-sm font-bold text-[#1A1A1A]">Rental History Experience</p>
+                    <p className="text-sm font-bold text-primary">Rental History Experience</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'yes' ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#1A1A1A]'}`}>
+                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'yes' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
                         <input type="radio" name="rentalExperience" value="yes" checked={formData.rentalExperience === 'yes'} onChange={handleInputChange} className="hidden" />
                         <span className="material-symbols-outlined mb-2 block text-[24px]">history</span>
                         <p className="font-bold text-xs uppercase tracking-widest">I have rented before</p>
                       </label>
-                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'no' ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#1A1A1A]'}`}>
+                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'no' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
                         <input type="radio" name="rentalExperience" value="no" checked={formData.rentalExperience === 'no'} onChange={handleInputChange} className="hidden" />
                         <span className="material-symbols-outlined mb-2 block text-[24px]">person_off</span>
                         <p className="font-bold text-xs uppercase tracking-widest">I haven't rented before</p>
@@ -499,22 +499,22 @@ export default function RentalApplicationPage() {
                     <AnimatePresence>
                       {formData.rentalExperience === 'yes' && (
                         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-10 pt-6">
-                          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 p-10 bg-white border border-[#F0F0F0] rounded-[2.5rem] shadow-sm">
+                          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 p-10 bg-surface-container-lowest border border-outline-variant/10 rounded-[2.5rem] shadow-sm">
                             <div className="space-y-3">
-                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Reference Name</label>
-                              <input type="text" name="rentalReferenceName" value={formData.rentalReferenceName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="Agent or Landlord" />
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Reference Name</label>
+                              <input type="text" name="rentalReferenceName" value={formData.rentalReferenceName} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Agent or Landlord" />
                             </div>
                             <div className="space-y-3">
-                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
-                              <input type="tel" name="rentalReferencePhone" value={formData.rentalReferencePhone} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="0400 000 000" />
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Contact Phone</label>
+                              <input type="tel" name="rentalReferencePhone" value={formData.rentalReferencePhone} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="0400 000 000" />
                             </div>
                             <div className="space-y-3">
-                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Stay Duration *</label>
-                              <input type="text" name="rentalStayDuration" value={formData.rentalStayDuration} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.rentalStayDuration ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="e.g. 1 year" />
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Stay Duration *</label>
+                              <input type="text" name="rentalStayDuration" value={formData.rentalStayDuration} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all ${errors.rentalStayDuration ? 'border-red-500/50' : 'border-outline-variant/30 focus:border-primary'}`} placeholder="e.g. 1 year" />
                             </div>
                             <div className="space-y-3">
-                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Reason to leave</label>
-                              <input type="text" name="rentalReasonToLeave" value={formData.rentalReasonToLeave} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="e.g. Relocation" />
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Reason to leave</label>
+                              <input type="text" name="rentalReasonToLeave" value={formData.rentalReasonToLeave} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="e.g. Relocation" />
                             </div>
                           </div>
                         </motion.div>
@@ -523,9 +523,9 @@ export default function RentalApplicationPage() {
                   </div>
                 </div>
 
-                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
-                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
-                  <button onClick={nextStep} className="group relative bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all active:scale-95">
+                <div className="pt-10 border-t border-outline-variant/10 flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-outline hover:text-primary transition-all">Back</button>
+                  <button onClick={nextStep} className="group relative bg-primary text-on-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 hover:-translate-y-1 transition-all active:scale-95">
                     Continue
                   </button>
                 </div>
@@ -541,16 +541,16 @@ export default function RentalApplicationPage() {
                 className="space-y-12"
               >
                 <div className="space-y-1">
-                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Background & Reference</h2>
-                  <p className="text-[#666] text-sm">Tell us about your current status and who to contact in emergencies.</p>
+                  <h2 className="text-3xl font-space-grotesk font-bold text-primary">Background & Reference</h2>
+                  <p className="text-outline text-sm">Tell us about your current status and who to contact in emergencies.</p>
                 </div>
 
                 <div className="space-y-10">
                   <div className="space-y-6">
-                    <p className="text-sm font-bold text-[#1A1A1A]">Employment Status</p>
+                    <p className="text-sm font-bold text-primary">Employment Status</p>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                       {['full-time', 'part-time', 'casual', 'study'].map((opt) => (
-                        <label key={opt} className={`p-4 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.employmentStatus === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                        <label key={opt} className={`p-4 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.employmentStatus === opt ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
                           <input type="radio" name="employmentStatus" value={opt} checked={formData.employmentStatus === opt} onChange={handleInputChange} className="hidden" />
                           <p className="font-bold text-[10px] uppercase tracking-widest capitalize">{opt}</p>
                         </label>
@@ -560,58 +560,58 @@ export default function RentalApplicationPage() {
 
                   <AnimatePresence mode="wait">
                     {formData.employmentStatus === 'study' ? (
-                      <motion.div key="study" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-[#F9F9F9] rounded-[2.5rem] space-y-10 border border-[#F0F0F0]">
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Education Details</p>
+                      <motion.div key="study" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-[2.5rem] space-y-10 border border-outline-variant/10">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Education Details</p>
                         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">University / Institution</label>
-                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="University of Melbourne" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">University / Institution</label>
+                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="University of Melbourne" />
                           </div>
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Field of Study</label>
-                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Bachelor of Design" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Field of Study</label>
+                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Bachelor of Design" />
                           </div>
                         </div>
                       </motion.div>
                     ) : (
-                      <motion.div key="work" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-[#F9F9F9] rounded-[2.5rem] space-y-10 border border-[#F0F0F0]">
-                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Employment Reference</p>
+                      <motion.div key="work" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-[2.5rem] space-y-10 border border-outline-variant/10">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Employment Reference</p>
                         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                           <div className="space-y-3 md:col-span-2">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Occupation or Job Title</label>
-                            <input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Software Engineer" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Occupation or Job Title</label>
+                            <input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Software Engineer" />
                           </div>
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Company / Manager Name</label>
-                            <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Acme Corp" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Company / Manager Name</label>
+                            <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Acme Corp" />
                           </div>
                           <div className="space-y-3">
-                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
-                            <input type="tel" name="employerPhone" value={formData.employerPhone} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="0400 000 000" />
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Contact Phone</label>
+                            <input type="tel" name="employerPhone" value={formData.employerPhone} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="0400 000 000" />
                           </div>
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
 
-                  <div className="p-10 bg-white border border-[#F0F0F0] rounded-[2.5rem] space-y-10">
-                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A]">Emergency Contact</p>
+                  <div className="p-10 bg-surface-container-lowest border border-outline-variant/10 rounded-[2.5rem] space-y-10">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Emergency Contact</p>
                     <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                       <div className="space-y-3">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Name</label>
-                        <input type="text" name="emergencyContactName" value={formData.emergencyContactName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Name" />
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Contact Name</label>
+                        <input type="text" name="emergencyContactName" value={formData.emergencyContactName} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactName ? 'border-red-500/50' : 'border-outline-variant/30 focus:border-primary'}`} placeholder="Name" />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
-                        <input type="tel" name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactPhone ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="0400 000 000" />
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Contact Phone</label>
+                        <input type="tel" name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleInputChange} className={`w-full bg-transparent border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactPhone ? 'border-red-500/50' : 'border-outline-variant/30 focus:border-primary'}`} placeholder="0400 000 000" />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
-                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
-                  <button onClick={nextStep} className="bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all active:scale-95">
+                <div className="pt-10 border-t border-outline-variant/10 flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-outline hover:text-primary transition-all">Back</button>
+                  <button onClick={nextStep} className="bg-primary text-on-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 hover:-translate-y-1 transition-all active:scale-95">
                     Continue
                   </button>
                 </div>
@@ -627,44 +627,44 @@ export default function RentalApplicationPage() {
                 className="space-y-12"
               >
                 <div className="space-y-1">
-                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Review & Documents</h2>
-                  <p className="text-[#666] text-sm">Upload your supporting documents and confirm your application.</p>
+                  <h2 className="text-3xl font-space-grotesk font-bold text-primary">Review & Documents</h2>
+                  <p className="text-outline text-sm">Upload your supporting documents and confirm your application.</p>
                 </div>
 
                 <div className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Minimal File Upload */}
-                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-green-50/50 border-green-200' : 'bg-[#F9F9F9] border-[#EEEEEE] hover:border-[#CCC]'}`}>
-                      <span className="material-symbols-outlined text-[32px] text-[#999]">{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
+                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
+                      <span className="material-symbols-outlined text-[32px] text-outline">{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
                       <div className="space-y-1">
-                        <p className="text-sm font-bold text-[#1A1A1A]">Identity Verification</p>
-                        <p className="text-[10px] text-[#999] uppercase tracking-widest font-bold">Driver's License or Passport</p>
+                        <p className="text-sm font-bold text-primary">Identity Verification</p>
+                        <p className="text-[10px] text-outline uppercase tracking-widest font-bold">Driver's License or Passport</p>
                       </div>
                       <input type="file" id="id_proof" onChange={(e) => handleFileChange(e, 'id_proof')} className="hidden" />
-                      <label htmlFor="id_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['id_proof'] ? 'bg-green-500 text-white shadow-lg' : 'bg-white border border-[#EEE] text-[#1A1A1A]'}`}>
+                      <label htmlFor="id_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['id_proof'] ? 'bg-secondary text-on-secondary shadow-lg shadow-secondary/10' : 'bg-surface-container-lowest border border-outline-variant/30 text-primary'}`}>
                         {files['id_proof'] ? 'File Selected' : 'Select File'}
                       </label>
                     </div>
 
-                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-green-50/50 border-green-200' : 'bg-[#F9F9F9] border-[#EEEEEE] hover:border-[#CCC]'}`}>
-                      <span className="material-symbols-outlined text-[32px] text-[#999]">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
+                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
+                      <span className="material-symbols-outlined text-[32px] text-outline">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
                       <div className="space-y-1">
-                        <p className="text-sm font-bold text-[#1A1A1A]">Income Verification</p>
-                        <p className="text-[10px] text-[#999] uppercase tracking-widest font-bold">Payslips or Bank Statement</p>
+                        <p className="text-sm font-bold text-primary">Income Verification</p>
+                        <p className="text-[10px] text-outline uppercase tracking-widest font-bold">Payslips or Bank Statement</p>
                       </div>
                       <input type="file" id="income_proof" onChange={(e) => handleFileChange(e, 'income_proof')} className="hidden" />
-                      <label htmlFor="income_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['income_proof'] ? 'bg-green-500 text-white shadow-lg' : 'bg-white border border-[#EEE] text-[#1A1A1A]'}`}>
+                      <label htmlFor="income_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['income_proof'] ? 'bg-secondary text-on-secondary shadow-lg shadow-secondary/10' : 'bg-surface-container-lowest border border-outline-variant/30 text-primary'}`}>
                         {files['income_proof'] ? 'File Selected' : 'Select File'}
                       </label>
                     </div>
                   </div>
 
-                  <div className="p-10 bg-[#F9F9F9] rounded-[2.5rem] border border-[#F0F0F0] space-y-10">
+                  <div className="p-10 bg-surface-container-low rounded-[2.5rem] border border-outline-variant/10 space-y-10">
                     <div className="space-y-6">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A]">Source of Rent Payment</p>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Source of Rent Payment</p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {['salary', 'parental', 'savings', 'government'].map((opt) => (
-                          <label key={opt} className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.incomeSource === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                          <label key={opt} className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.incomeSource === opt ? 'bg-primary border-primary text-on-primary shadow-lg shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
                             <input type="radio" name="incomeSource" value={opt} checked={formData.incomeSource === opt} onChange={handleInputChange} className="hidden" />
                             <p className="font-bold text-[9px] uppercase tracking-widest leading-none">{opt}</p>
                           </label>
@@ -672,19 +672,19 @@ export default function RentalApplicationPage() {
                       </div>
                     </div>
 
-                    <div className="space-y-6 pt-4 border-t border-[#EEE]">
+                    <div className="space-y-6 pt-4 border-t border-outline-variant/30">
                       <div className="space-y-3">
-                        <p className="text-sm font-bold text-[#1A1A1A] leading-relaxed">
+                        <p className="text-sm font-bold text-primary leading-relaxed">
                           Do you foresee any changes in your financial situation that would impact rent?
                         </p>
                         <div className="flex gap-6">
                           {['no', 'yes'].map((opt) => (
                             <label key={opt} className="flex items-center gap-3 cursor-pointer group">
-                              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${formData.financialChanges === opt ? 'border-[#1A1A1A]' : 'border-[#EEE]'}`}>
-                                {formData.financialChanges === opt && <div className="w-2.5 h-2.5 bg-[#1A1A1A] rounded-full" />}
+                              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${formData.financialChanges === opt ? 'border-primary' : 'border-outline-variant/30'}`}>
+                                {formData.financialChanges === opt && <div className="w-2.5 h-2.5 bg-primary rounded-full" />}
                               </div>
                               <input type="radio" name="financialChanges" value={opt} checked={formData.financialChanges === opt} onChange={handleInputChange} className="hidden" />
-                              <span className="text-xs uppercase font-bold tracking-widest text-[#999] group-hover:text-[#1A1A1A] transition-colors">{opt}</span>
+                              <span className="text-xs uppercase font-bold tracking-widest text-outline group-hover:text-primary transition-colors">{opt}</span>
                             </label>
                           ))}
                         </div>
@@ -693,7 +693,7 @@ export default function RentalApplicationPage() {
                       <AnimatePresence>
                         {formData.financialChanges === 'yes' && (
                           <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="pt-4 overflow-hidden">
-                            <textarea name="financialChangesDetails" value={formData.financialChangesDetails} onChange={handleInputChange} rows={2} className="w-full bg-white border-b-2 py-2 text-sm outline-none border-[#F0F0F0] focus:border-[#1A1A1A] transition-all" placeholder="Please provide details..." />
+                            <textarea name="financialChangesDetails" value={formData.financialChangesDetails} onChange={handleInputChange} rows={2} className="w-full bg-transparent border-b-2 py-2 text-sm outline-none border-outline-variant/30 focus:border-primary transition-all" placeholder="Please provide details..." />
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -701,14 +701,14 @@ export default function RentalApplicationPage() {
                   </div>
 
                   <div className="space-y-3 pt-6">
-                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Additional Notes</label>
-                    <textarea name="notes" value={formData.notes} onChange={handleInputChange} rows={3} className="w-full border-b-2 py-2 text-sm outline-none border-[#F0F0F0] focus:border-[#1A1A1A] transition-all" placeholder="Any additional information..." />
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Additional Notes</label>
+                    <textarea name="notes" value={formData.notes} onChange={handleInputChange} rows={3} className="w-full bg-transparent border-b-2 py-2 text-sm outline-none border-outline-variant/30 focus:border-primary transition-all" placeholder="Any additional information..." />
                   </div>
                 </div>
 
-                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
-                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
-                  <button onClick={handleSubmit} disabled={submitting} className="bg-[#1A1A1A] text-white px-12 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all disabled:opacity-50 active:scale-95">
+                <div className="pt-10 border-t border-outline-variant/10 flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-outline hover:text-primary transition-all">Back</button>
+                  <button onClick={handleSubmit} disabled={submitting} className="bg-primary text-on-primary px-12 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-primary/20 hover:-translate-y-1 transition-all disabled:opacity-50 active:scale-95">
                     {submitting ? 'Submitting...' : 'Submit Application'}
                   </button>
                 </div>
@@ -722,16 +722,16 @@ export default function RentalApplicationPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-20 space-y-8"
               >
-                <div className="w-24 h-24 bg-[#1A1A1A] text-white rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-black/20">
+                <div className="w-24 h-24 bg-primary text-on-primary rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-primary/20">
                   <span className="material-symbols-outlined text-[48px] animate-[bounce_1s_ease-in-out_infinite]">check</span>
                 </div>
                 <div className="space-y-2">
-                  <h2 className="text-4xl font-space-grotesk font-bold text-[#1A1A1A]">Application Received</h2>
-                  <p className="text-[#666] text-sm max-w-sm mx-auto">
+                  <h2 className="text-4xl font-space-grotesk font-bold text-primary">Application Received</h2>
+                  <p className="text-outline text-sm max-w-sm mx-auto">
                     We've received your application for {room?.name}. Our team will review your details and contact you shortly.
                   </p>
                 </div>
-                <button onClick={() => router.push('/tenant')} className="inline-block bg-[#F5F5F5] text-[#1A1A1A] px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] hover:bg-[#EEE] transition-all">
+                <button onClick={() => router.push('/tenant')} className="inline-block bg-surface-container-high text-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] hover:bg-surface-container-highest transition-all shadow-lg shadow-black/5">
                   Back to Explore
                 </button>
               </motion.div>
