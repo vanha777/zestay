@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 export default function ApplicantDetailClient({ 
   id, 
   applicantData, 
+  personalInfo,
   application, 
   property, 
   room, 
@@ -46,8 +47,15 @@ export default function ApplicantDetailClient({
     }
   }
 
+  const infoItem = (label: string, value: any) => (
+    <div className="space-y-1">
+      <span className="text-[9px] font-bold text-outline uppercase tracking-widest block opacity-60">{label}</span>
+      <span className="text-sm md:text-base font-bold text-on-background">{value || 'N/A'}</span>
+    </div>
+  )
+
   return (
-    <div className="p-6 md:p-12 max-w-7xl mx-auto space-y-12 pb-32">
+    <div className="p-6 md:p-12 max-w-7xl mx-auto space-y-12 pb-32 font-plus-jakarta-sans antialiased">
       {/* Navigation */}
       <nav className="mb-8">
         <Link href="/admin/applicants" className="inline-flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.2em] text-outline hover:text-primary transition-all group">
@@ -59,11 +67,11 @@ export default function ApplicantDetailClient({
       {/* Header Profile Section */}
       <header className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-10 pb-12 border-b border-outline-variant/10">
         <div className="flex flex-col md:flex-row items-start gap-8">
-          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-container flex items-center justify-center text-primary text-3xl md:text-4xl font-bold font-headline shadow-xl border-4 border-surface flex-shrink-0">
+          <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-primary-container flex items-center justify-center text-primary text-3xl md:text-4xl font-bold font-space-grotesk shadow-xl border-4 border-surface flex-shrink-0">
             {applicantData.firstName[0]}{applicantData.lastName[0]}
           </div>
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-6xl font-headline font-bold tracking-tighter text-on-background leading-none">
+            <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold tracking-tighter text-on-background leading-none">
               {applicantData.firstName} {applicantData.lastName}
             </h1>
             <div className="flex flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant">
@@ -100,7 +108,7 @@ export default function ApplicantDetailClient({
           <button 
             onClick={() => handleStatusUpdate('approved')}
             disabled={!!submitting || application.status === 'approved'}
-            className="flex-1 lg:flex-none bg-on-background text-surface px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-on-background/10 disabled:opacity-50"
+            className="flex-1 lg:flex-none bg-[#1A1A1A] text-white px-8 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all shadow-lg shadow-black/10 disabled:opacity-50"
           >
             {submitting === 'approved' ? '...' : 'Approve'}
           </button>
@@ -108,46 +116,98 @@ export default function ApplicantDetailClient({
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        {/* Left Column: Personal & Application Info */}
         <div className="lg:col-span-2 space-y-12">
           {/* Application Context Card */}
           <section className="bg-surface-container p-8 md:p-10 rounded-[2.5rem] border border-outline-variant/5">
             <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-8 opacity-60">Application Intent</h2>
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
               <div>
-                <h3 className="text-2xl font-headline font-bold text-on-background mb-1">{room.name || 'Entire Property'}</h3>
+                <h3 className="text-2xl font-space-grotesk font-bold text-on-background mb-1">{room.name || 'Entire Property'}</h3>
                 <p className="text-on-surface-variant font-medium text-sm">{property.address}, {property.city}</p>
               </div>
               <div className="md:text-right pt-6 md:pt-0 border-t md:border-none border-outline-variant/5">
                 <span className="text-[9px] uppercase font-bold tracking-widest text-outline block mb-1 opacity-60">Weekly Yield</span>
-                <span className="text-3xl font-headline font-bold text-primary">${room.rent_amount || 'TBD'}</span>
+                <span className="text-3xl font-space-grotesk font-bold text-primary">${room.rent_amount || 'TBD'}</span>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-8 mt-10 pt-8 border-t border-outline-variant/5">
+              {infoItem('Preferred Move-in', personalInfo.moveInDate)}
+              {infoItem('Length of Stay', `${personalInfo.lengthOfStay} Months`)}
+            </div>
+          </section>
+
+          {/* Candidate Profile */}
+          <section className="bg-surface-container-lowest p-8 md:p-10 rounded-[2.5rem] border border-outline-variant/10 shadow-sm">
+            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-10 opacity-60">Candidate Profile</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+              {infoItem('Nationality', personalInfo.nationality === 'aussie' ? 'Australian' : `International (${personalInfo.visa || 'No Visa Info'})`)}
+              {infoItem('Date of Birth', applicantData.dob)}
+              {infoItem('Smoking', personalInfo.smoking === 'yes' ? 'Yes' : 'No')}
+              {infoItem('Pets', personalInfo.pets === 'yes' ? 'Yes' : 'No')}
+              
+              <div className="md:col-span-2 grid md:grid-cols-2 gap-y-10 gap-x-12 pt-10 border-t border-outline-variant/5">
+                {infoItem('Emergency Contact', applicantData.emergencyContact)}
+                {infoItem('Emergency Phone', applicantData.emergencyPhone)}
               </div>
             </div>
           </section>
 
-          {/* Detailed Profile Grid */}
-          <section className="bg-surface-container-lowest p-8 md:p-10 rounded-[2.5rem] border border-outline-variant/10 shadow-sm">
-            <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-10 opacity-60">Candidate Profile</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
-              {[
-                { label: 'Occupation', value: applicantData.occupation },
-                { label: 'Date of Birth', value: applicantData.dob },
-                { label: 'Emergency Contact', value: applicantData.emergencyContact },
-                { label: 'Emergency Phone', value: applicantData.emergencyPhone },
-              ].map((item, i) => (
-                <div key={i} className="space-y-1">
-                  <span className="text-[9px] font-bold text-outline uppercase tracking-widest block opacity-60">{item.label}</span>
-                  <span className="text-lg font-bold text-on-background">{item.value || 'N/A'}</span>
+          {/* Background & Vetting */}
+          <section className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-outline-variant/10 shadow-sm space-y-12">
+            <div>
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-8 opacity-60">Background & Financials</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+                {infoItem('Employment Status', personalInfo.employmentStatus)}
+                {infoItem('Income Source', personalInfo.incomeSource)}
+                
+                {personalInfo.employmentStatus === 'study' ? (
+                  <>
+                    {infoItem('University', personalInfo.universityName)}
+                    {infoItem('Field of Study', personalInfo.fieldOfStudy)}
+                  </>
+                ) : (
+                  <>
+                    {infoItem('Occupation', personalInfo.occupation)}
+                    {infoItem('Employer', personalInfo.employerName)}
+                    {infoItem('Employer Phone', personalInfo.employerPhone)}
+                  </>
+                )}
+              </div>
+            </div>
+
+            <div className="pt-10 border-t border-outline-variant/5">
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-6 opacity-60">Financial Stability Declaration</h2>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className={`w-2 h-2 rounded-full ${personalInfo.financialChanges === 'yes' ? 'bg-orange-500' : 'bg-green-500'}`} />
+                  <p className="text-sm font-bold text-on-background">
+                    {personalInfo.financialChanges === 'yes' 
+                      ? 'Applicant foresees changes in financial situation' 
+                      : 'No expected changes in financial situation'}
+                  </p>
                 </div>
-              ))}
-              <div className="md:col-span-2 space-y-3 pt-8 border-t border-outline-variant/5">
-                <span className="text-[9px] font-bold text-outline uppercase tracking-widest block opacity-60">Applicant Statement</span>
-                <p className="text-on-surface-variant leading-relaxed font-medium italic bg-surface-container-low p-6 rounded-2xl border border-outline-variant/5">
-                  "{applicantData.notes || 'No statement provided.'}"
-                </p>
+                {personalInfo.financialChanges === 'yes' && (
+                  <p className="text-sm text-on-surface-variant bg-surface-container-low p-5 rounded-2xl border border-outline-variant/5 italic">
+                    "{personalInfo.financialChangesDetails}"
+                  </p>
+                )}
               </div>
             </div>
           </section>
+
+          {/* Rental History */}
+          {personalInfo.rentalExperience === 'yes' && (
+            <section className="bg-white p-8 md:p-10 rounded-[2.5rem] border border-outline-variant/10 shadow-sm">
+              <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-10 opacity-60">Rental History</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
+                {infoItem('Reference Name', personalInfo.rentalReferenceName)}
+                {infoItem('Reference Phone', personalInfo.rentalReferencePhone)}
+                {infoItem('Stay Duration', personalInfo.rentalStayDuration)}
+                {infoItem('Reason for Leaving', personalInfo.rentalReasonToLeave)}
+              </div>
+            </section>
+          )}
 
           {/* Verification Assets */}
           <section className="space-y-6">
@@ -160,7 +220,7 @@ export default function ApplicantDetailClient({
                   target="_blank"
                   className="flex items-center gap-4 p-5 bg-surface-container-low rounded-2xl border border-outline-variant/5 hover:border-primary/20 transition-all group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors">
+                  <div className="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-primary group-hover:bg-[#1A1A1A] group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined text-xl">fingerprint</span>
                   </div>
                   <div className="flex-1 overflow-hidden">
@@ -180,33 +240,33 @@ export default function ApplicantDetailClient({
           </section>
         </div>
 
-        {/* Right Column: Decisions & Intelligence */}
+        {/* Right Column */}
         <div className="space-y-8">
           {/* Intelligence Score Card */}
-          <section className="bg-on-background text-surface p-8 rounded-[2.5rem] shadow-2xl shadow-on-background/10">
+          <section className="bg-[#1A1A1A] text-white p-8 rounded-[2.5rem] shadow-2xl shadow-black/10">
             <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-60 mb-6">Vetting Intelligence</h2>
             <div className="space-y-8">
               <div className="flex items-end justify-between">
-                <span className="text-5xl font-headline font-bold tracking-tighter">
+                <span className="text-5xl font-space-grotesk font-bold tracking-tighter">
                   {application.status === 'approved' ? '100' : '45'}<span className="text-xl opacity-40">%</span>
                 </span>
                 <span className="text-[10px] font-bold uppercase tracking-widest opacity-60 pb-2">Verification Score</span>
               </div>
-              <div className="h-1.5 w-full bg-surface/10 rounded-full overflow-hidden">
+              <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-surface rounded-full transition-all duration-1000" 
+                  className="h-full bg-white rounded-full transition-all duration-1000" 
                   style={{ width: application.status === 'approved' ? '100%' : '45%' }}
                 ></div>
               </div>
               
-              <div className="space-y-4 pt-4 border-t border-surface/10">
+              <div className="space-y-4 pt-4 border-t border-white/10">
                 {[
                   { label: 'Identity Check', done: true },
                   { label: 'Income Verification', done: true },
                   { label: 'Behavioral Check', done: application.status === 'approved' },
                 ].map((check, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span className={`material-symbols-outlined text-sm ${check.done ? 'text-surface' : 'text-surface/30'}`}>
+                    <span className={`material-symbols-outlined text-sm ${check.done ? 'text-white' : 'text-white/30'}`}>
                       {check.done ? 'check_circle' : 'radio_button_unchecked'}
                     </span>
                     <span className={`text-[10px] font-bold uppercase tracking-widest ${check.done ? 'opacity-100' : 'opacity-30'}`}>{check.label}</span>
@@ -216,7 +276,7 @@ export default function ApplicantDetailClient({
             </div>
           </section>
 
-          {/* Internal Ledger / Notes */}
+          {/* Internal Ledger */}
           <section className="bg-surface-container-low p-8 rounded-[2rem] border border-outline-variant/10">
             <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-6 opacity-60">Internal Ledger</h2>
             <textarea 
@@ -228,7 +288,7 @@ export default function ApplicantDetailClient({
             <button 
               onClick={handleSaveNotes}
               disabled={savingNotes}
-              className="w-full mt-6 py-4 bg-on-background text-surface rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all disabled:opacity-50 shadow-lg shadow-on-background/5"
+              className="w-full mt-6 py-4 bg-[#1A1A1A] text-white rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all disabled:opacity-50 shadow-lg shadow-black/5"
             >
               {savingNotes ? 'Syncing...' : 'Save Notes'}
             </button>

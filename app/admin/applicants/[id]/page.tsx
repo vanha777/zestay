@@ -74,6 +74,7 @@ export default async function ApplicantDetailPage({ params }: { params: Promise<
     <ApplicantDetailClient 
       id={id}
       applicantData={applicantData}
+      personalInfo={personalInfo}
       application={application}
       property={property}
       room={room}
