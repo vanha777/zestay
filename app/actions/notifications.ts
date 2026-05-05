@@ -14,18 +14,31 @@ export async function sendApplicationNotification({
   emergencyContactPhone,
   propertyName,
   roomName,
-  applicationId
+  applicationId,
+  moveInDate,
+  lengthOfStay,
+  employmentStatus,
+  hasPets,
+  isSmoker,
+  incomeSource
 }: {
   applicantName: string;
   applicantEmail: string;
   applicantAddress: string;
   employerName?: string;
   employerPhone?: string;
+  employerEmail?: string;
   emergencyContactName?: string;
   emergencyContactPhone?: string;
   propertyName: string;
   roomName: string;
   applicationId: string;
+  moveInDate?: string;
+  lengthOfStay?: string;
+  employmentStatus?: string;
+  hasPets?: string;
+  isSmoker?: string;
+  incomeSource?: string;
 }) {
   try {
     const { data, error } = await resend.emails.send({
@@ -33,18 +46,30 @@ export async function sendApplicationNotification({
       to: 'zestayau@gmail.com',
       subject: `New Rental Application: ${applicantName} for ${roomName}`,
       html: `
-        <div style="font-family: sans-serif; padding: 20px; color: #333;">
-          <h1 style="font-size: 24px; color: #1a1a1a;">New Application Received</h1>
-          <p>A new rental application has been submitted for Zestay.</p>
+        <div style="font-family: sans-serif; padding: 20px; color: #333; max-width: 600px; margin: auto; border: 1px solid #eee; border-radius: 12px;">
+          <h1 style="font-size: 24px; color: #1a1a1a; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Application Received</h1>
           
-          <div style="background: #f9f9f9; padding: 20px; border-radius: 12px; margin: 20px 0;">
+          <div style="padding: 20px 0;">
             <p><strong>Applicant:</strong> ${applicantName}</p>
             <p><strong>Email:</strong> ${applicantEmail}</p>
             <p><strong>Current Address:</strong> ${applicantAddress}</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+            
+            <p><strong>Move-in Date:</strong> ${moveInDate || 'Not specified'}</p>
+            <p><strong>Stay Duration:</strong> ${lengthOfStay || 'Not specified'} months</p>
+            <p><strong>Employment:</strong> ${employmentStatus || 'Not specified'}</p>
+            <p><strong>Income Source:</strong> ${incomeSource || 'Not specified'}</p>
+            <p><strong>Pets:</strong> ${hasPets || 'No'}</p>
+            <p><strong>Smoker:</strong> ${isSmoker || 'No'}</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+            
             <p><strong>Employer:</strong> ${employerName || 'N/A'}</p>
             <p><strong>Employer Phone:</strong> ${employerPhone || 'N/A'}</p>
+            <p><strong>Employer Email:</strong> ${employerEmail || 'N/A'}</p>
             <p><strong>Emergency Contact:</strong> ${emergencyContactName || 'N/A'}</p>
             <p><strong>Emergency Phone:</strong> ${emergencyContactPhone || 'N/A'}</p>
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+            
             <p><strong>Property:</strong> ${propertyName}</p>
             <p><strong>Room:</strong> ${roomName}</p>
           </div>
