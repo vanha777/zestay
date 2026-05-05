@@ -19,6 +19,9 @@ export async function sendApplicationNotification({
   moveInDate,
   lengthOfStay,
   employmentStatus,
+  occupation,
+  financialChanges,
+  financialChangesDetails,
   hasPets,
   isSmoker,
   incomeSource
@@ -29,6 +32,9 @@ export async function sendApplicationNotification({
   employerName?: string;
   employerPhone?: string;
   employerEmail?: string;
+  occupation?: string;
+  financialChanges?: string;
+  financialChangesDetails?: string;
   emergencyContactName?: string;
   emergencyContactPhone?: string;
   propertyName: string;
@@ -59,7 +65,9 @@ export async function sendApplicationNotification({
             <p><strong>Move-in Date:</strong> ${moveInDate || 'Not specified'}</p>
             <p><strong>Stay Duration:</strong> ${lengthOfStay || 'Not specified'} months</p>
             <p><strong>Employment:</strong> ${employmentStatus || 'Not specified'}</p>
+            <p><strong>Job Title:</strong> ${occupation || 'N/A'}</p>
             <p><strong>Income Source:</strong> ${incomeSource || 'Not specified'}</p>
+            <p><strong>Financial Stability:</strong> ${financialChanges === 'yes' ? `YES - ${financialChangesDetails}` : 'No expected changes'}</p>
             <p><strong>Pets:</strong> ${hasPets || 'No'}</p>
             <p><strong>Smoker:</strong> ${isSmoker || 'No'}</p>
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />

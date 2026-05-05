@@ -34,6 +34,8 @@ export default function RentalApplicationPage() {
     occupation: '',
     employmentStatus: 'full-time',
     incomeSource: 'salary',
+    financialChanges: 'no',
+    financialChangesDetails: '',
     employerName: '',
     employerPhone: '',
     employerEmail: '',
@@ -203,6 +205,9 @@ export default function RentalApplicationPage() {
         moveInDate: formData.moveInDate,
         lengthOfStay: formData.lengthOfStay,
         employmentStatus: formData.employmentStatus,
+        occupation: formData.occupation,
+        financialChanges: formData.financialChanges,
+        financialChangesDetails: formData.financialChangesDetails,
         hasPets: formData.pets,
         isSmoker: formData.smoking,
         incomeSource: formData.incomeSource
@@ -499,6 +504,10 @@ export default function RentalApplicationPage() {
                       <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Employment Reference</p>
                       <div className="space-y-4">
                         <div className="space-y-1.5">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Occupation or Job title</label>
+                          <input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="Software Engineer" />
+                        </div>
+                        <div className="space-y-1.5">
                           <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Company / Manager Name</label>
                           <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="Acme Corp" />
                         </div>
@@ -573,6 +582,36 @@ export default function RentalApplicationPage() {
                   <p className="text-[10px] text-outline-variant mb-4 font-medium italic">Please upload Payslips, Bank Statement, or Support Letter</p>
                   <input type="file" onChange={(e) => handleFileChange(e, 'income_proof')} className="text-xs w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary/5 file:text-primary" />
                   {files['income_proof'] && <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-medium"><span className="material-symbols-outlined text-[14px]">check</span> {files['income_proof'].name}</p>}
+                </div>
+
+                <div className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10 space-y-6">
+                  <div className="space-y-3">
+                    <label className="text-[10px] uppercase font-bold tracking-wider text-primary">Financial Stability Declaration *</label>
+                    <p className="text-[11px] text-on-surface-variant leading-relaxed">
+                      Do you foresee any changes in your financial situation over the next 6–12 months that would impact your ability to pay rent on time?
+                      <br />
+                      <span className="text-[10px] opacity-60 italic">e.g., job contract ending, change in study load, loss of income?</span>
+                    </p>
+                    <div className="flex gap-6 mt-2">
+                      {['no', 'yes'].map((opt) => (
+                        <label key={opt} className="flex items-center gap-2 cursor-pointer group">
+                          <input type="radio" name="financialChanges" value={opt} checked={formData.financialChanges === opt} onChange={handleInputChange} className="accent-primary" />
+                          <span className="text-sm capitalize font-medium group-hover:text-primary transition-colors">{opt}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <AnimatePresence>
+                    {formData.financialChanges === 'yes' && (
+                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+                        <div className="space-y-1.5 pt-2">
+                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Please provide details *</label>
+                          <textarea name="financialChangesDetails" value={formData.financialChangesDetails} onChange={handleInputChange} rows={2} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none border border-outline-variant/10" placeholder="Describe any expected changes..." />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
 
                 <div className="space-y-1.5">
