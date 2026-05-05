@@ -11,7 +11,7 @@ export default function RentalApplicationPage() {
   const params = useParams()
   const router = useRouter()
   const supabase = createClient()
-  
+
   const [step, setStep] = useState(1)
   const [property, setProperty] = useState<any>(null)
   const [room, setRoom] = useState<any>(null)
@@ -20,7 +20,7 @@ export default function RentalApplicationPage() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [errors, setErrors] = useState<{ [key: string]: string }>({})
-  
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -54,7 +54,7 @@ export default function RentalApplicationPage() {
     rentalStayDuration: '',
     notes: ''
   })
-  
+
   const [files, setFiles] = useState<{ [key: string]: File }>({})
 
   const getImageUrl = (path: string) => {
@@ -70,13 +70,13 @@ export default function RentalApplicationPage() {
         .select('*, documents(storage_path)')
         .eq('id', params.id)
         .single()
-        
+
       const { data: roomData } = await supabase
         .from('rooms')
         .select('*, documents(storage_path)')
         .eq('id', params.roomId)
         .single()
-        
+
       setProperty(propData)
       setRoom(roomData)
 
@@ -112,16 +112,16 @@ export default function RentalApplicationPage() {
   }
 
   const handleMultiSelectChange = (name: string, value: string) => {
-    const currentValues = Array.isArray((formData as any)[name]) 
-      ? (formData as any)[name] as string[] 
-      : typeof (formData as any)[name] === 'string' 
-        ? [(formData as any)[name]] 
+    const currentValues = Array.isArray((formData as any)[name])
+      ? (formData as any)[name] as string[]
+      : typeof (formData as any)[name] === 'string'
+        ? [(formData as any)[name]]
         : []
-        
+
     const newValues = currentValues.includes(value)
       ? currentValues.filter(v => v !== value)
       : [...currentValues, value]
-    
+
     setFormData({ ...formData, [name]: newValues })
     if (errors[name]) {
       setErrors({ ...errors, [name]: '' })
@@ -139,7 +139,7 @@ export default function RentalApplicationPage() {
 
   const nextStep = () => {
     const newErrors: { [key: string]: string } = {}
-    
+
     if (step === 1) {
       if (!formData.firstName.trim()) newErrors.firstName = 'Required'
       if (!formData.lastName.trim()) newErrors.lastName = 'Required'
@@ -187,7 +187,7 @@ export default function RentalApplicationPage() {
     if (!files['id_proof']) {
       newErrors.id_proof = 'Required'
     }
-    
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
       return
@@ -240,11 +240,11 @@ export default function RentalApplicationPage() {
       for (const [type, file] of Object.entries(files)) {
         const fileExt = file.name.split('.').pop()
         const fileName = `${appData.id}/${type}.${fileExt}`
-        
+
         const { error: uploadError } = await supabase.storage
           .from('documents')
           .upload(fileName, file)
-          
+
         if (!uploadError) {
           await supabase.from('documents').insert([{
             application_id: appData.id,
@@ -284,29 +284,29 @@ export default function RentalApplicationPage() {
       <div className="relative h-[45vh] md:h-[55vh] w-full overflow-hidden">
         <div className="absolute inset-0 flex">
           <div className="relative flex-1 h-full overflow-hidden">
-            <motion.img 
+            <motion.img
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ duration: 1.5, ease: 'easeOut' }}
-              src={propertyImage} 
-              alt="Property" 
-              className="w-full h-full object-cover" 
+              src={propertyImage}
+              alt="Property"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/10 to-transparent" />
           </div>
           <div className="relative flex-1 h-full overflow-hidden hidden md:block border-l border-white/10">
-            <motion.img 
+            <motion.img
               initial={{ scale: 1.1 }}
               animate={{ scale: 1 }}
               transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
-              src={roomImage} 
-              alt="Room" 
-              className="w-full h-full object-cover" 
+              src={roomImage}
+              alt="Room"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-l from-primary/40 via-primary/10 to-transparent" />
           </div>
         </div>
-        
+
         <div className="absolute bottom-0 left-0 right-0 p-10 md:p-20 bg-gradient-to-t from-primary/60 to-transparent">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -342,7 +342,7 @@ export default function RentalApplicationPage() {
                 <span className={`text-[10px] font-bold uppercase tracking-widest hidden md:block ${step >= s.id ? 'text-primary' : 'text-outline'}`}>{s.title}</span>
                 {s.id < 4 && (
                   <div className="absolute top-5 -right-1/2 w-full h-[1px] bg-outline-variant/30 hidden md:block -z-10">
-                    <motion.div 
+                    <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: step > s.id ? '100%' : '0%' }}
                       className="h-full bg-primary"
@@ -411,9 +411,9 @@ export default function RentalApplicationPage() {
 
                   <AnimatePresence>
                     {formData.nationality === 'other' && (
-                      <motion.div 
-                        initial={{ opacity: 0, height: 0 }} 
-                        animate={{ opacity: 1, height: 'auto' }} 
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
                         className="md:col-span-2 overflow-hidden"
                       >
@@ -668,7 +668,7 @@ export default function RentalApplicationPage() {
                     <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
                       <span className="material-symbols-outlined text-[32px] text-outline">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
                       <div className="space-y-1">
-                        <p className="text-sm font-bold text-primary">Income Verification (Optional)</p>
+                        <p className="text-sm font-bold text-primary">Income Verification</p>
                         <p className="text-[10px] text-outline uppercase tracking-widest font-bold">Payslips or Bank Statement</p>
                       </div>
                       <input type="file" id="income_proof" onChange={(e) => handleFileChange(e, 'income_proof')} className="hidden" />
@@ -683,14 +683,13 @@ export default function RentalApplicationPage() {
                       <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Source of Rent Payment (Select all that apply)</p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {['salary', 'parental', 'savings', 'government'].map((opt) => (
-                          <div 
-                            key={opt} 
+                          <div
+                            key={opt}
                             onClick={() => handleMultiSelectChange('incomeSource', opt)}
-                            className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${
-                              Array.isArray(formData.incomeSource) && formData.incomeSource.includes(opt) 
-                                ? 'bg-primary border-primary text-on-primary shadow-lg shadow-primary/10' 
+                            className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${Array.isArray(formData.incomeSource) && formData.incomeSource.includes(opt)
+                                ? 'bg-primary border-primary text-on-primary shadow-lg shadow-primary/10'
                                 : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'
-                            }`}
+                              }`}
                           >
                             <p className="font-bold text-[9px] uppercase tracking-widest leading-none">{opt}</p>
                           </div>
