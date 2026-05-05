@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -36,6 +37,7 @@ export default function RootLayout({
       </head>
       <body className="font-body text-on-surface bg-surface min-h-screen">
         {children}
+        <Analytics />
         {/* Start of HubSpot Embed Code */}
         <Script
           type="text/javascript"

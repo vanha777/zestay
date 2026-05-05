@@ -52,7 +52,7 @@ export async function sendApplicationNotification({
   employmentStatus?: string;
   hasPets?: string;
   isSmoker?: string;
-  incomeSource?: string;
+  incomeSource?: string | string[];
   visa?: string;
   universityName?: string;
   fieldOfStudy?: string;
@@ -84,7 +84,7 @@ export async function sendApplicationNotification({
             <p><strong>Stay Duration:</strong> ${lengthOfStay || 'Not specified'} months</p>
             <p><strong>Employment:</strong> ${employmentStatus || 'Not specified'}</p>
             <p><strong>Job Title:</strong> ${occupation || 'N/A'}</p>
-            <p><strong>Income Source:</strong> ${incomeSource || 'Not specified'}</p>
+            <p><strong>Income Source:</strong> ${Array.isArray(incomeSource) ? incomeSource.join(', ') : (incomeSource || 'Not specified')}</p>
             <p><strong>Financial Stability:</strong> ${financialChanges === 'yes' ? `YES - ${financialChangesDetails}` : 'No expected changes'}</p>
             <p><strong>Pets:</strong> ${hasPets || 'No'}</p>
             <p><strong>Smoker:</strong> ${isSmoker || 'No'}</p>

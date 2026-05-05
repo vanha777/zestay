@@ -162,7 +162,7 @@ export default function ApplicantDetailClient({
                 <h2 className="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-8 opacity-60">Background & Financials</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-10 gap-x-12">
                   {infoItem('Employment Status', personalInfo.employmentStatus)}
-                  {infoItem('Income Source', personalInfo.incomeSource)}
+                  {infoItem('Income Source', Array.isArray(personalInfo.incomeSource) ? personalInfo.incomeSource.join(', ') : personalInfo.incomeSource)}
                   
                   {personalInfo.employmentStatus === 'study' ? (
                     <>

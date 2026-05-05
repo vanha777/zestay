@@ -33,7 +33,7 @@ export default function RentalApplicationPage() {
     visa: '',
     occupation: '',
     employmentStatus: 'full-time',
-    incomeSource: 'salary',
+    incomeSource: ['salary'] as string[],
     financialChanges: 'no',
     financialChangesDetails: '',
     employerName: '',
@@ -111,6 +111,23 @@ export default function RentalApplicationPage() {
     }
   }
 
+  const handleMultiSelectChange = (name: string, value: string) => {
+    const currentValues = Array.isArray((formData as any)[name]) 
+      ? (formData as any)[name] as string[] 
+      : typeof (formData as any)[name] === 'string' 
+        ? [(formData as any)[name]] 
+        : []
+        
+    const newValues = currentValues.includes(value)
+      ? currentValues.filter(v => v !== value)
+      : [...currentValues, value]
+    
+    setFormData({ ...formData, [name]: newValues })
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: '' })
+    }
+  }
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: string) => {
     if (e.target.files && e.target.files[0]) {
       setFiles({ ...files, [type]: e.target.files[0] })
@@ -167,8 +184,9 @@ export default function RentalApplicationPage() {
 
   const handleSubmit = async () => {
     const newErrors: { [key: string]: string } = {}
-    if (!files['id_proof']) newErrors.id_proof = 'Required'
-    if (!files['income_proof']) newErrors.income_proof = 'Required'
+    if (!files['id_proof']) {
+      newErrors.id_proof = 'Required'
+    }
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -634,11 +652,12 @@ export default function RentalApplicationPage() {
                 <div className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Minimal File Upload */}
-                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
-                      <span className="material-symbols-outlined text-[32px] text-outline">{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
+                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-secondary/5 border-secondary/20' : errors.id_proof ? 'bg-red-50/10 border-red-500/50' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
+                      <span className={`material-symbols-outlined text-[32px] ${errors.id_proof ? 'text-red-500/70' : 'text-outline'}`}>{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
                       <div className="space-y-1">
-                        <p className="text-sm font-bold text-primary">Identity Verification</p>
+                        <p className="text-sm font-bold text-primary">Identity Verification (Required)</p>
                         <p className="text-[10px] text-outline uppercase tracking-widest font-bold">Driver's License or Passport</p>
+                        {errors.id_proof && <p className="text-[9px] font-bold text-red-500 uppercase tracking-widest pt-1">{errors.id_proof}</p>}
                       </div>
                       <input type="file" id="id_proof" onChange={(e) => handleFileChange(e, 'id_proof')} className="hidden" />
                       <label htmlFor="id_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['id_proof'] ? 'bg-secondary text-on-secondary shadow-lg shadow-secondary/10' : 'bg-surface-container-lowest border border-outline-variant/30 text-primary'}`}>
@@ -649,7 +668,7 @@ export default function RentalApplicationPage() {
                     <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
                       <span className="material-symbols-outlined text-[32px] text-outline">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
                       <div className="space-y-1">
-                        <p className="text-sm font-bold text-primary">Income Verification</p>
+                        <p className="text-sm font-bold text-primary">Income Verification (Optional)</p>
                         <p className="text-[10px] text-outline uppercase tracking-widest font-bold">Payslips or Bank Statement</p>
                       </div>
                       <input type="file" id="income_proof" onChange={(e) => handleFileChange(e, 'income_proof')} className="hidden" />
@@ -661,13 +680,20 @@ export default function RentalApplicationPage() {
 
                   <div className="p-10 bg-surface-container-low rounded-[2.5rem] border border-outline-variant/10 space-y-10">
                     <div className="space-y-6">
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Source of Rent Payment</p>
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Source of Rent Payment (Select all that apply)</p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {['salary', 'parental', 'savings', 'government'].map((opt) => (
-                          <label key={opt} className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.incomeSource === opt ? 'bg-primary border-primary text-on-primary shadow-lg shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'}`}>
-                            <input type="radio" name="incomeSource" value={opt} checked={formData.incomeSource === opt} onChange={handleInputChange} className="hidden" />
+                          <div 
+                            key={opt} 
+                            onClick={() => handleMultiSelectChange('incomeSource', opt)}
+                            className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${
+                              Array.isArray(formData.incomeSource) && formData.incomeSource.includes(opt) 
+                                ? 'bg-primary border-primary text-on-primary shadow-lg shadow-primary/10' 
+                                : 'bg-surface-container-lowest border-outline-variant/30 text-outline hover:border-secondary'
+                            }`}
+                          >
                             <p className="font-bold text-[9px] uppercase tracking-widest leading-none">{opt}</p>
-                          </label>
+                          </div>
                         ))}
                       </div>
                     </div>
