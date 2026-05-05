@@ -80,7 +80,6 @@ export default function RentalApplicationPage() {
       setProperty(propData)
       setRoom(roomData)
 
-      // Resolve images
       if (propData?.documents?.[0]?.storage_path) {
         setPropertyImage(getImageUrl(propData.documents[0].storage_path))
       } else {
@@ -90,7 +89,6 @@ export default function RentalApplicationPage() {
       if (roomData?.documents?.[0]?.storage_path) {
         setRoomImage(getImageUrl(roomData.documents[0].storage_path))
       } else {
-        // Fallback to property image if room image doesn't exist
         setRoomImage(propData?.documents?.[0]?.storage_path ? getImageUrl(propData.documents[0].storage_path) : 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80')
       }
 
@@ -126,33 +124,30 @@ export default function RentalApplicationPage() {
     const newErrors: { [key: string]: string } = {}
     
     if (step === 1) {
-      if (!formData.firstName.trim()) newErrors.firstName = 'First name is required'
-      if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required'
-      if (!formData.email.trim()) newErrors.email = 'Email is required'
-      if (!formData.address.trim()) newErrors.address = 'Current address is required'
+      if (!formData.firstName.trim()) newErrors.firstName = 'Required'
+      if (!formData.lastName.trim()) newErrors.lastName = 'Required'
+      if (!formData.email.trim()) newErrors.email = 'Required'
+      if (!formData.address.trim()) newErrors.address = 'Required'
       if (!formData.phone.trim()) {
-        newErrors.phone = 'Phone number is required'
+        newErrors.phone = 'Required'
       } else if (!validatePhone(formData.phone)) {
-        newErrors.phone = 'Please enter a valid AU mobile number'
-      }
-      if (formData.nationality === 'other' && !formData.visa.trim()) {
-        newErrors.visa = 'Visa information is required'
+        newErrors.phone = 'Invalid AU mobile'
       }
     }
 
     if (step === 2) {
-      if (!formData.moveInDate) newErrors.moveInDate = 'Move-in date is required'
+      if (!formData.moveInDate) newErrors.moveInDate = 'Required'
       if (formData.rentalExperience === 'yes' && !formData.rentalStayDuration.trim()) {
-        newErrors.rentalStayDuration = 'Stay duration is required'
+        newErrors.rentalStayDuration = 'Required'
       }
     }
 
     if (step === 3) {
-      if (!formData.emergencyContactName.trim()) newErrors.emergencyContactName = 'Emergency contact name is required'
+      if (!formData.emergencyContactName.trim()) newErrors.emergencyContactName = 'Required'
       if (!formData.emergencyContactPhone.trim()) {
-        newErrors.emergencyContactPhone = 'Emergency contact phone is required'
+        newErrors.emergencyContactPhone = 'Required'
       } else if (!validatePhone(formData.emergencyContactPhone)) {
-        newErrors.emergencyContactPhone = 'Enter a valid AU mobile number'
+        newErrors.emergencyContactPhone = 'Invalid'
       }
     }
 
@@ -161,17 +156,19 @@ export default function RentalApplicationPage() {
       return
     }
 
+    window.scrollTo({ top: 0, behavior: 'smooth' })
     setStep(step + 1)
   }
 
   const prevStep = () => {
     setStep(step - 1)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleSubmit = async () => {
     const newErrors: { [key: string]: string } = {}
-    if (!files['id_proof']) newErrors.id_proof = 'ID verification is required'
-    if (!files['income_proof']) newErrors.income_proof = 'Proof of income is required'
+    if (!files['id_proof']) newErrors.id_proof = 'Required'
+    if (!files['income_proof']) newErrors.income_proof = 'Required'
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -194,7 +191,6 @@ export default function RentalApplicationPage() {
 
       if (appError) throw appError
 
-      // Send Email Notification
       await sendApplicationNotification({
         applicantName: `${formData.firstName} ${formData.lastName}`,
         applicantEmail: formData.email,
@@ -202,6 +198,11 @@ export default function RentalApplicationPage() {
         employerName: formData.employmentStatus === 'study' ? formData.universityName : formData.employerName,
         employerPhone: formData.employmentStatus === 'study' ? formData.fieldOfStudy : formData.employerPhone,
         employerEmail: formData.employmentStatus === 'study' ? '' : formData.employerEmail,
+        occupation: formData.occupation,
+        financialChanges: formData.financialChanges,
+        financialChangesDetails: formData.financialChangesDetails,
+        rentalReasonToLeave: formData.rentalReasonToLeave,
+        rentalStayDuration: formData.rentalStayDuration,
         emergencyContactName: formData.emergencyContactName,
         emergencyContactPhone: formData.emergencyContactPhone,
         propertyName: property?.address || 'Unknown Property',
@@ -210,11 +211,6 @@ export default function RentalApplicationPage() {
         moveInDate: formData.moveInDate,
         lengthOfStay: formData.lengthOfStay,
         employmentStatus: formData.employmentStatus,
-        occupation: formData.occupation,
-        financialChanges: formData.financialChanges,
-        financialChangesDetails: formData.financialChangesDetails,
-        rentalReasonToLeave: formData.rentalReasonToLeave,
-        rentalStayDuration: formData.rentalStayDuration,
         hasPets: formData.pets,
         isSmoker: formData.smoking,
         incomeSource: formData.incomeSource
@@ -250,220 +246,257 @@ export default function RentalApplicationPage() {
 
   if (loading) return (
     <div className="min-h-screen bg-surface flex items-center justify-center">
-      <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-12 h-12 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
     </div>
   )
 
+  const steps = [
+    { id: 1, title: 'Personal', icon: 'person' },
+    { id: 2, title: 'Tenancy', icon: 'home' },
+    { id: 3, title: 'Background', icon: 'badge' },
+    { id: 4, title: 'Review', icon: 'verified' }
+  ]
+
   return (
-    <div className="min-h-screen bg-surface font-body pb-12 md:pb-24">
-      {/* Hero Header */}
-      <div className="relative h-[40vh] md:h-[50vh] w-full overflow-hidden mb-12">
-        <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
-          <div className="relative h-full w-full">
-            <img src={propertyImage} alt="Property" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/20" />
+    <div className="min-h-screen bg-[#FDFDFD] font-plus-jakarta-sans text-[#1A1A1A] antialiased pb-24 overflow-x-hidden">
+      {/* Dynamic Header */}
+      <div className="relative h-[45vh] md:h-[55vh] w-full overflow-hidden">
+        <div className="absolute inset-0 flex">
+          <div className="relative flex-1 h-full overflow-hidden">
+            <motion.img 
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: 'easeOut' }}
+              src={propertyImage} 
+              alt="Property" 
+              className="w-full h-full object-cover" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
           </div>
-          <div className="relative h-full w-full hidden md:block">
-            <img src={roomImage} alt="Room" className="absolute inset-0 w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-black/10" />
+          <div className="relative flex-1 h-full overflow-hidden hidden md:block border-l border-white/10">
+            <motion.img 
+              initial={{ scale: 1.1 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.5, ease: 'easeOut', delay: 0.2 }}
+              src={roomImage} 
+              alt="Room" 
+              className="w-full h-full object-cover" 
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/40 via-black/10 to-transparent" />
           </div>
         </div>
         
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-          <div className="max-w-xl mx-auto flex items-end justify-between">
-            <div className="text-white">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 opacity-80">Application Portal</p>
-              <h1 className="text-3xl md:text-5xl font-headline font-bold tracking-tight mb-1">
+        <div className="absolute bottom-0 left-0 right-0 p-10 md:p-20 bg-gradient-to-t from-black/60 to-transparent">
+          <div className="max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="space-y-2"
+            >
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/30 text-white text-[10px] font-bold uppercase tracking-widest mb-4">
+                <span className="w-1 h-1 bg-white rounded-full animate-pulse" />
+                Application Portal
+              </div>
+              <h1 className="text-4xl md:text-7xl font-space-grotesk font-bold text-white tracking-tight leading-tight">
                 {room?.name}
               </h1>
-              <p className="text-white/80 text-sm md:text-base font-medium">
-                {property?.address}, {property?.city}
-              </p>
-            </div>
+              <div className="flex items-center gap-4 text-white/80 font-medium text-sm md:text-lg">
+                <span className="flex items-center gap-1.5"><span className="material-symbols-outlined text-[18px]">location_on</span> {property?.address}</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-xl mx-auto px-4 md:px-6">
-        <div className="mb-8">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="flex gap-1.5">
-              {[1, 2, 3, 4].map((i) => (
-                <div key={i} className={`h-1 w-8 rounded-full transition-all duration-500 ${step >= i ? 'bg-primary' : 'bg-outline-variant/20'}`} />
-              ))}
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-widest text-outline">Step {step} of 4</span>
+      <div className="max-w-4xl mx-auto px-6 -mt-16 relative z-10">
+        {/* Modern Stepper */}
+        <div className="bg-white/80 backdrop-blur-2xl rounded-3xl p-4 md:p-8 border border-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.08)] mb-8">
+          <div className="flex items-center justify-between gap-4">
+            {steps.map((s) => (
+              <div key={s.id} className="flex-1 flex flex-col items-center gap-2 group relative">
+                <div className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${step >= s.id ? 'bg-[#1A1A1A] text-white shadow-lg shadow-black/10' : 'bg-[#F5F5F5] text-[#999]'}`}>
+                  <span className="material-symbols-outlined text-[20px]">{s.icon}</span>
+                </div>
+                <span className={`text-[10px] font-bold uppercase tracking-widest hidden md:block ${step >= s.id ? 'text-[#1A1A1A]' : 'text-[#999]'}`}>{s.title}</span>
+                {s.id < 4 && (
+                  <div className="absolute top-5 -right-1/2 w-full h-[1px] bg-[#EEEEEE] hidden md:block -z-10">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: step > s.id ? '100%' : '0%' }}
+                      className="h-full bg-[#1A1A1A]"
+                    />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="bg-surface-container-lowest border border-outline-variant/10 rounded-[2.5rem] p-6 md:p-10 shadow-sm">
+        {/* Content Card */}
+        <div className="bg-white rounded-[2.5rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-[#F0F0F0]">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
                 key="step1"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-12"
               >
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">First Name *</label>
-                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.firstName ? 'ring-1 ring-red-500/50' : ''}`} placeholder="Jane" />
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Tell us about yourself</h2>
+                  <p className="text-[#666] text-sm">Please provide your basic contact and identity details.</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                  {/* Custom Styled Input */}
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">First Name</label>
+                    <input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.firstName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Jane" />
+                    {errors.firstName && <span className="text-[10px] text-red-500 font-bold uppercase tracking-tight">{errors.firstName}</span>}
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Last Name *</label>
-                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className={`w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20 ${errors.lastName ? 'ring-1 ring-red-500/50' : ''}`} placeholder="Doe" />
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Last Name</label>
+                    <input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.lastName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Doe" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Email Address</label>
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.email ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="jane@example.com" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Phone Number</label>
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.phone ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="0400 000 000" />
+                  </div>
+                  <div className="md:col-span-2 space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Current Address</label>
+                    <input type="text" name="address" value={formData.address} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all placeholder:text-[#DDD] ${errors.address ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="123 Example St, Melbourne" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Date of Birth</label>
+                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" />
+                  </div>
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Nationality</label>
+                    <div className="flex gap-4 mt-2">
+                      {['aussie', 'other'].map((opt) => (
+                        <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-xs uppercase tracking-widest ${formData.nationality === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl shadow-black/10' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                          <input type="radio" name="nationality" value={opt} checked={formData.nationality === opt} onChange={handleInputChange} className="hidden" />
+                          {opt === 'aussie' ? 'Australian' : 'International'}
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Email *</label>
-                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" placeholder="jane@example.com" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Phone *</label>
-                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" placeholder="0400 000 000" />
-                  </div>
+                <div className="pt-10 border-t border-[#F5F5F5] flex justify-end">
+                  <button onClick={nextStep} className="group relative bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all overflow-hidden active:scale-95">
+                    <span className="relative z-10 flex items-center gap-2">Continue <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span></span>
+                  </button>
                 </div>
-
-                <div className="space-y-1.5">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Current Address *</label>
-                  <input type="text" name="address" value={formData.address} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" placeholder="123 Example St, Melbourne" />
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Date of Birth</label>
-                    <input type="date" name="dob" value={formData.dob} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" />
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Gender</label>
-                    <select name="gender" value={formData.gender} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none appearance-none">
-                      <option value="">Select...</option>
-                      <option value="female">Female</option>
-                      <option value="male">Male</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Nationality</label>
-                    <select name="nationality" value={formData.nationality} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none appearance-none">
-                      <option value="aussie">Australian</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-                  {formData.nationality === 'other' && (
-                    <motion.div initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} className="space-y-1.5">
-                      <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Visa Type *</label>
-                      <input type="text" name="visa" value={formData.visa} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" placeholder="Student / Work" />
-                    </motion.div>
-                  )}
-                </div>
-
-                <button onClick={nextStep} className="w-full bg-primary text-on-primary py-4 rounded-xl font-bold text-sm mt-4 hover:opacity-90 transition-opacity">
-                  Continue
-                </button>
               </motion.div>
             )}
 
             {step === 2 && (
               <motion.div
                 key="step2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-12"
               >
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Preferred Move-in Date *</label>
-                    <input type="date" name="moveInDate" value={formData.moveInDate} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none" />
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Tenancy Details</h2>
+                  <p className="text-[#666] text-sm">When would you like to move in and for how long?</p>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Preferred Move-in Date</label>
+                    <input type="date" name="moveInDate" value={formData.moveInDate} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.moveInDate ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} />
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Length of Stay</label>
-                    <select name="lengthOfStay" value={formData.lengthOfStay} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none appearance-none">
+                  <div className="space-y-3">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Stay Duration</label>
+                    <select name="lengthOfStay" value={formData.lengthOfStay} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent appearance-none">
                       <option value="6">6 Months</option>
                       <option value="12">12 Months</option>
                       <option value="other">Other</option>
                     </select>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-3 p-4 bg-surface-container-low rounded-2xl">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline">Do you smoke?</label>
-                    <div className="flex gap-4">
-                      {['yes', 'no'].map((opt) => (
-                        <label key={opt} className="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="smoking" value={opt} checked={formData.smoking === opt} onChange={handleInputChange} className="accent-primary" />
-                          <span className="text-sm capitalize">{opt}</span>
-                        </label>
-                      ))}
+                  <div className="space-y-6 md:col-span-2 bg-[#F9F9F9] p-8 rounded-[2rem]">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Lifestyle Preferences</p>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <span className="text-sm font-bold text-[#1A1A1A]">Do you smoke?</span>
+                        <div className="flex gap-4">
+                          {['no', 'yes'].map((opt) => (
+                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.smoking === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                              <input type="radio" name="smoking" value={opt} checked={formData.smoking === opt} onChange={handleInputChange} className="hidden" />
+                              {opt}
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <span className="text-sm font-bold text-[#1A1A1A]">Do you have pets?</span>
+                        <div className="flex gap-4">
+                          {['no', 'yes'].map((opt) => (
+                            <label key={opt} className={`flex-1 text-center py-3 rounded-2xl border-2 cursor-pointer transition-all font-bold text-[10px] uppercase tracking-widest ${formData.pets === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                              <input type="radio" name="pets" value={opt} checked={formData.pets === opt} onChange={handleInputChange} className="hidden" />
+                              {opt}
+                            </label>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="space-y-3 p-4 bg-surface-container-low rounded-2xl">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-outline">Do you have pets?</label>
-                    <div className="flex gap-4">
-                      {['yes', 'no'].map((opt) => (
-                        <label key={opt} className="flex items-center gap-2 cursor-pointer">
-                          <input type="radio" name="pets" value={opt} checked={formData.pets === opt} onChange={handleInputChange} className="accent-primary" />
-                          <span className="text-sm capitalize">{opt}</span>
-                        </label>
-                      ))}
+
+                  <div className="md:col-span-2 space-y-6">
+                    <p className="text-sm font-bold text-[#1A1A1A]">Rental History Experience</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'yes' ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#1A1A1A]'}`}>
+                        <input type="radio" name="rentalExperience" value="yes" checked={formData.rentalExperience === 'yes'} onChange={handleInputChange} className="hidden" />
+                        <span className="material-symbols-outlined mb-2 block text-[24px]">history</span>
+                        <p className="font-bold text-xs uppercase tracking-widest">I have rented before</p>
+                      </label>
+                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'no' ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#1A1A1A]'}`}>
+                        <input type="radio" name="rentalExperience" value="no" checked={formData.rentalExperience === 'no'} onChange={handleInputChange} className="hidden" />
+                        <span className="material-symbols-outlined mb-2 block text-[24px]">person_off</span>
+                        <p className="font-bold text-xs uppercase tracking-widest">I haven't rented before</p>
+                      </label>
                     </div>
+
+                    <AnimatePresence>
+                      {formData.rentalExperience === 'yes' && (
+                        <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-10 pt-6">
+                          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 p-10 bg-white border border-[#F0F0F0] rounded-[2.5rem] shadow-sm">
+                            <div className="space-y-3">
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Reference Name</label>
+                              <input type="text" name="rentalReferenceName" value={formData.rentalReferenceName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="Agent or Landlord" />
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
+                              <input type="tel" name="rentalReferencePhone" value={formData.rentalReferencePhone} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="0400 000 000" />
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Stay Duration *</label>
+                              <input type="text" name="rentalStayDuration" value={formData.rentalStayDuration} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.rentalStayDuration ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="e.g. 1 year" />
+                            </div>
+                            <div className="space-y-3">
+                              <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Reason to leave</label>
+                              <input type="text" name="rentalReasonToLeave" value={formData.rentalReasonToLeave} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A]" placeholder="e.g. Relocation" />
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 </div>
 
-                <div className="space-y-3 p-5 bg-surface-container-low rounded-2xl border border-outline-variant/10">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline">Previous Rental Experience</label>
-                  <div className="space-y-3">
-                    <label className="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent has-[:checked]:border-primary/20 has-[:checked]:bg-primary/5">
-                      <input type="radio" name="rentalExperience" value="yes" checked={formData.rentalExperience === 'yes'} onChange={handleInputChange} className="accent-primary" />
-                      <span className="text-sm font-medium text-on-surface">I have rented before</span>
-                    </label>
-                    <label className="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high transition-colors cursor-pointer border border-transparent has-[:checked]:border-primary/20 has-[:checked]:bg-primary/5">
-                      <input type="radio" name="rentalExperience" value="no" checked={formData.rentalExperience === 'no'} onChange={handleInputChange} className="accent-primary" />
-                      <span className="text-sm font-medium text-on-surface">I haven't rented before</span>
-                    </label>
-                  </div>
-                </div>
-
-                {formData.rentalExperience === 'yes' && (
-                  <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="p-6 bg-primary/5 rounded-2xl space-y-4">
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-primary">Rental Reference</p>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Reference Name</label>
-                        <input type="text" name="rentalReferenceName" value={formData.rentalReferenceName} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none" placeholder="Agent or Landlord" />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Contact Phone</label>
-                        <input type="tel" name="rentalReferencePhone" value={formData.rentalReferencePhone} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none" placeholder="0400 000 000" />
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">How long did you stay for? *</label>
-                        <input type="text" name="rentalStayDuration" value={formData.rentalStayDuration} onChange={handleInputChange} className={`w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none ${errors.rentalStayDuration ? 'ring-1 ring-red-500/50' : ''}`} placeholder="e.g. 1 year" />
-                      </div>
-                      <div className="space-y-1.5">
-                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Reason to leave?</label>
-                        <input type="text" name="rentalReasonToLeave" value={formData.rentalReasonToLeave} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none" placeholder="e.g. Relocation" />
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-
-                <div className="flex gap-3 mt-4">
-                  <button onClick={prevStep} className="flex-1 border border-outline-variant/20 py-4 rounded-xl font-bold text-sm hover:bg-surface-container-low transition-colors">
-                    Back
-                  </button>
-                  <button onClick={nextStep} className="flex-[2] bg-primary text-on-primary py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity">
+                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
+                  <button onClick={nextStep} className="group relative bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all active:scale-95">
                     Continue
                   </button>
                 </div>
@@ -473,95 +506,83 @@ export default function RentalApplicationPage() {
             {step === 3 && (
               <motion.div
                 key="step3"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-12"
               >
-                <div className="space-y-1.5">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Employment Status</label>
-                  <select name="employmentStatus" value={formData.employmentStatus} onChange={handleInputChange} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none appearance-none">
-                    <option value="full-time">Full-time</option>
-                    <option value="part-time">Part-time</option>
-                    <option value="casual">Casual</option>
-                    <option value="study">Student</option>
-                    <option value="other">Other</option>
-                  </select>
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Background & Reference</h2>
+                  <p className="text-[#666] text-sm">Tell us about your current status and who to contact in emergencies.</p>
                 </div>
 
-                <AnimatePresence mode="wait">
-                  {formData.employmentStatus === 'study' ? (
-                    <motion.div
-                      key="study-ref"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10"
-                    >
-                      <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Education Details</p>
-                      <div className="space-y-4">
-                        <div className="space-y-1.5">
-                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">University / Institution Name</label>
-                          <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="University of Melbourne" />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Course / Field of Study</label>
-                          <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="Bachelor of Science" />
-                        </div>
-                      </div>
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="work-ref"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10"
-                    >
-                      <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Employment Reference</p>
-                      <div className="space-y-4">
-                        <div className="space-y-1.5">
-                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Occupation or Job title</label>
-                          <input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="Software Engineer" />
-                        </div>
-                        <div className="space-y-1.5">
-                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Company / Manager Name</label>
-                          <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="Acme Corp" />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="space-y-1.5">
-                            <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Phone</label>
-                            <input type="tel" name="employerPhone" value={formData.employerPhone} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="0400 000 000" />
-                          </div>
-                          <div className="space-y-1.5">
-                            <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Email</label>
-                            <input type="email" name="employerEmail" value={formData.employerEmail} onChange={handleInputChange} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none" placeholder="manager@company.com" />
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                <div className={`p-6 bg-surface-container-low rounded-[2rem] border transition-all ${errors.emergencyContactName || errors.emergencyContactPhone ? 'border-red-500/50' : 'border-outline-variant/10'}`}>
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-6">Emergency Contact *</p>
-                  <div className="space-y-4">
-                    <div className="space-y-1.5">
-                      <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Name *</label>
-                      <input type="text" name="emergencyContactName" value={formData.emergencyContactName} onChange={handleInputChange} className={`w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none ${errors.emergencyContactName ? 'ring-1 ring-red-500/50' : ''}`} placeholder="Family member or friend" />
+                <div className="space-y-10">
+                  <div className="space-y-6">
+                    <p className="text-sm font-bold text-[#1A1A1A]">Employment Status</p>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {['full-time', 'part-time', 'casual', 'study'].map((opt) => (
+                        <label key={opt} className={`p-4 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.employmentStatus === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-xl' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                          <input type="radio" name="employmentStatus" value={opt} checked={formData.employmentStatus === opt} onChange={handleInputChange} className="hidden" />
+                          <p className="font-bold text-[10px] uppercase tracking-widest capitalize">{opt}</p>
+                        </label>
+                      ))}
                     </div>
-                    <div className="space-y-1.5">
-                      <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Contact Phone *</label>
-                      <input type="tel" name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleInputChange} className={`w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none ${errors.emergencyContactPhone ? 'ring-1 ring-red-500/50' : ''}`} placeholder="0400 000 000" />
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    {formData.employmentStatus === 'study' ? (
+                      <motion.div key="study" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-[#F9F9F9] rounded-[2.5rem] space-y-10 border border-[#F0F0F0]">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Education Details</p>
+                        <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">University / Institution</label>
+                            <input type="text" name="universityName" value={formData.universityName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="University of Melbourne" />
+                          </div>
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Field of Study</label>
+                            <input type="text" name="fieldOfStudy" value={formData.fieldOfStudy} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Bachelor of Design" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div key="work" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-[#F9F9F9] rounded-[2.5rem] space-y-10 border border-[#F0F0F0]">
+                        <p className="text-[11px] font-bold uppercase tracking-wider text-[#999]">Employment Reference</p>
+                        <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                          <div className="space-y-3 md:col-span-2">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Occupation or Job Title</label>
+                            <input type="text" name="occupation" value={formData.occupation} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Software Engineer" />
+                          </div>
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Company / Manager Name</label>
+                            <input type="text" name="employerName" value={formData.employerName} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="Acme Corp" />
+                          </div>
+                          <div className="space-y-3">
+                            <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
+                            <input type="tel" name="employerPhone" value={formData.employerPhone} onChange={handleInputChange} className="w-full border-b-2 py-2 text-lg outline-none border-[#F0F0F0] focus:border-[#1A1A1A] bg-transparent" placeholder="0400 000 000" />
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="p-10 bg-white border border-[#F0F0F0] rounded-[2.5rem] space-y-10">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A]">Emergency Contact</p>
+                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Name</label>
+                        <input type="text" name="emergencyContactName" value={formData.emergencyContactName} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactName ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="Name" />
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Contact Phone</label>
+                        <input type="tel" name="emergencyContactPhone" value={formData.emergencyContactPhone} onChange={handleInputChange} className={`w-full border-b-2 py-2 text-lg outline-none transition-all ${errors.emergencyContactPhone ? 'border-red-500/50' : 'border-[#F0F0F0] focus:border-[#1A1A1A]'}`} placeholder="0400 000 000" />
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex gap-3 mt-4">
-                  <button onClick={prevStep} className="flex-1 border border-outline-variant/20 py-4 rounded-xl font-bold text-sm hover:bg-surface-container-low transition-colors">
-                    Back
-                  </button>
-                  <button onClick={nextStep} className="flex-[2] bg-primary text-on-primary py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity">
+                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
+                  <button onClick={nextStep} className="bg-[#1A1A1A] text-white px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all active:scale-95">
                     Continue
                   </button>
                 </div>
@@ -571,76 +592,94 @@ export default function RentalApplicationPage() {
             {step === 4 && (
               <motion.div
                 key="step4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="space-y-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                className="space-y-12"
               >
-                <div className={`p-6 bg-surface-container-low rounded-2xl border transition-all ${errors.id_proof ? 'border-red-500/50' : 'border-outline-variant/10'}`}>
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-1">ID Verification *</p>
-                  <p className="text-[10px] text-outline-variant mb-4 font-medium italic">Driver's License or Passport</p>
-                  <input type="file" onChange={(e) => handleFileChange(e, 'id_proof')} className="text-xs w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary/5 file:text-primary" />
-                  {files['id_proof'] && <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-medium"><span className="material-symbols-outlined text-[14px]">check</span> {files['id_proof'].name}</p>}
+                <div className="space-y-1">
+                  <h2 className="text-3xl font-space-grotesk font-bold text-[#1A1A1A]">Review & Documents</h2>
+                  <p className="text-[#666] text-sm">Upload your supporting documents and confirm your application.</p>
                 </div>
 
-                <div className={`p-6 bg-surface-container-low rounded-2xl border transition-all ${errors.income_proof ? 'border-red-500/50' : 'border-outline-variant/10'}`}>
-                  <p className="text-[10px] uppercase font-bold tracking-wider text-primary mb-4">Proof of Rent Payment *</p>
-                  
-                  <div className="space-y-3 mb-6">
-                    <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1 opacity-60">Source of income / Support</label>
-                    <select name="incomeSource" value={formData.incomeSource} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none appearance-none border border-outline-variant/10">
-                      <option value="salary">Salary / Wages</option>
-                      <option value="parental">Parental / Family Support</option>
-                      <option value="savings">Savings</option>
-                      <option value="government">Government Allowance / Pension</option>
-                    </select>
-                  </div>
+                <div className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Minimal File Upload */}
+                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-green-50/50 border-green-200' : 'bg-[#F9F9F9] border-[#EEEEEE] hover:border-[#CCC]'}`}>
+                      <span className="material-symbols-outlined text-[32px] text-[#999]">{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-[#1A1A1A]">Identity Verification</p>
+                        <p className="text-[10px] text-[#999] uppercase tracking-widest font-bold">Driver's License or Passport</p>
+                      </div>
+                      <input type="file" id="id_proof" onChange={(e) => handleFileChange(e, 'id_proof')} className="hidden" />
+                      <label htmlFor="id_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['id_proof'] ? 'bg-green-500 text-white shadow-lg' : 'bg-white border border-[#EEE] text-[#1A1A1A]'}`}>
+                        {files['id_proof'] ? 'File Selected' : 'Select File'}
+                      </label>
+                    </div>
 
-                  <p className="text-[10px] text-outline-variant mb-4 font-medium italic">Please upload Payslips, Bank Statement, or Support Letter</p>
-                  <input type="file" onChange={(e) => handleFileChange(e, 'income_proof')} className="text-xs w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-primary/5 file:text-primary" />
-                  {files['income_proof'] && <p className="text-[10px] text-primary mt-2 flex items-center gap-1 font-medium"><span className="material-symbols-outlined text-[14px]">check</span> {files['income_proof'].name}</p>}
-                </div>
-
-                <div className="p-6 bg-surface-container-low rounded-[2rem] border border-outline-variant/10 space-y-6">
-                  <div className="space-y-3">
-                    <label className="text-[10px] uppercase font-bold tracking-wider text-primary">Financial Stability Declaration *</label>
-                    <p className="text-[11px] text-on-surface-variant leading-relaxed">
-                      Do you foresee any changes in your financial situation over the next 6–12 months that would impact your ability to pay rent on time?
-                      <br />
-                      <span className="text-[10px] opacity-60 italic">e.g., job contract ending, change in study load, loss of income?</span>
-                    </p>
-                    <div className="flex gap-6 mt-2">
-                      {['no', 'yes'].map((opt) => (
-                        <label key={opt} className="flex items-center gap-2 cursor-pointer group">
-                          <input type="radio" name="financialChanges" value={opt} checked={formData.financialChanges === opt} onChange={handleInputChange} className="accent-primary" />
-                          <span className="text-sm capitalize font-medium group-hover:text-primary transition-colors">{opt}</span>
-                        </label>
-                      ))}
+                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-green-50/50 border-green-200' : 'bg-[#F9F9F9] border-[#EEEEEE] hover:border-[#CCC]'}`}>
+                      <span className="material-symbols-outlined text-[32px] text-[#999]">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
+                      <div className="space-y-1">
+                        <p className="text-sm font-bold text-[#1A1A1A]">Income Verification</p>
+                        <p className="text-[10px] text-[#999] uppercase tracking-widest font-bold">Payslips or Bank Statement</p>
+                      </div>
+                      <input type="file" id="income_proof" onChange={(e) => handleFileChange(e, 'income_proof')} className="hidden" />
+                      <label htmlFor="income_proof" className={`inline-block px-6 py-3 rounded-2xl font-bold text-[10px] uppercase tracking-widest cursor-pointer transition-all ${files['income_proof'] ? 'bg-green-500 text-white shadow-lg' : 'bg-white border border-[#EEE] text-[#1A1A1A]'}`}>
+                        {files['income_proof'] ? 'File Selected' : 'Select File'}
+                      </label>
                     </div>
                   </div>
 
-                  <AnimatePresence>
-                    {formData.financialChanges === 'yes' && (
-                      <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-                        <div className="space-y-1.5 pt-2">
-                          <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Please provide details *</label>
-                          <textarea name="financialChangesDetails" value={formData.financialChangesDetails} onChange={handleInputChange} rows={2} className="w-full bg-surface-container-high rounded-xl p-3.5 text-sm outline-none border border-outline-variant/10" placeholder="Describe any expected changes..." />
+                  <div className="p-10 bg-[#F9F9F9] rounded-[2.5rem] border border-[#F0F0F0] space-y-10">
+                    <div className="space-y-6">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-[#1A1A1A]">Source of Rent Payment</p>
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        {['salary', 'parental', 'savings', 'government'].map((opt) => (
+                          <label key={opt} className={`p-3 rounded-2xl border-2 cursor-pointer transition-all text-center ${formData.incomeSource === opt ? 'bg-[#1A1A1A] border-[#1A1A1A] text-white shadow-lg' : 'bg-white border-[#F0F0F0] text-[#999] hover:border-[#CCC]'}`}>
+                            <input type="radio" name="incomeSource" value={opt} checked={formData.incomeSource === opt} onChange={handleInputChange} className="hidden" />
+                            <p className="font-bold text-[9px] uppercase tracking-widest leading-none">{opt}</p>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="space-y-6 pt-4 border-t border-[#EEE]">
+                      <div className="space-y-3">
+                        <p className="text-sm font-bold text-[#1A1A1A] leading-relaxed">
+                          Do you foresee any changes in your financial situation that would impact rent?
+                        </p>
+                        <div className="flex gap-6">
+                          {['no', 'yes'].map((opt) => (
+                            <label key={opt} className="flex items-center gap-3 cursor-pointer group">
+                              <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${formData.financialChanges === opt ? 'border-[#1A1A1A]' : 'border-[#EEE]'}`}>
+                                {formData.financialChanges === opt && <div className="w-2.5 h-2.5 bg-[#1A1A1A] rounded-full" />}
+                              </div>
+                              <input type="radio" name="financialChanges" value={opt} checked={formData.financialChanges === opt} onChange={handleInputChange} className="hidden" />
+                              <span className="text-xs uppercase font-bold tracking-widest text-[#999] group-hover:text-[#1A1A1A] transition-colors">{opt}</span>
+                            </label>
+                          ))}
                         </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      </div>
+
+                      <AnimatePresence>
+                        {formData.financialChanges === 'yes' && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="pt-4 overflow-hidden">
+                            <textarea name="financialChangesDetails" value={formData.financialChangesDetails} onChange={handleInputChange} rows={2} className="w-full bg-white border-b-2 py-2 text-sm outline-none border-[#F0F0F0] focus:border-[#1A1A1A] transition-all" placeholder="Please provide details..." />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-6">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-[#999] ml-1">Additional Notes</label>
+                    <textarea name="notes" value={formData.notes} onChange={handleInputChange} rows={3} className="w-full border-b-2 py-2 text-sm outline-none border-[#F0F0F0] focus:border-[#1A1A1A] transition-all" placeholder="Any additional information..." />
+                  </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[10px] uppercase font-bold tracking-wider text-outline ml-1">Additional Notes</label>
-                  <textarea name="notes" value={formData.notes} onChange={handleInputChange} rows={3} className="w-full bg-surface-container-low rounded-xl p-3.5 text-sm outline-none focus:ring-1 focus:ring-primary/20" placeholder="Anything else we should know?" />
-                </div>
-
-                <div className="flex gap-3 mt-4">
-                  <button onClick={prevStep} className="flex-1 border border-outline-variant/20 py-4 rounded-xl font-bold text-sm hover:bg-surface-container-low transition-colors">
-                    Back
-                  </button>
-                  <button onClick={handleSubmit} disabled={submitting} className="flex-[2] bg-primary text-on-primary py-4 rounded-xl font-bold text-sm hover:opacity-90 transition-opacity disabled:opacity-50">
+                <div className="pt-10 border-t border-[#F5F5F5] flex justify-between">
+                  <button onClick={prevStep} className="px-8 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] text-[#999] hover:text-[#1A1A1A] transition-all">Back</button>
+                  <button onClick={handleSubmit} disabled={submitting} className="bg-[#1A1A1A] text-white px-12 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] shadow-2xl shadow-black/20 hover:-translate-y-1 transition-all disabled:opacity-50 active:scale-95">
                     {submitting ? 'Submitting...' : 'Submit Application'}
                   </button>
                 </div>
@@ -652,16 +691,18 @@ export default function RentalApplicationPage() {
                 key="step5"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center py-8 space-y-4"
+                className="text-center py-20 space-y-8"
               >
-                <div className="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="material-symbols-outlined text-3xl">check</span>
+                <div className="w-24 h-24 bg-[#1A1A1A] text-white rounded-full flex items-center justify-center mx-auto shadow-2xl shadow-black/20">
+                  <span className="material-symbols-outlined text-[48px] animate-[bounce_1s_ease-in-out_infinite]">check</span>
                 </div>
-                <h2 className="text-2xl font-headline font-bold">Application Sent</h2>
-                <p className="text-on-surface-variant text-sm px-4">
-                  We've received your application for {room?.name}. We'll be in touch soon.
-                </p>
-                <button onClick={() => router.push('/tenant')} className="text-primary font-bold text-sm mt-4 hover:underline underline-offset-4">
+                <div className="space-y-2">
+                  <h2 className="text-4xl font-space-grotesk font-bold text-[#1A1A1A]">Application Received</h2>
+                  <p className="text-[#666] text-sm max-w-sm mx-auto">
+                    We've received your application for {room?.name}. Our team will review your details and contact you shortly.
+                  </p>
+                </div>
+                <button onClick={() => router.push('/tenant')} className="inline-block bg-[#F5F5F5] text-[#1A1A1A] px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] hover:bg-[#EEE] transition-all">
                   Back to Explore
                 </button>
               </motion.div>
