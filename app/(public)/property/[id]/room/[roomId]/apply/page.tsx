@@ -50,6 +50,8 @@ export default function RentalApplicationPage() {
     rentalExperience: 'no',
     rentalReferenceName: '',
     rentalReferencePhone: '',
+    rentalReasonToLeave: '',
+    rentalStayDuration: '',
     notes: ''
   })
   
@@ -140,6 +142,9 @@ export default function RentalApplicationPage() {
 
     if (step === 2) {
       if (!formData.moveInDate) newErrors.moveInDate = 'Move-in date is required'
+      if (formData.rentalExperience === 'yes' && !formData.rentalStayDuration.trim()) {
+        newErrors.rentalStayDuration = 'Stay duration is required'
+      }
     }
 
     if (step === 3) {
@@ -208,6 +213,8 @@ export default function RentalApplicationPage() {
         occupation: formData.occupation,
         financialChanges: formData.financialChanges,
         financialChangesDetails: formData.financialChangesDetails,
+        rentalReasonToLeave: formData.rentalReasonToLeave,
+        rentalStayDuration: formData.rentalStayDuration,
         hasPets: formData.pets,
         isSmoker: formData.smoking,
         incomeSource: formData.incomeSource
@@ -437,6 +444,16 @@ export default function RentalApplicationPage() {
                       <div className="space-y-1.5">
                         <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Contact Phone</label>
                         <input type="tel" name="rentalReferencePhone" value={formData.rentalReferencePhone} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none" placeholder="0400 000 000" />
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">How long did you stay for? *</label>
+                        <input type="text" name="rentalStayDuration" value={formData.rentalStayDuration} onChange={handleInputChange} className={`w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none ${errors.rentalStayDuration ? 'ring-1 ring-red-500/50' : ''}`} placeholder="e.g. 1 year" />
+                      </div>
+                      <div className="space-y-1.5">
+                        <label className="text-[9px] uppercase font-bold tracking-wider text-outline ml-1">Reason to leave?</label>
+                        <input type="text" name="rentalReasonToLeave" value={formData.rentalReasonToLeave} onChange={handleInputChange} className="w-full bg-surface-container-lowest rounded-xl p-3.5 text-sm outline-none" placeholder="e.g. Relocation" />
                       </div>
                     </div>
                   </motion.div>

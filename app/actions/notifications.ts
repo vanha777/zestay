@@ -22,6 +22,8 @@ export async function sendApplicationNotification({
   occupation,
   financialChanges,
   financialChangesDetails,
+  rentalReasonToLeave,
+  rentalStayDuration,
   hasPets,
   isSmoker,
   incomeSource
@@ -35,6 +37,8 @@ export async function sendApplicationNotification({
   occupation?: string;
   financialChanges?: string;
   financialChangesDetails?: string;
+  rentalReasonToLeave?: string;
+  rentalStayDuration?: string;
   emergencyContactName?: string;
   emergencyContactPhone?: string;
   propertyName: string;
@@ -70,6 +74,13 @@ export async function sendApplicationNotification({
             <p><strong>Financial Stability:</strong> ${financialChanges === 'yes' ? `YES - ${financialChangesDetails}` : 'No expected changes'}</p>
             <p><strong>Pets:</strong> ${hasPets || 'No'}</p>
             <p><strong>Smoker:</strong> ${isSmoker || 'No'}</p>
+            ${rentalStayDuration ? `
+            <div style="margin-top: 10px; padding: 10px; background: #f9f9f9; border-radius: 8px;">
+              <p style="margin: 0; font-weight: bold; font-size: 12px; text-transform: uppercase; color: #666;">Rental History Reference</p>
+              <p style="margin: 5px 0 0;"><strong>Stay Duration:</strong> ${rentalStayDuration}</p>
+              <p style="margin: 5px 0 0;"><strong>Reason to leave:</strong> ${rentalReasonToLeave || 'Not specified'}</p>
+            </div>
+            ` : ''}
             <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
             
             <p><strong>Employer:</strong> ${employerName || 'N/A'}</p>
