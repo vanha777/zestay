@@ -89,7 +89,7 @@ export default function Footer() {
       </div>
       <div className="max-w-7xl mx-auto mt-24 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-low px-8 py-6 rounded-[2rem]">
         <p className="text-on-surface-variant text-xs font-body opacity-60">
-          © 2024 Zestay Coliving. All rights reserved.
+          © 2024 Zestay Coliving. All rights reserved. • ABN 41 424 818 899
         </p>
         <div className="flex gap-6">
           <a href="https://www.instagram.com/zestayau/" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Instagram</a>

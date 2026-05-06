@@ -22,13 +22,20 @@ export default function ManagePropertyPage() {
     status: 'available'
   })
 
+  // Edit States
+  const [isEditPropertyOpen, setIsEditPropertyOpen] = useState(false)
+  const [editingRoom, setEditingRoom] = useState<any>(null)
+  const [isUpdating, setIsUpdating] = useState(false)
+  const [editFile, setEditFile] = useState<File | null>(null)
+  const [editData, setEditData] = useState<any>(null)
+
   useEffect(() => {
     async function fetchData() {
       const { data: propData } = await supabase
         .from('properties')
         .select(`
           *,
-          documents (storage_path)
+          documents (storage_path, created_at, document_type)
         `)
         .eq('id', id)
         .single()
@@ -37,9 +44,21 @@ export default function ManagePropertyPage() {
         .from('rooms')
         .select(`
           *,
-          documents (storage_path)
+          documents (storage_path, created_at, document_type)
         `)
         .eq('property_id', id)
+      
+      if (propData?.documents) {
+        propData.documents.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      }
+      
+      if (roomsData) {
+        roomsData.forEach((r: any) => {
+          if (r.documents) {
+            r.documents.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          }
+        })
+      }
       
       setProperty(propData)
       setRooms(roomsData || [])
@@ -91,8 +110,138 @@ export default function ManagePropertyPage() {
       setRoomFile(null)
       setNewRoom({ name: '', rent_amount: '', status: 'available' })
       
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      if (data) {
+        data.forEach((r: any) => {
+          if (r.documents) {
+            r.documents.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          }
+        })
+      }
       setRooms(data || [])
+    }
+    setLoading(false)
+  }
+
+  const handleUpdateProperty = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsUpdating(true)
+
+    try {
+      const { error } = await supabase
+        .from('properties')
+        .update({
+          address: editData.address,
+          city: editData.city,
+          property_type: editData.property_type,
+          state: editData.state,
+          zip_code: editData.zip_code
+        })
+        .eq('id', id)
+
+      if (error) throw error
+
+      if (editFile) {
+        const fileExt = editFile.name.split('.').pop()
+        const fileName = `properties/${id}/${Math.random()}.${fileExt}`
+        const { error: uploadError, data: uploadData } = await supabase.storage
+          .from('documents')
+          .upload(fileName, editFile)
+
+        if (!uploadError) {
+          // Mark old images as something else or just add new one
+          await supabase.from('documents').insert([
+            {
+              name: editFile.name,
+              storage_path: uploadData.path,
+              document_type: 'property_image',
+              property_id: id,
+              mime_type: editFile.type
+            }
+          ])
+        }
+      }
+
+      setIsEditPropertyOpen(false)
+      setEditFile(null)
+      router.refresh()
+      
+      // Refresh local state
+      const { data } = await supabase.from('properties').select('*, documents(storage_path, created_at, document_type)').eq('id', id).single()
+      if (data?.documents) {
+        data.documents.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+      }
+      setProperty(data)
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
+  const handleUpdateRoom = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsUpdating(true)
+
+    try {
+      const { error } = await supabase
+        .from('rooms')
+        .update({
+          name: editData.name,
+          rent_amount: parseFloat(editData.rent_amount),
+          status: editData.status
+        })
+        .eq('id', editingRoom.id)
+
+      if (error) throw error
+
+      if (editFile) {
+        const fileExt = editFile.name.split('.').pop()
+        const fileName = `rooms/${editingRoom.id}/${Math.random()}.${fileExt}`
+        const { error: uploadError, data: uploadData } = await supabase.storage
+          .from('documents')
+          .upload(fileName, editFile)
+
+        if (!uploadError) {
+          await supabase.from('documents').insert([
+            {
+              name: editFile.name,
+              storage_path: uploadData.path,
+              document_type: 'room_image',
+              room_id: editingRoom.id,
+              mime_type: editFile.type
+            }
+          ])
+        }
+      }
+
+      setEditingRoom(null)
+      setEditFile(null)
+      
+      // Refresh local state
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      if (data) {
+        data.forEach((r: any) => {
+          if (r.documents) {
+            r.documents.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+          }
+        })
+      }
+      setRooms(data || [])
+    } catch (err: any) {
+      alert(err.message)
+    } finally {
+      setIsUpdating(false)
+    }
+  }
+
+  const handleDeleteRoom = async (roomId: string) => {
+    if (!confirm('Are you sure you want to delete this room?')) return
+    setLoading(true)
+    const { error } = await supabase.from('rooms').delete().eq('id', roomId)
+    if (error) alert(error.message)
+    else {
+      setRooms(rooms.filter(r => r.id !== roomId))
     }
     setLoading(false)
   }
@@ -134,7 +283,18 @@ export default function ManagePropertyPage() {
             )}
           </div>
           <div className="space-y-4">
-            <h2 className="text-4xl md:text-5xl font-headline font-bold text-on-background tracking-tighter leading-none">{property.address}</h2>
+            <div className="flex items-center gap-4">
+              <h2 className="text-4xl md:text-5xl font-headline font-bold text-on-background tracking-tighter leading-none">{property.address}</h2>
+              <button 
+                onClick={() => {
+                  setEditData(property)
+                  setIsEditPropertyOpen(true)
+                }}
+                className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline hover:bg-primary hover:text-on-primary transition-all"
+              >
+                <span className="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-bold uppercase tracking-widest">{property.property_type}</span>
               <span className="text-xs text-outline font-medium">{property.city}</span>
@@ -277,7 +437,21 @@ export default function ManagePropertyPage() {
                       >
                         <span className="material-symbols-outlined text-lg">content_copy</span>
                       </button>
-                      <button className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline hover:bg-red-50 hover:text-red-600 transition-all">
+                      <button 
+                        onClick={() => {
+                          setEditData(room)
+                          setEditingRoom(room)
+                        }}
+                        className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline hover:bg-primary hover:text-on-primary transition-all"
+                        title="Edit Room"
+                      >
+                        <span className="material-symbols-outlined text-lg">edit</span>
+                      </button>
+                      <button 
+                        onClick={() => handleDeleteRoom(room.id)}
+                        className="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-outline hover:bg-red-50 hover:text-red-600 transition-all"
+                        title="Delete Room"
+                      >
                         <span className="material-symbols-outlined text-lg">delete</span>
                       </button>
                     </div>
@@ -288,6 +462,186 @@ export default function ManagePropertyPage() {
           })}
         </div>
       </section>
+
+      {/* Property Edit Modal */}
+      <AnimatePresence>
+        {isEditPropertyOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 md:p-12">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsEditPropertyOpen(false)}
+              className="absolute inset-0 bg-on-background/40 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-surface-container-lowest rounded-[3rem] p-10 md:p-14 shadow-2xl border border-outline-variant/10 overflow-hidden"
+            >
+              <div className="space-y-10">
+                <div>
+                  <h3 className="text-3xl font-headline font-bold text-on-background tracking-tighter">Edit Property</h3>
+                  <p className="text-sm text-outline mt-1">Update property details and primary identification.</p>
+                </div>
+
+                <form onSubmit={handleUpdateProperty} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">Address</label>
+                      <input 
+                        required
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all"
+                        value={editData.address}
+                        onChange={(e) => setEditData({...editData, address: e.target.value})}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">City</label>
+                      <input 
+                        required
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all"
+                        value={editData.city}
+                        onChange={(e) => setEditData({...editData, city: e.target.value})}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">Property Type</label>
+                      <select 
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all appearance-none"
+                        value={editData.property_type}
+                        onChange={(e) => setEditData({...editData, property_type: e.target.value})}
+                      >
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Studio">Studio</option>
+                        <option value="Townhouse">Townhouse</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">New Hero Image</label>
+                      <input 
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => e.target.files && setEditFile(e.target.files[0])}
+                        className="w-full text-xs text-outline file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-primary file:text-on-primary"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 justify-end pt-6 border-t border-outline-variant/10">
+                    <button 
+                      type="button"
+                      onClick={() => setIsEditPropertyOpen(false)}
+                      className="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-outline hover:text-on-background transition-all"
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit"
+                      disabled={isUpdating}
+                      className="px-10 bg-on-background text-surface py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Saving...' : 'Update Property'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Room Edit Modal */}
+      <AnimatePresence>
+        {editingRoom && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 md:p-12">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setEditingRoom(null)}
+              className="absolute inset-0 bg-on-background/40 backdrop-blur-md"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-surface-container-lowest rounded-[3rem] p-10 md:p-14 shadow-2xl border border-outline-variant/10 overflow-hidden"
+            >
+              <div className="space-y-10">
+                <div>
+                  <h3 className="text-3xl font-headline font-bold text-on-background tracking-tighter">Edit Room</h3>
+                  <p className="text-sm text-outline mt-1">Adjust room name, pricing and status.</p>
+                </div>
+
+                <form onSubmit={handleUpdateRoom} className="space-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">Room Name</label>
+                      <input 
+                        required
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all"
+                        value={editData.name}
+                        onChange={(e) => setEditData({...editData, name: e.target.value})}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">Weekly Rent</label>
+                      <input 
+                        required
+                        type="number"
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all"
+                        value={editData.rent_amount}
+                        onChange={(e) => setEditData({...editData, rent_amount: e.target.value})}
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">Status</label>
+                      <select 
+                        className="w-full bg-surface-container-low border-b-2 border-transparent focus:border-primary rounded-t-2xl px-6 py-4 text-on-surface outline-none transition-all appearance-none"
+                        value={editData.status}
+                        onChange={(e) => setEditData({...editData, status: e.target.value})}
+                      >
+                        <option value="available">Available</option>
+                        <option value="occupied">Occupied</option>
+                        <option value="unavailable">Unavailable</option>
+                      </select>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-outline ml-1">New Room Image</label>
+                      <input 
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => e.target.files && setEditFile(e.target.files[0])}
+                        className="w-full text-xs text-outline file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-primary file:text-on-primary"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4 justify-end pt-6 border-t border-outline-variant/10">
+                    <button 
+                      type="button"
+                      onClick={() => setEditingRoom(null)}
+                      className="px-8 py-4 text-[10px] font-bold uppercase tracking-widest text-outline hover:text-on-background transition-all"
+                    >
+                      Cancel
+                    </button>
+                    <button 
+                      type="submit"
+                      disabled={isUpdating}
+                      className="px-10 bg-on-background text-surface py-4 rounded-2xl font-bold text-xs uppercase tracking-widest hover:opacity-90 transition-all disabled:opacity-50"
+                    >
+                      {isUpdating ? 'Saving...' : 'Update Room'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
