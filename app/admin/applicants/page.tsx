@@ -95,6 +95,8 @@ export default async function ApplicantsPage() {
             const property = app.properties || {}
             const personalInfo = app.personal_info || {}
             const vettingProgress = app.vetting_progress || (app.status === 'approved' ? 100 : app.status === 'pending' ? 45 : 10)
+            const firstName = profile.first_name || personalInfo.firstName || personalInfo.first_name || app.first_name || 'N/A'
+            const lastName = profile.last_name || personalInfo.lastName || personalInfo.last_name || app.last_name || ''
             
             return (
               <div 
@@ -105,11 +107,11 @@ export default async function ApplicantsPage() {
                   {/* Name & ID */}
                   <div className="flex items-center gap-4 mb-6 lg:mb-0">
                     <div className="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center text-primary font-bold text-sm">
-                      {profile.first_name?.[0]}{profile.last_name?.[0]}
+                      {firstName?.[0]}{lastName?.[0]}
                     </div>
                     <div>
                       <h3 className="text-xl font-headline font-bold text-on-background tracking-tight">
-                        {profile.first_name} {profile.last_name}
+                        {firstName} {lastName}
                       </h3>
                       <p className="text-[10px] text-outline font-bold uppercase tracking-widest opacity-60">ID: {app.id.slice(0, 8)}</p>
                     </div>
