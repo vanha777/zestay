@@ -33,7 +33,7 @@ export default function AboutPage() {
               <Image
                 alt="Zestay founders"
                 className="w-full h-full object-cover"
-                src="/stock/PatrickandSofia.jpeg"
+                src="/stock/founder.JPG"
                 width={800}
                 height={1000}
                 priority
