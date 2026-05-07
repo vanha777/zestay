@@ -37,7 +37,7 @@ const tenantFeatures = [
         icon: "group",
       },
       {
-        title: "Weekly Cleaning",
+        title: "Monthly Cleaning",
         desc: "Communal areas are professionally cleaned weekly to maintain high standards.",
         icon: "cleaning_services",
       },
@@ -106,11 +106,10 @@ export default function BentoTenant() {
         <motion.div
           key={i}
           variants={itemVariants}
-          className={`relative p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all duration-300 ${
-            feature.isHighlight
+          className={`relative p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all duration-300 ${feature.isHighlight
               ? "bg-primary-container justify-center items-center text-center"
               : "bg-surface-container-low hover:bg-surface-container"
-          } ${feature.size}`}
+            } ${feature.size}`}
         >
           {feature.isHighlight ? (
             <div className="flex flex-col items-center">
