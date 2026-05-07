@@ -4,7 +4,6 @@ import FadeIn from "@/components/animations/FadeIn";
 import StaggerContainer from "@/components/animations/StaggerContainer";
 import StaggerItem from "@/components/animations/StaggerItem";
 
-
 export const metadata = {
   title: "Living | Zestay",
   description: "The Zestay Standard: Premium furnished rooms with all bills included.",
@@ -12,100 +11,113 @@ export const metadata = {
 
 export default function LivingPage() {
   return (
-    <div className="pt-20">
+    <main className="bg-surface text-on-surface">
       {/* Hero Section */}
-      <FadeIn className="relative px-6 py-24 md:py-32 max-w-[1440px] mx-auto flex flex-col items-center text-center">
-        <span className="text-primary font-headline font-bold tracking-widest uppercase text-xs mb-6 inline-block bg-primary-container px-4 py-2 rounded-full">
-          The Premium Experience
-        </span>
-        <h1 className="text-on-surface font-headline text-5xl md:text-[5rem] font-bold tracking-tighter leading-[1.05] mb-8 max-w-4xl">
-          Everything you need. <br /> Nothing you don&apos;t.
-        </h1>
-        <p className="text-on-surface-variant text-xl md:text-2xl leading-relaxed max-w-2xl font-body">
-          We&apos;ve eliminated the friction of renting. No buying furniture, no setting up utilities, no unexpected bills. Just unpack and start living.
-        </p>
-      </FadeIn>
-
-      {/* The Zestay Standard Grid */}
-      <section className="px-6 py-24 bg-surface-container-low rounded-[3rem] mx-4 md:ml-12 md:mr-24 mb-24">
-        <div className="max-w-[1440px] mx-auto">
-          <FadeIn className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <h2 className="text-on-surface font-headline text-4xl md:text-5xl font-bold tracking-tighter max-w-xl">
-              The Zestay Standard
-            </h2>
-            <p className="text-on-surface-variant text-lg max-w-md font-body">
-              Every detail has been curated to provide a hotel-quality experience with the warmth of a real home.
+      <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-surface text-center">
+        <div className="max-w-[1440px] mx-auto px-6">
+          <FadeIn delay={0.1}>
+            <h1 className="text-5xl md:text-[6rem] font-bold leading-[1] tracking-tighter mb-10 text-on-surface font-headline max-w-5xl mx-auto">
+              Everything you need.<br />
+              <span className="text-primary italic font-normal tracking-tight">Nothing you don't.</span>
+            </h1>
+          </FadeIn>
+          <FadeIn delay={0.2}>
+            <p className="text-xl md:text-2xl text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
+              We've eliminated the friction of renting. No buying furniture, no utility setups, no surprise bills. Just unpack and start living.
             </p>
           </FadeIn>
+          <FadeIn delay={0.3}>
+            <Link className="bg-on-background text-surface px-10 py-5 rounded-[1.5rem] font-headline font-bold text-lg transition-all hover:scale-[1.02] active:scale-95 shadow-[0_12px_40px_rgba(41,58,62,0.08)]" href="/book">
+              Explore The Standard
+            </Link>
+          </FadeIn>
+        </div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-surface-container-low/50 to-transparent -z-10"></div>
+      </header>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <StaggerItem className="bg-surface p-10 rounded-[1.5rem] border-none shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-primary-container flex items-center justify-center mb-6 text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                </svg>
+      {/* The Zestay Standard Grid */}
+      <section className="py-32 bg-surface-container-low rounded-[3rem] mx-4 md:ml-12 md:mr-24 overflow-hidden mb-32">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <FadeIn className="mb-20 md:mb-32 max-w-2xl">
+            <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Standard</h2>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Hotel-quality comfort, <br />home-quality warmth.</h3>
+          </FadeIn>
+          
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {/* Bento Card 1 */}
+            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-4xl font-light">bed</span>
               </div>
-              <h3 className="font-headline font-bold text-2xl text-on-surface mb-4">Fully Furnished</h3>
-              <p className="text-on-surface-variant leading-relaxed font-body">
-                Designer furniture, premium mattresses, and tasteful decor. Bring your suitcase; we&apos;ve handled the rest.
-              </p>
-            </StaggerItem>
-
-            {/* Feature 2 */}
-            <StaggerItem className="bg-surface p-10 rounded-[1.5rem] border-none shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-primary-container flex items-center justify-center mb-6 text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+              <div>
+                <h4 className="font-bold font-headline text-3xl mb-4 tracking-tight">Fully Furnished</h4>
+                <p className="text-on-surface-variant text-lg leading-relaxed font-body">
+                  Designer furniture, premium mattresses, and tasteful decor. Bring your suitcase; we've handled everything else.
+                </p>
               </div>
-              <h3 className="font-headline font-bold text-2xl text-on-surface mb-4">All Bills Included</h3>
-              <p className="text-on-surface-variant leading-relaxed font-body">
-                Electricity, water, gas, and ultra-fast Wi-Fi are all wrapped into one transparent weekly payment.
-              </p>
             </StaggerItem>
 
-            {/* Feature 3 */}
-            <StaggerItem className="bg-surface p-10 rounded-[1.5rem] border-none shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-shadow">
-              <div className="w-14 h-14 rounded-2xl bg-primary-container flex items-center justify-center mb-6 text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                </svg>
+            {/* Bento Card 2 */}
+            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-4xl font-light">payments</span>
               </div>
-              <h3 className="font-headline font-bold text-2xl text-on-surface mb-4">Ready Essentials</h3>
-              <p className="text-on-surface-variant leading-relaxed font-body">
-                Kitchens fully stocked with appliances, cookware, and crockery. Bathrooms with initial luxury amenities.
-              </p>
-            </StaggerItem>
-            
-            {/* Feature 4 */}
-            <StaggerItem className="bg-surface p-10 rounded-[1.5rem] border-none shadow-[0_12px_40px_rgba(41,58,62,0.04)] hover:shadow-[0_12px_40px_rgba(41,58,62,0.12)] transition-shadow lg:col-span-1">
-              <div className="w-14 h-14 rounded-2xl bg-primary-container flex items-center justify-center mb-6 text-primary">
-                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
+              <div>
+                <h4 className="font-bold font-headline text-3xl mb-4 tracking-tight">All Bills Included</h4>
+                <p className="text-on-surface-variant text-lg leading-relaxed font-body">
+                  Electricity, water, gas, and ultra-fast Wi-Fi are all wrapped into one transparent weekly payment. No surprise invoices.
+                </p>
               </div>
-              <h3 className="font-headline font-bold text-2xl text-on-surface mb-4">Professional Cleaning</h3>
+            </StaggerItem>
+
+            {/* Bento Card 3 */}
+            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-3xl font-light">chair</span>
+              </div>
+              <h4 className="font-bold font-headline text-xl tracking-tight">Ready Essentials</h4>
               <p className="text-on-surface-variant leading-relaxed font-body">
-                Regular professional cleaning of all shared spaces—kitchens, bathrooms, and living areas—ensuring a pristine environment.
+                Kitchens fully stocked with appliances, cookware, and crockery.
               </p>
             </StaggerItem>
 
-            {/* Flexible Terms Highlight */}
-            <StaggerItem className="bg-gradient-to-br from-primary-fixed to-primary p-10 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.12)] lg:col-span-2 flex flex-col justify-center relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-surface rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/3"></div>
-              <h3 className="font-headline font-bold text-3xl text-on-primary-fixed mb-4 relative z-10">Absolute Flexibility</h3>
-              <p className="text-on-primary-fixed/90 leading-relaxed font-body max-w-lg mb-8 relative z-10 text-lg">
-                We understand that modern professional life holds no certainties. That&apos;s why our agreements are built to adapt. Stay for a month, stay for a year. 
+            {/* Bento Card 4 */}
+            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm">
+              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                <span className="material-symbols-outlined text-3xl font-light">cleaning_services</span>
+              </div>
+              <h4 className="font-bold font-headline text-xl tracking-tight">Cleaned Weekly</h4>
+              <p className="text-on-surface-variant leading-relaxed font-body">
+                Regular professional cleaning of all shared spaces and living areas.
               </p>
-              <Link href="/book" className="text-on-surface bg-surface w-fit px-8 py-3 rounded-xl font-headline font-bold hover:scale-95 transition-transform relative z-10">
-                View Available Rooms
-              </Link>
             </StaggerItem>
 
+            {/* Bento Card 5 Highlight */}
+            <StaggerItem className="md:col-span-2 bg-gradient-to-br from-primary-fixed to-primary p-12 rounded-[2.5rem] flex flex-col justify-center relative overflow-hidden shadow-lg group cursor-pointer">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-surface rounded-full blur-[100px] opacity-20 -translate-y-1/2 translate-x-1/3 group-hover:scale-125 transition-transform duration-700"></div>
+              <h4 className="font-bold font-headline text-4xl text-on-primary-fixed mb-4 relative z-10 tracking-tighter">Absolute Flexibility</h4>
+              <p className="text-on-primary-fixed-variant leading-relaxed font-body max-w-lg relative z-10 text-lg">
+                Modern life holds no certainties. Our agreements adapt to you. Stay for a month, stay for a year.
+              </p>
+            </StaggerItem>
           </StaggerContainer>
         </div>
       </section>
-    </div>
+
+      {/* CTA Block */}
+      <section className="py-32 px-6">
+        <FadeIn className="max-w-[1440px] mx-auto bg-on-surface text-surface rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px] opacity-10 -translate-y-1/2 translate-x-1/2"></div>
+          <div className="relative z-10">
+            <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
+              Experience the standard.
+            </h2>
+            <Link href="/book" className="bg-primary text-on-primary px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
+              Find Your Space
+            </Link>
+          </div>
+        </FadeIn>
+      </section>
+    </main>
   );
 }
