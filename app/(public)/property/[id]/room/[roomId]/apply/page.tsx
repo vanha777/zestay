@@ -756,7 +756,7 @@ export default function RentalApplicationPage() {
                     We've received your application for {room?.name}. Our team will review your details and contact you shortly.
                   </p>
                 </div>
-                <button onClick={() => router.push('/tenant')} className="inline-block bg-surface-container-high text-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] hover:bg-surface-container-highest transition-all shadow-lg shadow-black/5">
+                <button onClick={() => router.push('/')} className="inline-block bg-surface-container-high text-primary px-10 py-5 rounded-3xl font-bold uppercase tracking-widest text-[11px] hover:bg-surface-container-highest transition-all shadow-lg shadow-black/5">
                   Back to Explore
                 </button>
               </motion.div>

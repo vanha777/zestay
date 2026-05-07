@@ -8,8 +8,8 @@ export default function Nav() {
   const pathname = usePathname();
 
   const links = [
-    { name: "Landlords", href: "/" },
-    { name: "Tenants", href: "/tenant" },
+    { name: "Tenants", href: "/" },
+    { name: "Landlords", href: "/landlord" },
     { name: "Living", href: "/living" },
     { name: "Community", href: "/community" },
     { name: "About", href: "/about" },

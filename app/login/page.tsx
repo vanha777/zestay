@@ -62,7 +62,7 @@ export default function LoginPage() {
         if (profile?.role === 'manager' || profile?.role === 'owner') {
           router.push('/admin/portfolio')
         } else {
-          router.push('/tenant')
+          router.push('/')
         }
       }
     }
