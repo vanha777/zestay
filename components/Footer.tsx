@@ -115,8 +115,8 @@ export default function Footer() {
           © 2026 Zestay Coliving. All rights reserved. • ABN 41 424 818 899
         </p>
         <div className="flex gap-6">
-          <Link href="/terms" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Terms of Service</Link>
-          <Link href="/privacy" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Privacy Policy</Link>
+          {/* <Link href="/terms" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Terms of Service</Link>
+          <Link href="/privacy" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Privacy Policy</Link> */}
           <a href="https://www.instagram.com/zestayau/" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Instagram</a>
           <a href="https://www.facebook.com/profile.php?id=61579994953333" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Facebook</a>
         </div>
