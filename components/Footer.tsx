@@ -75,19 +75,19 @@ export default function Footer() {
               <li>
                 <a
                   className="text-on-surface-variant text-sm hover:text-on-surface hover:underline decoration-primary-container underline-offset-4 opacity-80 hover:opacity-100 transition-all"
-                  href="mailto:hello@zestay.com.au"
+                  href="mailto:zestayau@gmail.com"
                 >
-                  hello@zestay.com.au
+                  zestayau@gmail.com
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a
                   className="text-on-surface-variant text-sm hover:text-on-surface hover:underline decoration-primary-container underline-offset-4 opacity-80 hover:opacity-100 transition-all"
                   href="tel:1300000000"
                 >
                   1300 000 000
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
