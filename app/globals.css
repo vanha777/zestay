@@ -26,7 +26,7 @@
   --color-secondary-container: #2C3522;
   --color-on-secondary-container: #ffffff;
 
-  --font-headline: var(--font-space-grotesk), sans-serif;
+  --font-headline: var(--font-playfair-display), serif;
   --font-body: var(--font-plus-jakarta-sans), sans-serif;
   --font-label: var(--font-plus-jakarta-sans), sans-serif;
 }

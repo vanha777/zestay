@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
   subsets: ["latin"],
 });
 
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${plusJakartaSans.variable} h-full antialiased light`}
+      className={`${playfairDisplay.variable} ${plusJakartaSans.variable} h-full antialiased light`}
     >
       <head>
         <link

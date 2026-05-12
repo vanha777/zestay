@@ -20,9 +20,26 @@ export default function TenantLandingPage() {
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
-              <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
-                Designer co-living for the modern professional. Beautifully furnished rooms in Australia's best neighbourhoods. All bills included, zero stress.
+              <p className="text-lg md:text-xl text-on-surface-variant mb-6 max-w-xl leading-relaxed">
+                Designer co-living for the modern professional. Beautifully furnished rooms in Australia's best neighbourhoods.
               </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10 max-w-xl">
+                <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+                  <span className="material-symbols-outlined text-primary text-xl">wifi</span> High-speed Wi-Fi
+                </div>
+                <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+                  <span className="material-symbols-outlined text-primary text-xl">cleaning_services</span> Prof. Cleaning
+                </div>
+                <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+                  <span className="material-symbols-outlined text-primary text-xl">power</span> All Utilities
+                </div>
+                <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+                  <span className="material-symbols-outlined text-primary text-xl">bed</span> Furnished
+                </div>
+                <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
+                  <span className="material-symbols-outlined text-primary text-xl">celebration</span> Community Events
+                </div>
+              </div>
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-4">
@@ -126,16 +143,14 @@ export default function TenantLandingPage() {
       <section className="py-32" id="how-it-works">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn>
-            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">How to Join</h2>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">3 Steps to Moving In</h2>
           </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 relative max-w-4xl mx-auto">
             <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-primary-container -z-10"></div>
             {[
-              { num: 1, title: 'Find Your Room', desc: 'Browse our curated collection.' },
-              { num: 2, title: 'Apply Online', desc: 'Fast, simple digital application.' },
-              { num: 3, title: 'Quick Vetting', desc: 'Identity and income verification.' },
-              { num: 4, title: 'Sign & Pay', desc: 'Secure your spot instantly.' },
-              { num: 5, title: 'Move In', desc: 'Suitcase in hand. You\'re home.' },
+              { num: 1, title: 'Apply', desc: 'Fast, simple digital application.' },
+              { num: 2, title: 'Meet the House', desc: 'Ensure it\'s a great fit for everyone.' },
+              { num: 3, title: 'Sign', desc: 'Secure your spot instantly.' },
             ].map((step, i) => (
               <StaggerItem key={i} className="flex flex-col items-center text-center gap-8 group">
                 <div className="w-20 h-20 bg-surface-container border border-outline-variant/30 rounded-2xl flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">{step.num}</div>
@@ -171,6 +186,31 @@ export default function TenantLandingPage() {
         </div>
       </section>
 
+
+      {/* Safety & Security Block */}
+      <section className="py-32 bg-surface" id="safety">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <FadeIn className="mb-20 text-center">
+            <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">Safety First</h2>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Peace of mind, guaranteed.</h3>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {[
+              { title: "Member Vetting Process", desc: "Every housemate undergoes comprehensive identity, income, and background checks before moving in.", icon: "verified_user" },
+              { title: "Secure Digital Locks", desc: "Keyless entry on all main doors and individual bedrooms means no lost keys and complete security.", icon: "lock" },
+              { title: "24/7 Support", desc: "Our dedicated local team is available around the clock for any maintenance or security emergencies.", icon: "support_agent" }
+            ].map((safety, i) => (
+              <StaggerItem key={i} className="text-center group">
+                <div className="w-24 h-24 mx-auto mb-8 bg-surface-container-low rounded-full flex items-center justify-center border border-outline-variant/20 shadow-sm group-hover:shadow-md transition-all">
+                  <span className="material-symbols-outlined text-5xl text-primary font-light">{safety.icon}</span>
+                </div>
+                <h4 className="text-2xl font-bold font-headline mb-4">{safety.title}</h4>
+                <p className="text-on-surface-variant leading-relaxed">{safety.desc}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
 
       {/* FAQ Section */}
       <section className="py-32 bg-surface-container-low border-t border-outline-variant/20" id="faq">
