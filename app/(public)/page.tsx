@@ -81,38 +81,38 @@ export default function TenantLandingPage() {
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Spaces</h2>
             <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Homes designed for how you live.</h3>
           </FadeIn>
-          
+
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
-                title: "Brunswick Street House", 
-                location: "Brunswick, Melbourne", 
-                price: "$380", 
+              {
+                title: "Brunswick Street House",
+                location: "Brunswick, Melbourne",
+                price: "$380",
                 img: "/house/brunswick.jpeg",
                 desc: "Melbourne's creative heart. Trams and coffee at your door."
               },
-              { 
-                title: "Hawthorn East Residence", 
-                location: "Hawthorn East, Melbourne", 
-                price: "$320", 
+              {
+                title: "Hawthorn East Residence",
+                location: "Hawthorn East, Melbourne",
+                price: "$320",
                 img: "/house/hawthorn.png",
                 desc: "Leafy streets and quiet luxury. Perfect for focused work."
               },
-              { 
-                title: "Hawthorn Heritage House", 
-                location: "Hawthorn, Melbourne", 
-                price: "$350", 
+              {
+                title: "Hawthorn Heritage House",
+                location: "Hawthorn, Melbourne",
+                price: "$350",
                 img: "/house/hawthornEast.png",
                 desc: "Classic charm meets modern convenience. High ceilings."
               }
             ].map((stay, i) => (
               <StaggerItem key={i} className="group cursor-pointer">
                 <div className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 shadow-md border border-outline-variant/20 group-hover:shadow-2xl transition-all duration-500">
-                  <Image 
-                    src={stay.img} 
-                    alt={stay.title} 
-                    width={600} 
-                    height={800} 
+                  <Image
+                    src={stay.img}
+                    alt={stay.title}
+                    width={600}
+                    height={800}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
@@ -197,7 +197,7 @@ export default function TenantLandingPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
               { title: "Member Vetting Process", desc: "Every housemate undergoes comprehensive identity, income, and background checks before moving in.", icon: "verified_user" },
-              { title: "Secure Digital Locks", desc: "Keyless entry on all main doors and individual bedrooms means no lost keys and complete security.", icon: "lock" },
+              { title: "Secure Locks", desc: "Deadlocks on all main doors and individual rooms for your security and privacy.", icon: "lock" },
               { title: "24/7 Support", desc: "Our dedicated local team is available around the clock for any maintenance or security emergencies.", icon: "support_agent" }
             ].map((safety, i) => (
               <StaggerItem key={i} className="text-center group">
