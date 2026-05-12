@@ -26,35 +26,35 @@ export default function TenantLandingPage() {
             </FadeIn>
             <FadeIn delay={0.3}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link className="bg-on-background text-surface px-8 py-4 rounded-[1.5rem] font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-[0_12px_40px_rgba(41,58,62,0.08)]" href="/book">
+                <Link className="bg-primary text-on-primary px-8 py-4 rounded-full font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 shadow-lg" href="/book">
                   Find a Room
                 </Link>
-                <div className="flex items-center gap-3 px-6 py-4">
+                <div className="flex items-center gap-3 px-6 py-4 bg-surface-container-low rounded-full border border-outline-variant/30">
                   <span className="material-symbols-outlined text-primary">bolt</span>
-                  <span className="text-sm font-semibold text-secondary">Instant Approval & All Bills Included</span>
+                  <span className="text-sm font-semibold text-primary">Instant Approval & All Bills Included</span>
                 </div>
               </div>
             </FadeIn>
           </div>
           <FadeIn delay={0.4} direction="left" className="md:col-span-5 relative">
-            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_12px_40px_rgba(41,58,62,0.08)] rotate-2 md:rotate-3 translate-x-4 md:translate-x-8">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20 -rotate-1 translate-x-4 md:translate-x-8">
               <Image
                 alt="Stylish coliving interior"
                 className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAR7AQy2b_5z-TFbto4GzAa9WkiOefRJ6KfyXdYNGVJ3TqLOBMp6SfXc1xtCVuEdEZboP_fsyUdXqZhTosJb3l7flnt4bXtpEyc95o3_IbhrIVVJews_aL9V3Jnt1Qlujhzn6IZE7AUDbHBDmOKtFY3xoqEC0SYPl3eOu1BmBFqZ33zonTleUn6wSmTZeL_0V7jRIZ2m1q0FP0oOdRUqfOx_zqhUzGvCBwYBlEWO7Re_soefpSO2i9SS_veSGonTKfRbhOFGk36ioU"
+                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop"
                 width={800}
                 height={1000}
                 priority
               />
             </div>
-            <div className="absolute -bottom-10 -left-10 bg-primary-container p-8 rounded-[1.5rem] shadow-[0_12px_40px_rgba(41,58,62,0.08)] hidden md:block border border-surface/50 backdrop-blur-md">
-              <div className="text-4xl font-headline font-bold text-on-primary-container mb-1 tracking-tighter">$0</div>
-              <div className="text-xs uppercase tracking-widest font-bold text-primary font-body">Setup Fees</div>
+            <div className="absolute -bottom-6 -left-10 bg-surface/90 backdrop-blur-md p-8 rounded-2xl shadow-xl hidden md:block border border-outline-variant/30">
+              <div className="text-4xl font-headline font-bold text-primary mb-1 tracking-tighter">$0</div>
+              <div className="text-xs uppercase tracking-widest font-bold text-on-surface-variant font-body">Setup Fees</div>
             </div>
           </FadeIn>
         </div>
         {/* Abstract Bg Element */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[5rem]"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[4rem] border-l border-b border-outline-variant/20"></div>
       </header>
 
       {/* Featured Stays Section */}
@@ -90,7 +90,7 @@ export default function TenantLandingPage() {
               }
             ].map((stay, i) => (
               <StaggerItem key={i} className="group cursor-pointer">
-                <div className="aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                <div className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 shadow-md border border-outline-variant/20 group-hover:shadow-2xl transition-all duration-500">
                   <Image 
                     src={stay.img} 
                     alt={stay.title} 
@@ -112,7 +112,7 @@ export default function TenantLandingPage() {
       </section>
 
       {/* The Lifestyle Section (Bento) */}
-      <section className="py-32 bg-surface-container-low rounded-[3rem] mx-4 md:ml-12 md:mr-24 overflow-hidden relative">
+      <section className="py-32 bg-surface-container-low border-y border-outline-variant/20 relative">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Lifestyle</h2>
@@ -138,7 +138,7 @@ export default function TenantLandingPage() {
               { num: 5, title: 'Move In', desc: 'Suitcase in hand. You\'re home.' },
             ].map((step, i) => (
               <StaggerItem key={i} className="flex flex-col items-center text-center gap-8 group">
-                <div className="w-24 h-24 bg-surface-container rounded-[1.5rem] flex items-center justify-center font-headline text-4xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300 shadow-sm group-hover:shadow-[0_12px_40px_rgba(41,58,62,0.08)] group-hover:-translate-y-2">{step.num}</div>
+                <div className="w-20 h-20 bg-surface-container border border-outline-variant/30 rounded-2xl flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">{step.num}</div>
                 <div>
                   <h5 className="font-bold font-headline text-xl mb-2 text-on-surface">{step.title}</h5>
                   <p className="text-sm text-on-surface-variant leading-relaxed">{step.desc}</p>
@@ -155,7 +155,7 @@ export default function TenantLandingPage() {
           <div className="text-center md:text-left">
             <p className="text-on-surface-variant text-sm font-bold uppercase tracking-widest mb-2 font-headline">Melbourne Native</p>
             <p className="text-2xl font-bold font-headline">Zestay</p>
-            <p className="text-primary text-sm font-bold mt-1">ABN 41 424 818 899 | RTA Compliant</p>
+            <p className="text-primary text-sm font-bold mt-1">ABN 41 424 818 899 | RTBA Compliant</p>
           </div>
           <div className="h-16 w-px bg-outline-variant/30 hidden md:block"></div>
           <div className="text-center md:text-left">
@@ -172,24 +172,46 @@ export default function TenantLandingPage() {
       </section>
 
 
+      {/* FAQ Section */}
+      <section className="py-32 bg-surface-container-low border-t border-outline-variant/20" id="faq">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
+          <FadeIn>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">Frequently Asked Questions</h2>
+          </FadeIn>
+          <StaggerContainer className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
+            {[
+              { q: "How much is the bond?", a: "Your bond is equal to 4 weeks' rent. It is lodged securely with the Residential Tenancies Bond Authority (RTBA) in Victoria." },
+              { q: "What is the notice period?", a: "We require 28 days' written notice before you move out, giving us time to find a great new housemate to take your place." },
+              { q: "What happens if a housemate leaves?", a: "That's on us, not you. You are only responsible for your own room's rent. We handle finding and vetting the replacement." },
+              { q: "Are all bills really included?", a: "Yes. Electricity, water, gas, and unlimited high-speed internet are fully covered in your weekly payment. No splitting bills, ever." },
+            ].map((faq, i) => (
+              <StaggerItem key={i} className="bg-surface p-10 rounded-3xl shadow-sm border border-outline-variant/20 transition-all hover:shadow-lg">
+                <h5 className="font-bold mb-4 text-primary text-xl font-headline tracking-tight">{faq.q}</h5>
+                <p className="text-on-surface-variant text-base leading-relaxed">{faq.a}</p>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="py-32 px-6">
-        <FadeIn className="max-w-[1440px] mx-auto bg-gradient-to-br from-primary-fixed to-primary rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-surface rounded-full blur-[120px] opacity-30 -translate-y-1/2 translate-x-1/2"></div>
+      <section className="py-24 px-6 md:px-12 max-w-[1440px] mx-auto">
+        <FadeIn className="bg-primary text-on-primary rounded-3xl p-16 md:p-24 text-center overflow-hidden relative shadow-2xl border border-outline/20">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-surface-container-lowest rounded-full blur-[120px] opacity-10 -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
-            <h2 className="text-on-primary-fixed font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
+            <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
               Your Melbourne starts <br />
               with a good room.
             </h2>
-            <p className="text-surface/70 text-xl max-w-xl mx-auto mb-12">
+            <p className="text-on-primary/80 text-xl max-w-xl mx-auto mb-12">
               Rooms open now in Hawthorn, Brunswick, and Fitzroy. <br />
               Book online today, move in this week.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <Link href="/book" className="bg-primary-container text-on-primary-container px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
+              <Link href="/book" className="bg-surface text-on-surface px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform inline-block shadow-lg">
                 Browse Rooms
               </Link>
-              <button className="bg-transparent text-surface border border-surface/20 px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:bg-surface/10 transition-colors">
+              <button className="bg-transparent text-on-primary border border-on-primary/30 px-10 py-4 rounded-full font-headline font-bold text-lg hover:bg-on-primary/10 transition-colors">
                 Get Early Access
               </button>
             </div>

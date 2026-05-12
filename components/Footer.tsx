@@ -27,7 +27,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-16">
+        <div className="grid grid-cols-2 gap-16">
           <div>
             <h5 className="text-on-surface font-bold text-xs uppercase tracking-widest mb-6 font-headline">
               Explore
@@ -62,8 +62,31 @@ export default function Footer() {
                   className="text-on-surface-variant text-sm hover:text-on-surface hover:underline decoration-primary-container underline-offset-4 opacity-80 hover:opacity-100 transition-all"
                   href="/about"
                 >
-                  About / Contact
+                  About
                 </Link>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="text-on-surface font-bold text-xs uppercase tracking-widest mb-6 font-headline">
+              Contact
+            </h5>
+            <ul className="space-y-4">
+              <li>
+                <a
+                  className="text-on-surface-variant text-sm hover:text-on-surface hover:underline decoration-primary-container underline-offset-4 opacity-80 hover:opacity-100 transition-all"
+                  href="mailto:hello@zestay.com.au"
+                >
+                  hello@zestay.com.au
+                </a>
+              </li>
+              <li>
+                <a
+                  className="text-on-surface-variant text-sm hover:text-on-surface hover:underline decoration-primary-container underline-offset-4 opacity-80 hover:opacity-100 transition-all"
+                  href="tel:1300000000"
+                >
+                  1300 000 000
+                </a>
               </li>
             </ul>
           </div>
@@ -77,21 +100,23 @@ export default function Footer() {
           </p>
           <div className="flex gap-2">
             <input
-              className="bg-surface p-3 rounded-xl border-none text-sm w-48 focus:ring-2 focus:ring-primary shadow-sm"
+              className="bg-surface p-3 rounded-full border-none text-sm w-48 focus:ring-2 focus:ring-primary shadow-sm"
               placeholder="Email address"
               type="email"
             />
-            <button className="bg-on-surface text-surface p-3 rounded-xl flex items-center justify-center font-bold text-sm px-6 hover:scale-[1.02] active:scale-95 transition-all">
+            <button className="bg-on-surface text-surface p-3 rounded-full flex items-center justify-center font-bold text-sm px-6 hover:scale-[1.02] active:scale-95 transition-all">
               Notify Me
             </button>
           </div>
         </div>
       </div>
-      <div className="max-w-7xl mx-auto mt-24 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-low px-8 py-6 rounded-[2rem]">
+      <div className="max-w-7xl mx-auto mt-24 pt-8 text-center flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-low px-8 py-6 rounded-3xl border border-outline-variant/20">
         <p className="text-on-surface-variant text-xs font-body opacity-60">
-          © 2024 Zestay Coliving. All rights reserved. • ABN 41 424 818 899
+          © 2026 Zestay Coliving. All rights reserved. • ABN 41 424 818 899
         </p>
         <div className="flex gap-6">
+          <Link href="/terms" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Terms of Service</Link>
+          <Link href="/privacy" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Privacy Policy</Link>
           <a href="https://www.instagram.com/zestayau/" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Instagram</a>
           <a href="https://www.facebook.com/profile.php?id=61579994953333" className="text-on-surface-variant opacity-60 hover:opacity-100 text-xs font-body hover:underline">Facebook</a>
         </div>

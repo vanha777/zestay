@@ -106,7 +106,7 @@ export default function BentoPartnership() {
         <motion.div
           key={i}
           variants={itemVariants}
-          className={`relative p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all duration-300 ${
+          className={`relative p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl flex flex-col gap-6 transition-all duration-300 ${
             feature.isHighlight
               ? "bg-primary-container justify-center items-center text-center"
               : "bg-surface-container-low hover:bg-surface-container"

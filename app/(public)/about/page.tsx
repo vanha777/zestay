@@ -29,7 +29,7 @@ export default function AboutPage() {
             </FadeIn>
           </div>
           <FadeIn delay={0.4} direction="left" className="md:col-span-5 relative">
-            <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-[0_12px_40px_rgba(41,58,62,0.08)] rotate-2 md:rotate-3 translate-x-4 md:translate-x-8">
+            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20 -rotate-1 translate-x-4 md:translate-x-8">
               <Image
                 alt="Zestay founders"
                 className="w-full h-full object-cover"
@@ -41,7 +41,7 @@ export default function AboutPage() {
             </div>
           </FadeIn>
         </div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[5rem]"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low -z-10 rounded-l-[4rem] border-l border-b border-outline-variant/20"></div>
       </header>
 
       {/* Philosophy Section */}
@@ -70,7 +70,7 @@ export default function AboutPage() {
                 icon: "chair"
               }
             ].map((value, i) => (
-              <FadeIn key={i} delay={i * 0.1} className="bg-surface-container-low p-10 rounded-[2.5rem] hover:bg-surface-container transition-colors">
+              <FadeIn key={i} delay={i * 0.1} className="bg-surface-container-low p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl hover:bg-surface-container transition-all">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-8">
                   <span className="material-symbols-outlined text-4xl font-light">{value.icon}</span>
                 </div>
@@ -83,7 +83,7 @@ export default function AboutPage() {
       </section>
 
       {/* Personal Guarantee */}
-      <section className="py-32 bg-surface-container-low rounded-[3rem] mx-4 md:ml-12 md:mr-24 overflow-hidden relative mb-32">
+      <section className="py-32 bg-surface-container-low border-y border-outline-variant/20 relative mb-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-20 items-center">
           <FadeIn direction="right">
             <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">Our Personal <br /><span className="text-primary italic font-normal tracking-tight">Guarantee.</span></h2>
@@ -98,13 +98,13 @@ export default function AboutPage() {
             </div>
           </FadeIn>
           <FadeIn delay={0.2} direction="left" className="relative group">
-            <div className="rounded-[2.5rem] overflow-hidden shadow-[0_12px_40px_rgba(41,58,62,0.12)] aspect-[4/3] rotate-1">
+            <div className="rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20 aspect-[4/5] -rotate-1">
               <Image
                 alt="Founder work"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop"
+                src="/stock/founder2.png"
                 width={800}
-                height={800}
+                height={1000}
               />
             </div>
           </FadeIn>

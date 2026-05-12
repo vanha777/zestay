@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-primary: #1A1A1A;
-  --color-secondary: #46513A;
-  --color-tertiary: #B8D4DC;
-  --color-surface: #F5E6C8;
-  --color-background: #F5E6C8;
+  --color-primary: #121212;
+  --color-secondary: #2C3522;
+  --color-tertiary: #A5C2CA;
+  --color-surface: #F8F6F0;
+  --color-background: #F8F6F0;
   --color-on-primary: #ffffff;
   --color-on-secondary: #ffffff;
-  --color-on-tertiary: #1A1A1A;
-  --color-on-surface: #1A1A1A;
-  --color-on-background: #1A1A1A;
+  --color-on-tertiary: #121212;
+  --color-on-surface: #121212;
+  --color-on-background: #121212;
   
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #faf3e6;
-  --color-surface-container: #f5e6c8;
-  --color-surface-container-high: #ebdcc0;
-  --color-surface-container-highest: #e1d2b8;
+  --color-surface-container-low: #F3EFE6;
+  --color-surface-container: #EAE4D3;
+  --color-surface-container-high: #DFD7C1;
+  --color-surface-container-highest: #D4CAB0;
   
-  --color-outline: #46513A;
-  --color-outline-variant: #B8D4DC;
+  --color-outline: #2C3522;
+  --color-outline-variant: #A5C2CA;
   
-  --color-primary-container: #B8D4DC;
-  --color-on-primary-container: #1A1A1A;
-  --color-secondary-container: #46513A;
+  --color-primary-container: #A5C2CA;
+  --color-on-primary-container: #121212;
+  --color-secondary-container: #2C3522;
   --color-on-secondary-container: #ffffff;
 
   --font-headline: var(--font-space-grotesk), sans-serif;

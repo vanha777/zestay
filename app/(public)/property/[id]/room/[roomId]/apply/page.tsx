@@ -355,7 +355,7 @@ export default function RentalApplicationPage() {
         </div>
 
         {/* Content Card */}
-        <div className="bg-surface-container-lowest rounded-[2.5rem] p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-outline-variant/10">
+        <div className="bg-surface-container-lowest rounded-3xl p-8 md:p-14 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-outline-variant/20">
           <AnimatePresence mode="wait">
             {step === 1 && (
               <motion.div
@@ -471,7 +471,7 @@ export default function RentalApplicationPage() {
                     </select>
                   </div>
 
-                  <div className="space-y-6 md:col-span-2 bg-surface-container-low p-8 rounded-[2rem]">
+                  <div className="space-y-6 md:col-span-2 bg-surface-container-low p-8 rounded-2xl border border-outline-variant/20">
                     <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Lifestyle Preferences</p>
                     <div className="grid md:grid-cols-2 gap-8">
                       <div className="space-y-4">
@@ -502,12 +502,12 @@ export default function RentalApplicationPage() {
                   <div className="md:col-span-2 space-y-6">
                     <p className="text-sm font-bold text-primary">Rental History Experience</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'yes' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
+                      <label className={`p-6 rounded-2xl border-2 cursor-pointer transition-all ${formData.rentalExperience === 'yes' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
                         <input type="radio" name="rentalExperience" value="yes" checked={formData.rentalExperience === 'yes'} onChange={handleInputChange} className="hidden" />
                         <span className="material-symbols-outlined mb-2 block text-[24px]">history</span>
                         <p className="font-bold text-xs uppercase tracking-widest">I have rented before</p>
                       </label>
-                      <label className={`p-6 rounded-[1.5rem] border-2 cursor-pointer transition-all ${formData.rentalExperience === 'no' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
+                      <label className={`p-6 rounded-2xl border-2 cursor-pointer transition-all ${formData.rentalExperience === 'no' ? 'bg-primary border-primary text-on-primary shadow-xl shadow-primary/10' : 'bg-surface-container-lowest border-outline-variant/30 text-primary'}`}>
                         <input type="radio" name="rentalExperience" value="no" checked={formData.rentalExperience === 'no'} onChange={handleInputChange} className="hidden" />
                         <span className="material-symbols-outlined mb-2 block text-[24px]">person_off</span>
                         <p className="font-bold text-xs uppercase tracking-widest">I haven't rented before</p>
@@ -517,7 +517,7 @@ export default function RentalApplicationPage() {
                     <AnimatePresence>
                       {formData.rentalExperience === 'yes' && (
                         <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-10 pt-6">
-                          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 p-10 bg-surface-container-lowest border border-outline-variant/10 rounded-[2.5rem] shadow-sm">
+                          <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 p-10 bg-surface-container-lowest border border-outline-variant/20 rounded-3xl shadow-sm">
                             <div className="space-y-3">
                               <label className="text-[11px] font-bold uppercase tracking-wider text-outline ml-1">Reference Name</label>
                               <input type="text" name="rentalReferenceName" value={formData.rentalReferenceName} onChange={handleInputChange} className="w-full bg-transparent border-b-2 py-2 text-lg outline-none border-outline-variant/30 focus:border-primary" placeholder="Agent or Landlord" />
@@ -578,7 +578,7 @@ export default function RentalApplicationPage() {
 
                   <AnimatePresence mode="wait">
                     {formData.employmentStatus === 'study' ? (
-                      <motion.div key="study" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-[2.5rem] space-y-10 border border-outline-variant/10">
+                      <motion.div key="study" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-3xl space-y-10 border border-outline-variant/20">
                         <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Education Details</p>
                         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                           <div className="space-y-3">
@@ -592,7 +592,7 @@ export default function RentalApplicationPage() {
                         </div>
                       </motion.div>
                     ) : (
-                      <motion.div key="work" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-[2.5rem] space-y-10 border border-outline-variant/10">
+                      <motion.div key="work" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-10 bg-surface-container-low rounded-3xl space-y-10 border border-outline-variant/20">
                         <p className="text-[11px] font-bold uppercase tracking-wider text-outline">Employment Reference</p>
                         <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                           <div className="space-y-3 md:col-span-2">
@@ -612,7 +612,7 @@ export default function RentalApplicationPage() {
                     )}
                   </AnimatePresence>
 
-                  <div className="p-10 bg-surface-container-lowest border border-outline-variant/10 rounded-[2.5rem] space-y-10">
+                  <div className="p-10 bg-surface-container-lowest border border-outline-variant/20 rounded-3xl space-y-10">
                     <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Emergency Contact</p>
                     <div className="grid md:grid-cols-2 gap-x-12 gap-y-10">
                       <div className="space-y-3">
@@ -652,7 +652,7 @@ export default function RentalApplicationPage() {
                 <div className="space-y-8">
                   <div className="grid md:grid-cols-2 gap-6">
                     {/* Minimal File Upload */}
-                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-secondary/5 border-secondary/20' : errors.id_proof ? 'bg-red-50/10 border-red-500/50' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
+                    <div className={`p-8 rounded-2xl border-2 border-dashed transition-all text-center space-y-4 ${files['id_proof'] ? 'bg-secondary/5 border-secondary/20' : errors.id_proof ? 'bg-red-50/10 border-red-500/50' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
                       <span className={`material-symbols-outlined text-[32px] ${errors.id_proof ? 'text-red-500/70' : 'text-outline'}`}>{files['id_proof'] ? 'check_circle' : 'file_upload'}</span>
                       <div className="space-y-1">
                         <p className="text-sm font-bold text-primary">Identity Verification (Required)</p>
@@ -665,7 +665,7 @@ export default function RentalApplicationPage() {
                       </label>
                     </div>
 
-                    <div className={`p-8 rounded-[2rem] border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
+                    <div className={`p-8 rounded-2xl border-2 border-dashed transition-all text-center space-y-4 ${files['income_proof'] ? 'bg-secondary/5 border-secondary/20' : 'bg-surface-container-low border-outline-variant/30 hover:border-secondary'}`}>
                       <span className="material-symbols-outlined text-[32px] text-outline">{files['income_proof'] ? 'check_circle' : 'receipt_long'}</span>
                       <div className="space-y-1">
                         <p className="text-sm font-bold text-primary">Income Verification</p>
@@ -678,7 +678,7 @@ export default function RentalApplicationPage() {
                     </div>
                   </div>
 
-                  <div className="p-10 bg-surface-container-low rounded-[2.5rem] border border-outline-variant/10 space-y-10">
+                  <div className="p-10 bg-surface-container-low rounded-3xl border border-outline-variant/20 space-y-10">
                     <div className="space-y-6">
                       <p className="text-[11px] font-bold uppercase tracking-wider text-primary">Source of Rent Payment (Select all that apply)</p>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
