@@ -84,7 +84,7 @@ export default function TenantLandingPage() {
             {/* Main Feature - Large Vertical */}
             <StaggerItem className="md:col-span-7 md:row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
               <Image
-                src="/house/brunswick.jpeg"
+                src="/house/brunswick.JPG"
                 alt="Brunswick"
                 width={1200}
                 height={1600}
@@ -100,7 +100,7 @@ export default function TenantLandingPage() {
             {/* Top Right - Horizontal */}
             <StaggerItem className="md:col-span-5 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/3] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
               <Image
-                src="/house/hawthorn.png"
+                src="/house/hawthorn.jpg"
                 alt="Hawthorn"
                 width={800}
                 height={600}
@@ -116,7 +116,7 @@ export default function TenantLandingPage() {
             {/* Bottom Right - Horizontal */}
             <StaggerItem className="md:col-span-5 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/3] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
               <Image
-                src="/house/hawthornEast.png"
+                src="/house/hawthornEast.jpeg"
                 alt="Hawthorn East"
                 width={800}
                 height={600}
@@ -169,20 +169,20 @@ export default function TenantLandingPage() {
             {/* Right Side: Numbered Steps */}
             <StaggerContainer className="flex flex-col">
               {[
-                { 
-                  num: '01', 
-                  title: 'Find a room you love', 
-                  desc: 'With designer rooms in Melbourne\'s best suburbs, you\'re sure to find a home that suits your lifestyle and vibe.' 
+                {
+                  num: '01',
+                  title: 'Find a room you love',
+                  desc: 'With designer rooms in Melbourne\'s best suburbs, you\'re sure to find a home that suits your lifestyle and vibe.'
                 },
-                { 
-                  num: '02', 
-                  title: 'Book a private tour', 
-                  desc: 'Meet the house and your potential housemates to ensure it\'s a great fit for everyone. Choose a time that works for you and confirm instantly.' 
+                {
+                  num: '02',
+                  title: 'Book a private tour',
+                  desc: 'Meet the house and your potential housemates to ensure it\'s a great fit for everyone. Choose a time that works for you and confirm instantly.'
                 },
-                { 
-                  num: '03', 
-                  title: 'Apply online in minutes', 
-                  desc: 'Complete a simple digital application with your details and references. Our streamlined process gets you approved and ready to move in faster.' 
+                {
+                  num: '03',
+                  title: 'Apply online in minutes',
+                  desc: 'Complete a simple digital application with your details and references. Our streamlined process gets you approved and ready to move in faster.'
                 },
               ].map((step, i) => (
                 <StaggerItem key={i} className={`py-12 ${i !== 2 ? 'border-b border-outline-variant/20' : ''} first:pt-0 group`}>
