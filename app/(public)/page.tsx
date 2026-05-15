@@ -54,15 +54,13 @@ export default function TenantLandingPage() {
             </FadeIn>
           </div>
           <FadeIn delay={0.4} direction="left" className="md:col-span-5 relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-outline-variant/20 -rotate-1 translate-x-4 md:translate-x-8">
-              <Image
-                alt="Stylish coliving interior"
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=2070&auto=format&fit=crop"
-                width={800}
-                height={1000}
-                priority
-              />
+            <div className="aspect-[9/16] rounded-[2rem] overflow-hidden shadow-2xl border border-outline-variant/20 -rotate-1 translate-x-4 md:translate-x-8 relative bg-surface-container max-w-[420px] mx-auto md:ml-auto">
+              <iframe
+                src="https://player.vimeo.com/video/1192737083?h=47c53a81fb&autoplay=1&loop=1&background=1&muted=1"
+                className="absolute top-0 left-0 w-full h-full pointer-events-none"
+                allow="autoplay; fullscreen; picture-in-picture"
+                title="vimeo-player"
+              ></iframe>
             </div>
             <div className="absolute -bottom-6 -left-10 bg-surface/90 backdrop-blur-md p-8 rounded-2xl shadow-xl hidden md:block border border-outline-variant/30">
               <div className="text-4xl font-headline font-bold text-primary mb-1 tracking-tighter">$0</div>
