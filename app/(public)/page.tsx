@@ -82,48 +82,54 @@ export default function TenantLandingPage() {
             <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Homes designed for how you live.</h3>
           </FadeIn>
 
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Brunswick Street House",
-                location: "Brunswick, Melbourne",
-                price: "$380",
-                img: "/house/brunswick.jpeg",
-                desc: "Melbourne's creative heart. Trams and coffee at your door."
-              },
-              {
-                title: "Hawthorn East Residence",
-                location: "Hawthorn East, Melbourne",
-                price: "$320",
-                img: "/house/hawthorn.png",
-                desc: "Leafy streets and quiet luxury. Perfect for focused work."
-              },
-              {
-                title: "Hawthorn Heritage House",
-                location: "Hawthorn, Melbourne",
-                price: "$350",
-                img: "/house/hawthornEast.png",
-                desc: "Classic charm meets modern convenience. High ceilings."
-              }
-            ].map((stay, i) => (
-              <StaggerItem key={i} className="group cursor-pointer">
-                <div className="aspect-[4/5] rounded-3xl overflow-hidden mb-6 shadow-md border border-outline-variant/20 group-hover:shadow-2xl transition-all duration-500">
-                  <Image
-                    src={stay.img}
-                    alt={stay.title}
-                    width={600}
-                    height={800}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-                <div className="px-2">
-                  <p className="text-primary font-bold text-xs uppercase tracking-widest mb-2">{stay.location}</p>
-                  <h4 className="text-2xl font-bold font-headline mb-2 tracking-tight">{stay.title}</h4>
-                  <p className="text-on-surface-variant text-sm mb-4 leading-relaxed">{stay.desc}</p>
-                  <p className="text-xl font-bold">From {stay.price}<span className="text-sm font-normal text-on-surface-variant">/pw — bills included</span></p>
-                </div>
-              </StaggerItem>
-            ))}
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
+            {/* Main Feature - Large Vertical */}
+            <StaggerItem className="md:col-span-7 md:row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/5] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
+              <Image
+                src="/house/brunswick.jpeg"
+                alt="Brunswick"
+                width={1200}
+                height={1600}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-700" />
+              <div className="absolute bottom-10 left-10 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                <p className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">Location</p>
+                <p className="text-white text-3xl font-headline font-bold tracking-tight uppercase">Brunswick</p>
+              </div>
+            </StaggerItem>
+
+            {/* Top Right - Horizontal */}
+            <StaggerItem className="md:col-span-5 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/3] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
+              <Image
+                src="/house/hawthorn.png"
+                alt="Hawthorn"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-700" />
+              <div className="absolute bottom-8 left-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                <p className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">Location</p>
+                <p className="text-white text-2xl font-headline font-bold tracking-tight uppercase">Hawthorn</p>
+              </div>
+            </StaggerItem>
+
+            {/* Bottom Right - Horizontal */}
+            <StaggerItem className="md:col-span-5 relative group cursor-pointer overflow-hidden rounded-3xl aspect-[4/3] md:aspect-auto shadow-sm hover:shadow-2xl transition-all duration-700 border border-outline-variant/20">
+              <Image
+                src="/house/hawthornEast.png"
+                alt="Hawthorn East"
+                width={800}
+                height={600}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-40 group-hover:opacity-70 transition-opacity duration-700" />
+              <div className="absolute bottom-8 left-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                <p className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-bold mb-2">Location</p>
+                <p className="text-white text-2xl font-headline font-bold tracking-tight uppercase">Camberwell</p>
+              </div>
+            </StaggerItem>
           </StaggerContainer>
         </div>
       </section>
@@ -140,27 +146,59 @@ export default function TenantLandingPage() {
       </section>
 
       {/* Booking Process Section */}
-      <section className="py-32" id="how-it-works">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12">
-          <FadeIn>
-            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">3 Steps to Moving In</h2>
-          </FadeIn>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8 relative max-w-4xl mx-auto">
-            <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-primary-container -z-10"></div>
-            {[
-              { num: 1, title: 'Apply', desc: 'Fast, simple digital application.' },
-              { num: 2, title: 'Meet the House', desc: 'Ensure it\'s a great fit for everyone.' },
-              { num: 3, title: 'Sign', desc: 'Secure your spot instantly.' },
-            ].map((step, i) => (
-              <StaggerItem key={i} className="flex flex-col items-center text-center gap-8 group">
-                <div className="w-20 h-20 bg-surface-container border border-outline-variant/30 rounded-2xl flex items-center justify-center font-headline text-3xl font-bold text-primary group-hover:bg-primary group-hover:text-surface transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">{step.num}</div>
-                <div>
-                  <h5 className="font-bold font-headline text-xl mb-2 text-on-surface">{step.title}</h5>
-                  <p className="text-sm text-on-surface-variant leading-relaxed">{step.desc}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+      <section className="py-32 bg-surface" id="how-it-works">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32 items-start">
+            {/* Left Side: Header and Buttons */}
+            <FadeIn>
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-1 h-6 bg-primary/30"></div>
+                <h2 className="text-on-surface-variant text-sm font-bold uppercase tracking-[0.3em] font-headline">How to live here</h2>
+              </div>
+              <h3 className="text-5xl md:text-7xl font-bold text-on-surface leading-[1.05] tracking-tighter font-headline mb-12">
+                Get ready for the easiest move you'll ever make.
+              </h3>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link className="bg-primary text-on-primary px-10 py-5 rounded-full font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 group shadow-lg" href="/book">
+                  Book a tour <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+                </Link>
+                <Link className="border border-outline px-10 py-5 rounded-full font-headline font-bold text-center transition-all hover:bg-surface-container-low flex items-center justify-center gap-3" href="/book">
+                  <span className="material-symbols-outlined text-xl">search</span> Search rooms
+                </Link>
+              </div>
+            </FadeIn>
+
+            {/* Right Side: Numbered Steps */}
+            <StaggerContainer className="flex flex-col">
+              {[
+                { 
+                  num: '01', 
+                  title: 'Find a room you love', 
+                  desc: 'With designer rooms in Melbourne\'s best suburbs, you\'re sure to find a home that suits your lifestyle and vibe.' 
+                },
+                { 
+                  num: '02', 
+                  title: 'Book a private tour', 
+                  desc: 'Meet the house and your potential housemates to ensure it\'s a great fit for everyone. Choose a time that works for you and confirm instantly.' 
+                },
+                { 
+                  num: '03', 
+                  title: 'Apply online in minutes', 
+                  desc: 'Complete a simple digital application with your details and references. Our streamlined process gets you approved and ready to move in faster.' 
+                },
+              ].map((step, i) => (
+                <StaggerItem key={i} className={`py-12 ${i !== 2 ? 'border-b border-outline-variant/20' : ''} first:pt-0 group`}>
+                  <div className="flex gap-10">
+                    <span className="text-4xl font-headline font-bold text-primary/40 tracking-tighter">{step.num}</span>
+                    <div className="space-y-4">
+                      <h4 className="text-2xl font-bold font-headline tracking-tight text-on-surface">{step.title}</h4>
+                      <p className="text-on-surface-variant leading-relaxed text-lg max-w-md">{step.desc}</p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </div>
       </section>
 
@@ -187,7 +225,7 @@ export default function TenantLandingPage() {
       </section>
 
 
-      {/* Safety & Security Block */}
+      {/* Safety & Security Block - Commented out as per request
       <section className="py-32 bg-surface" id="safety">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 text-center">
@@ -211,6 +249,7 @@ export default function TenantLandingPage() {
           </StaggerContainer>
         </div>
       </section>
+      */}
 
       {/* FAQ Section */}
       <section className="py-32 bg-surface-container-low border-t border-outline-variant/20" id="faq">
