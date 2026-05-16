@@ -281,8 +281,8 @@ export default function TenantLandingPage() {
               with a good room.
             </h2>
             <p className="text-on-primary/80 text-xl max-w-xl mx-auto mb-12">
-              Rooms open now in Hawthorn, Brunswick, and Fitzroy. <br />
-              Book online today, move in this week.
+              Connected living in Melbourne’s premier hubs. <br />
+              Steps from local culture, one stop from the CBD.
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <Link href="/book" className="bg-surface text-on-surface px-10 py-4 rounded-full font-headline font-bold text-lg hover:scale-105 transition-transform inline-block shadow-lg">
