@@ -100,7 +100,8 @@ export default function RentalApplicationPage() {
   const validatePhone = (phone: string) => {
     const phoneClean = phone.replace(/[\s\-\(\)]/g, '')
     const auPhoneRegex = /^(?:\+61|0)4(?:[0-9]){8}$/
-    return auPhoneRegex.test(phoneClean)
+    const nzPhoneRegex = /^(?:\+64|0)2(?:[0-9]){7,9}$/
+    return auPhoneRegex.test(phoneClean) || nzPhoneRegex.test(phoneClean)
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -148,7 +149,7 @@ export default function RentalApplicationPage() {
       if (!formData.phone.trim()) {
         newErrors.phone = 'Required'
       } else if (!validatePhone(formData.phone)) {
-        newErrors.phone = 'Invalid AU mobile'
+        newErrors.phone = 'Invalid AU/NZ mobile'
       }
     }
 
