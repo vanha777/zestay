@@ -6,14 +6,14 @@ import { motion } from "framer-motion";
 export default function HeroInteractiveSlogan() {
   const [hovered, setHovered] = useState<"room" | "people" | "city" | null>(null);
 
-  const wordRevealVariants = {
+  const wordRevealVariants: any = {
     hidden: { y: "110%" },
     visible: (i: number) => ({
       y: 0,
       transition: {
         delay: 0.15 + i * 0.12,
         duration: 0.9,
-        ease: [0.16, 1, 0.3, 1], // easeOutExpo curve
+        ease: [0.16, 1, 0.3, 1] as any, // easeOutExpo curve
       },
     }),
   };
@@ -27,14 +27,14 @@ export default function HeroInteractiveSlogan() {
           style={{
             WebkitTextStroke: "1.5px var(--color-on-surface)",
             color: "rgba(18, 18, 18, 0)",
-          }}
+          } as any}
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 0.35, y: 0 }}
           whileHover={{
             opacity: 0.95,
             color: "rgba(18, 18, 18, 1)",
             WebkitTextStroke: "1.5px rgba(18, 18, 18, 0)",
-          }}
+          } as any}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           your
