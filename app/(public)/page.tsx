@@ -4,6 +4,7 @@ import FadeIn from "@/components/animations/FadeIn";
 import StaggerContainer from "@/components/animations/StaggerContainer";
 import StaggerItem from "@/components/animations/StaggerItem";
 import BentoTenant from "@/components/BentoTenant";
+import HeroInteractiveSlogan from "@/components/HeroInteractiveSlogan";
 
 export default function TenantLandingPage() {
   return (
@@ -12,16 +13,10 @@ export default function TenantLandingPage() {
       <header className="relative pt-32 pb-20 md:pt-48 md:pb-40 overflow-hidden bg-surface">
         <div className="max-w-[1440px] mx-auto px-6 md:pl-16 md:pr-32 grid md:grid-cols-12 gap-12 items-center">
           <div className="md:col-span-7 z-10">
-            <FadeIn delay={0.1}>
-              <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
-                Live Better.<br />
-                <span className="text-primary italic font-normal tracking-tight">Together.</span><br />
-                Modern Co-living.
-              </h1>
-            </FadeIn>
+            <HeroInteractiveSlogan />
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-on-surface-variant mb-6 max-w-xl leading-relaxed">
-                Designer co-living for the modern professional. Beautifully furnished rooms in Australia's best neighbourhoods.
+                Co-living is the new black. Because home shouldn't feel temporary.
               </p>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10 max-w-xl">
                 <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
@@ -37,7 +32,7 @@ export default function TenantLandingPage() {
                   <span className="material-symbols-outlined text-primary text-xl">bed</span> Furnished
                 </div>
                 <div className="flex items-center gap-2 text-sm text-on-surface-variant font-medium">
-                  <span className="material-symbols-outlined text-primary text-xl">celebration</span> Community Events
+                  <span className="material-symbols-outlined text-primary text-xl">directions_walk</span> Walkable Locations
                 </div>
               </div>
             </FadeIn>
@@ -77,7 +72,9 @@ export default function TenantLandingPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl md:pl-12">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Spaces</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Homes designed for how you live.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              Homes designed for <span className="editorial-outline-word cursor-default block sm:inline">how you live.</span>
+            </h3>
           </FadeIn>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
@@ -137,7 +134,9 @@ export default function TenantLandingPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Lifestyle</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Everything you need, nothing you don't.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              Everything you need, <span className="editorial-outline-word cursor-default block sm:inline">nothing you don't.</span>
+            </h3>
           </FadeIn>
           <BentoTenant />
         </div>
@@ -154,7 +153,7 @@ export default function TenantLandingPage() {
                 <h2 className="text-on-surface-variant text-sm font-bold uppercase tracking-[0.3em] font-headline">How to live here</h2>
               </div>
               <h3 className="text-5xl md:text-7xl font-bold text-on-surface leading-[1.05] tracking-tighter font-headline mb-12">
-                Get ready for the easiest move you'll ever make.
+                Get ready for the <span className="editorial-outline-word cursor-default block md:inline">easiest move.</span>
               </h3>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link className="bg-primary text-on-primary px-10 py-5 rounded-full font-headline font-bold text-center transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 group shadow-lg" href="/book">
@@ -187,7 +186,9 @@ export default function TenantLandingPage() {
               ].map((step, i) => (
                 <StaggerItem key={i} className={`py-12 ${i !== 2 ? 'border-b border-outline-variant/20' : ''} first:pt-0 group`}>
                   <div className="flex gap-10">
-                    <span className="text-4xl font-headline font-bold text-primary/40 tracking-tighter">{step.num}</span>
+                    <span className="text-5xl md:text-6xl font-light font-headline tracking-tighter editorial-number select-none">
+                      {step.num}
+                    </span>
                     <div className="space-y-4">
                       <h4 className="text-2xl font-bold font-headline tracking-tight text-on-surface">{step.title}</h4>
                       <p className="text-on-surface-variant leading-relaxed text-lg max-w-md">{step.desc}</p>
@@ -253,7 +254,9 @@ export default function TenantLandingPage() {
       <section className="py-32 bg-surface-container-low border-t border-outline-variant/20" id="faq">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn>
-            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">Frequently Asked Questions</h2>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">
+              Frequently <span className="editorial-outline-word cursor-default">Asked Questions</span>
+            </h2>
           </FadeIn>
           <StaggerContainer className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
             {[
@@ -278,7 +281,7 @@ export default function TenantLandingPage() {
           <div className="relative z-10">
             <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
               Your Melbourne starts <br />
-              with a good room.
+              <span className="editorial-outline-word light cursor-default block md:inline">with a good room.</span>
             </h2>
             <p className="text-on-primary/80 text-xl max-w-xl mx-auto mb-12">
               Connected living in Melbourne’s premier hubs. <br />

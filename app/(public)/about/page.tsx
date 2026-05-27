@@ -19,7 +19,7 @@ export default function AboutPage() {
               <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
                 Created by renters,<br />
                 <span className="text-primary italic font-normal tracking-tight">For renters.</span><br />
-                Our Zestay Story.
+                <span className="editorial-outline-word cursor-default">Our Zestay Story.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -49,7 +49,9 @@ export default function AboutPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl md:pl-12">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">Our Philosophy</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">The living experience we wished we had.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              The living experience <span className="editorial-outline-word cursor-default">we wished we had.</span>
+            </h3>
           </FadeIn>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -70,9 +72,9 @@ export default function AboutPage() {
                 icon: "chair"
               }
             ].map((value, i) => (
-              <FadeIn key={i} delay={i * 0.1} className="bg-surface-container-low p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl hover:bg-surface-container transition-all">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mb-8">
-                  <span className="material-symbols-outlined text-4xl font-light">{value.icon}</span>
+              <FadeIn key={i} delay={i * 0.1} className="bg-surface-container-low p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl hover:bg-surface-container transition-all group">
+                <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent mb-8">
+                  <span className="material-symbols-outlined text-2xl font-light">{value.icon}</span>
                 </div>
                 <h4 className="text-2xl font-bold font-headline mb-4 tracking-tight">{value.title}</h4>
                 <p className="text-on-surface-variant text-lg leading-relaxed font-body">{value.desc}</p>
@@ -86,7 +88,10 @@ export default function AboutPage() {
       <section className="py-32 bg-surface-container-low border-y border-outline-variant/20 relative mb-32">
         <div className="max-w-[1440px] mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-20 items-center">
           <FadeIn direction="right">
-            <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">Our Personal <br /><span className="text-primary italic font-normal tracking-tight">Guarantee.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">
+              Our Personal <br />
+              <span className="editorial-outline-word cursor-default">Guarantee.</span>
+            </h2>
             <p className="text-xl text-on-surface-variant mb-8 leading-relaxed">
               We manage every property personally. When you live with us, you are relying on real people who genuinely care about your experience, not a faceless agency.
             </p>

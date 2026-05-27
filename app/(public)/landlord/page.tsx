@@ -18,7 +18,7 @@ export default function B2BLandingPage() {
               <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
                 Above-Market Rent.<br />
                 <span className="text-primary italic font-normal tracking-tight">Guaranteed.</span><br />
-                Zero Vacancy.
+                <span className="editorial-outline-word cursor-default">Zero Vacancy.</span>
               </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
@@ -64,7 +64,9 @@ export default function B2BLandingPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Partnership</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">The ultimate hands-off landlord experience.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              The ultimate hands-off <span className="editorial-outline-word cursor-default block sm:inline">landlord experience.</span>
+            </h3>
           </FadeIn>
           <BentoPartnership />
         </div>
@@ -74,7 +76,10 @@ export default function B2BLandingPage() {
       <section className="py-32 bg-surface border-b border-outline-variant/20 relative">
         <div className="max-w-[1440px] mx-auto px-6 md:px-16 grid lg:grid-cols-2 gap-20 items-center">
           <FadeIn direction="right">
-            <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">Quiet, Quality Co-living — <br /><span className="text-primary italic font-normal tracking-tight">Not a Rooming House.</span></h2>
+            <h2 className="text-4xl md:text-6xl font-bold mb-10 leading-[1.05] tracking-tighter font-headline text-on-surface">
+              Quiet, Quality Co-living — <br />
+              <span className="editorial-outline-word cursor-default">not a rooming house.</span>
+            </h2>
             <p className="text-lg text-on-surface-variant mb-8 leading-relaxed">
               Zestay operates small, quiet, quality co-living spaces. We are not a boarding house. Each property houses a <span className="font-bold text-on-surface">maximum of 3 carefully vetted tenants</span> at any one time. Think of it as a well-managed share house with a professional operator responsible for everything.
             </p>
@@ -130,7 +135,9 @@ export default function B2BLandingPage() {
       <section className="py-32" id="how-it-works">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn>
-            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">The Onboarding Flow</h2>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline text-center mb-24 text-on-surface">
+              The Onboarding <span className="editorial-outline-word cursor-default">Flow</span>
+            </h2>
           </FadeIn>
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-5 gap-8 relative">
             <div className="hidden md:block absolute top-12 left-0 w-full h-[1px] bg-primary-container -z-10"></div>
@@ -179,7 +186,9 @@ export default function B2BLandingPage() {
       <section className="py-32 bg-surface-container-low border-t border-outline-variant/20" id="faq">
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn>
-            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">Agent &amp; Landlord FAQ</h2>
+            <h2 className="text-4xl md:text-6xl tracking-tighter font-bold font-headline mb-20 text-center text-on-surface">
+              Agent &amp; Landlord <span className="editorial-outline-word cursor-default font-bold">FAQ</span>
+            </h2>
           </FadeIn>
           <StaggerContainer className="grid md:grid-cols-2 gap-x-16 gap-y-10 max-w-5xl mx-auto">
             {[
@@ -204,7 +213,10 @@ export default function B2BLandingPage() {
         <FadeIn className="bg-primary text-on-primary rounded-3xl p-8 md:p-24 grid lg:grid-cols-2 gap-20 overflow-hidden relative shadow-2xl border border-outline/20">
           <div className="absolute top-0 right-0 w-96 h-96 bg-surface-container-lowest rounded-full blur-[120px] opacity-10 -translate-y-1/2 translate-x-1/2"></div>
           <div className="z-10">
-            <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 leading-[1.05] tracking-tighter text-on-primary">Secure your<br />guaranteed income.</h2>
+            <h2 className="text-4xl md:text-6xl font-headline font-bold mb-8 leading-[1.05] tracking-tighter text-on-primary">
+              Secure your<br />
+              <span className="editorial-outline-word light cursor-default block">guaranteed income.</span>
+            </h2>
             <p className="text-on-primary/80 text-xl mb-16 leading-relaxed">Submit your property details and our Melbourne team will provide a rental appraisal and offer within 48 hours.</p>
             <div className="space-y-8">
               <div className="flex items-center gap-5">
