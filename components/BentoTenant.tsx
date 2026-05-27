@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const tenantFeatures = [
   {
@@ -24,7 +25,7 @@ const tenantFeatures = [
   },
   {
     title: "Inner-City Living",
-    desc: "The best locations in Melbourne. Brunswick, Fitzroy, St Kilda, and more.",
+    desc: "The best locations in Melbourne. Brunswick, Hawthorn, Camberwell, and more.",
     icon: "location_on",
     size: "md:col-span-1",
   },
@@ -37,7 +38,7 @@ const tenantFeatures = [
         icon: "group",
       },
       {
-        title: "Monthly Cleaning",
+        title: "Communal Cleaning",
         desc: "Communal areas are professionally cleaned weekly to maintain high standards.",
         icon: "cleaning_services",
       },
@@ -106,20 +107,20 @@ export default function BentoTenant() {
         <motion.div
           key={i}
           variants={itemVariants}
-          className={`relative p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl flex flex-col gap-6 transition-all duration-300 ${feature.isHighlight
-              ? "bg-primary-container justify-center items-center text-center"
+          className={`relative p-8 md:p-10 rounded-3xl border border-outline-variant/20 shadow-sm hover:shadow-xl flex flex-col gap-6 transition-all duration-300 group ${feature.isHighlight
+              ? "bg-primary-container justify-center items-center text-center hover:scale-[1.02] cursor-pointer"
               : "bg-surface-container-low hover:bg-surface-container"
             } ${feature.size}`}
         >
           {feature.isHighlight ? (
-            <div className="flex flex-col items-center">
+            <Link href="/book" className="flex flex-col items-center justify-center text-center w-full h-full min-h-[140px] group/btn">
               <span className="text-4xl md:text-5xl font-headline font-bold text-on-primary-container tracking-tighter mb-2">
                 Simple.
               </span>
-              <span className="text-on-primary-container font-bold uppercase tracking-widest text-sm">
-                Book in Minutes
+              <span className="text-on-primary-container font-bold uppercase tracking-widest text-xs flex items-center gap-1.5 transition-opacity duration-300 group-hover/btn:opacity-85">
+                Book in Minutes <span className="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
               </span>
-            </div>
+            </Link>
           ) : feature.rotatingFeatures ? (
             <AnimatePresence mode="wait">
               <motion.div
@@ -130,8 +131,8 @@ export default function BentoTenant() {
                 transition={{ duration: 0.5 }}
                 className="flex flex-col gap-6"
               >
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined text-4xl font-light">
+                <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                  <span className="material-symbols-outlined text-2xl font-light">
                     {feature.rotatingFeatures[rotationIndex].icon}
                   </span>
                 </div>
@@ -147,8 +148,8 @@ export default function BentoTenant() {
             </AnimatePresence>
           ) : (
             <>
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-4xl font-light">
+              <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                <span className="material-symbols-outlined text-2xl font-light">
                   {feature.icon}
                 </span>
               </div>

@@ -18,7 +18,7 @@ export default function LivingPage() {
           <FadeIn delay={0.1}>
             <h1 className="text-5xl md:text-[6rem] font-bold leading-[1] tracking-tighter mb-10 text-on-surface font-headline max-w-5xl mx-auto">
               Everything you need.<br />
-              <span className="text-primary italic font-normal tracking-tight">Nothing you don't.</span>
+              <span className="editorial-outline-word cursor-default">Nothing you don't.</span>
             </h1>
           </FadeIn>
           <FadeIn delay={0.2}>
@@ -40,14 +40,16 @@ export default function LivingPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The Standard</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Hotel-quality comfort, <br />home-quality warmth.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              Hotel-quality comfort, <br /><span className="editorial-outline-word cursor-default">home-quality warmth.</span>
+            </h3>
           </FadeIn>
           
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Bento Card 1 */}
-            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-4xl font-light">bed</span>
+            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm group">
+              <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                <span className="material-symbols-outlined text-2xl font-light">bed</span>
               </div>
               <div>
                 <h4 className="font-bold font-headline text-3xl mb-4 tracking-tight">Fully Furnished</h4>
@@ -58,9 +60,9 @@ export default function LivingPage() {
             </StaggerItem>
 
             {/* Bento Card 2 */}
-            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-4xl font-light">payments</span>
+            <StaggerItem className="md:col-span-2 bg-surface p-12 rounded-[2.5rem] flex flex-col gap-8 transition-all hover:bg-surface-container shadow-sm group">
+              <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                <span className="material-symbols-outlined text-2xl font-light">payments</span>
               </div>
               <div>
                 <h4 className="font-bold font-headline text-3xl mb-4 tracking-tight">All Bills Included</h4>
@@ -71,9 +73,9 @@ export default function LivingPage() {
             </StaggerItem>
 
             {/* Bento Card 3 */}
-            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-3xl font-light">chair</span>
+            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm group">
+              <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                <span className="material-symbols-outlined text-2xl font-light">chair</span>
               </div>
               <h4 className="font-bold font-headline text-xl tracking-tight">Ready Essentials</h4>
               <p className="text-on-surface-variant leading-relaxed font-body">
@@ -82,9 +84,9 @@ export default function LivingPage() {
             </StaggerItem>
 
             {/* Bento Card 4 */}
-            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm">
-              <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-primary">
-                <span className="material-symbols-outlined text-3xl font-light">cleaning_services</span>
+            <StaggerItem className="md:col-span-1 bg-surface p-10 rounded-[2.5rem] flex flex-col gap-6 transition-all hover:bg-surface-container shadow-sm group">
+              <div className="w-12 h-12 rounded-xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent">
+                <span className="material-symbols-outlined text-2xl font-light">cleaning_services</span>
               </div>
               <h4 className="font-bold font-headline text-xl tracking-tight">Cleaned Weekly</h4>
               <p className="text-on-surface-variant leading-relaxed font-body">
@@ -110,7 +112,7 @@ export default function LivingPage() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-[120px] opacity-10 -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
             <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
-              Experience the standard.
+              Experience the <span className="editorial-outline-word light cursor-default block md:inline">standard.</span>
             </h2>
             <Link href="/book" className="bg-primary text-on-primary px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
               Find Your Space

@@ -40,3 +40,41 @@ body {
 .material-symbols-outlined {
   font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
+
+/* Custom Editorial Typographic Styles */
+.editorial-outline-word {
+  -webkit-text-stroke: 1px var(--color-on-surface);
+  color: rgba(18, 18, 18, 0);
+  opacity: 0.35;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              -webkit-text-stroke-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.editorial-outline-word:hover {
+  opacity: 0.95;
+  color: var(--color-primary);
+  -webkit-text-stroke-color: transparent;
+}
+
+.editorial-outline-word.light {
+  -webkit-text-stroke: 1px var(--color-on-primary);
+  color: rgba(255, 255, 255, 0);
+}
+
+.editorial-outline-word.light:hover {
+  color: var(--color-on-primary);
+  -webkit-text-stroke-color: transparent;
+}
+
+.editorial-number {
+  -webkit-text-stroke: 1px var(--color-on-surface);
+  color: rgba(18, 18, 18, 0.1);
+  transition: color 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              -webkit-text-stroke-color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.group:hover .editorial-number {
+  color: var(--color-primary);
+  -webkit-text-stroke-color: transparent;
+}

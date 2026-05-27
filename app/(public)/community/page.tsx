@@ -18,10 +18,10 @@ export default function CommunityPage() {
           <div className="md:col-span-7 z-10">
             <FadeIn delay={0.1}>
               <h1 className="text-5xl md:text-[5rem] font-bold leading-[1.05] tracking-tighter mb-8 text-on-surface font-headline">
-                Who you live with <br />
-                <span className="text-primary italic font-normal tracking-tight">Matters most.</span><br />
-                No drama, just home.
-              </h1>
+               Who you live with <br />
+               <span className="text-primary italic font-normal tracking-tight">Matters most.</span><br />
+               <span className="editorial-outline-word cursor-default">No drama, just home.</span>
+             </h1>
             </FadeIn>
             <FadeIn delay={0.2}>
               <p className="text-lg md:text-xl text-on-surface-variant mb-10 max-w-xl leading-relaxed">
@@ -54,7 +54,9 @@ export default function CommunityPage() {
         <div className="max-w-[1440px] mx-auto px-6 md:px-12">
           <FadeIn className="mb-20 md:mb-32 max-w-2xl md:pl-12">
             <h2 className="text-primary text-sm font-bold uppercase tracking-[0.2em] mb-6 font-headline">The People</h2>
-            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">Carefully vetted, <br />individually curated.</h3>
+            <h3 className="text-4xl md:text-6xl font-bold text-on-surface leading-[1.1] tracking-tighter font-headline">
+              Carefully vetted, <br /><span className="editorial-outline-word cursor-default">individually curated.</span>
+            </h3>
           </FadeIn>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-32">
@@ -95,9 +97,9 @@ export default function CommunityPage() {
               { title: "Quiet Enjoyment", desc: "Our homes are designed for rest and focus, with strict rules on noise and guests.", icon: "notifications_off" },
               { title: "Global Community", desc: "Meet people from all over the world establishing their lives in Melbourne.", icon: "public" }
             ].map((pillar, i) => (
-              <StaggerItem key={i} className="bg-surface-container-low p-10 rounded-[2.5rem] hover:bg-surface-container transition-colors text-center">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-primary mx-auto mb-8">
-                  <span className="material-symbols-outlined text-4xl font-light">{pillar.icon}</span>
+              <StaggerItem key={i} className="bg-surface-container-low p-10 rounded-[2.5rem] hover:bg-surface-container transition-all text-center group">
+                <div className="w-16 h-16 rounded-2xl border border-outline-variant/30 flex items-center justify-center text-primary bg-surface/50 backdrop-blur-sm shadow-sm transition-all duration-300 group-hover:bg-primary group-hover:text-on-primary group-hover:border-transparent mx-auto mb-8">
+                  <span className="material-symbols-outlined text-3xl font-light">{pillar.icon}</span>
                 </div>
                 <h4 className="text-2xl font-bold font-headline mb-4 tracking-tight">{pillar.title}</h4>
                 <p className="text-on-surface-variant text-base leading-relaxed">{pillar.desc}</p>
@@ -112,9 +114,9 @@ export default function CommunityPage() {
         <FadeIn className="max-w-[1440px] mx-auto bg-primary text-on-primary rounded-[3rem] p-16 md:p-32 text-center overflow-hidden relative shadow-[0_12px_40px_rgba(41,58,62,0.12)]">
           <div className="absolute top-0 right-0 w-96 h-96 bg-surface rounded-full blur-[120px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
           <div className="relative z-10">
-            <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
-              Join the community.
-            </h2>
+             <h2 className="font-headline text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-8">
+               Join the <span className="editorial-outline-word light cursor-default block md:inline">community.</span>
+             </h2>
             <Link href="/book" className="bg-on-primary text-primary px-12 py-5 rounded-2xl font-headline font-bold text-xl hover:scale-105 transition-transform inline-block">
               Apply to Join
             </Link>
