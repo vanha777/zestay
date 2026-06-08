@@ -432,9 +432,10 @@ export default function ManagePropertyPage() {
                       {getRoomOccupancyInfo(room) ? (
                         <Link 
                           href={`/admin/applicants/${getRoomOccupancyInfo(room)?.applicationId}`}
-                          className="text-sm font-bold text-primary hover:underline underline-offset-4 truncate block max-w-[120px]"
+                          className="text-sm font-bold text-primary hover:text-primary/80 hover:underline underline-offset-4 transition-all duration-200 inline-flex items-center gap-1 md:justify-end w-full group/tenant"
                         >
-                          {getRoomOccupancyInfo(room)?.tenantName}
+                          <span className="truncate max-w-[100px]">{getRoomOccupancyInfo(room)?.tenantName}</span>
+                          <span className="material-symbols-outlined text-[14px] opacity-0 group-hover/tenant:opacity-100 transition-opacity duration-200">open_in_new</span>
                         </Link>
                       ) : (
                         <span className="text-sm font-bold text-on-background/40 block">
