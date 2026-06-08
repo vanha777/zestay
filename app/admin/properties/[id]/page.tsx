@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { getEffectiveRoomStatus } from '@/utils/roomStatus'
+import { getEffectiveRoomStatus, getRoomOccupancyInfo } from '@/utils/roomStatus'
 
 export default function ManagePropertyPage() {
   const { id } = useParams()
@@ -426,6 +426,18 @@ export default function ManagePropertyPage() {
                     <div className="text-left md:text-right">
                       <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Weekly Rate</span>
                       <span className="text-2xl font-headline font-bold text-on-background">${room.rent_amount}</span>
+                    </div>
+                    <div className="text-left md:text-right min-w-[100px]">
+                      <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Tenant</span>
+                      <span className="text-sm font-bold text-on-background truncate block max-w-[120px]">
+                        {getRoomOccupancyInfo(room)?.tenantName || '—'}
+                      </span>
+                    </div>
+                    <div className="text-left md:text-right min-w-[80px]">
+                      <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Expires In</span>
+                      <span className="text-sm font-bold text-on-background">
+                        {getRoomOccupancyInfo(room) ? `${getRoomOccupancyInfo(room)?.expiresInMonths} mo` : '—'}
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <button 
