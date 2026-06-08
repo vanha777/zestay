@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { getEffectiveRoomStatus, getRoomOccupancyInfo } from '@/utils/roomStatus'
 
 export default function ManagePropertyPage() {
   const { id } = useParams()
@@ -44,7 +45,8 @@ export default function ManagePropertyPage() {
         .from('rooms')
         .select(`
           *,
-          documents (storage_path, created_at, document_type)
+          documents (storage_path, created_at, document_type),
+          applications (id, status, personal_info)
         `)
         .eq('property_id', id)
       
@@ -110,7 +112,7 @@ export default function ManagePropertyPage() {
       setRoomFile(null)
       setNewRoom({ name: '', rent_amount: '', status: 'available' })
       
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(id, status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -219,7 +221,7 @@ export default function ManagePropertyPage() {
       setEditFile(null)
       
       // Refresh local state
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(id, status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -414,8 +416,8 @@ export default function ManagePropertyPage() {
                     <div>
                       <h4 className="text-xl font-bold font-headline text-on-background tracking-tight">{room.name}</h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <div className={`w-2 h-2 rounded-full ${room.status === 'available' ? 'bg-green-500' : 'bg-amber-500'}`} />
-                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-outline opacity-60">{room.status}</span>
+                        <div className={`w-2 h-2 rounded-full ${getEffectiveRoomStatus(room) === 'available' ? 'bg-green-500' : getEffectiveRoomStatus(room) === 'occupied' ? 'bg-amber-500' : 'bg-outline-variant/60'}`} />
+                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-outline opacity-60">{getEffectiveRoomStatus(room)}</span>
                       </div>
                     </div>
                   </div>
@@ -424,6 +426,28 @@ export default function ManagePropertyPage() {
                     <div className="text-left md:text-right">
                       <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Weekly Rate</span>
                       <span className="text-2xl font-headline font-bold text-on-background">${room.rent_amount}</span>
+                    </div>
+                    <div className="text-left md:text-right min-w-[100px]">
+                      <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Tenant</span>
+                      {getRoomOccupancyInfo(room) ? (
+                        <Link 
+                          href={`/admin/applicants/${getRoomOccupancyInfo(room)?.applicationId}`}
+                          className="text-sm font-bold text-primary hover:text-primary/80 hover:underline underline-offset-4 transition-all duration-200 inline-flex items-center gap-1 md:justify-end w-full group/tenant"
+                        >
+                          <span className="truncate max-w-[100px]">{getRoomOccupancyInfo(room)?.tenantName}</span>
+                          <span className="material-symbols-outlined text-[14px] text-primary/70 group-hover/tenant:text-primary transition-colors duration-200">open_in_new</span>
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-bold text-on-background/40 block">
+                          —
+                        </span>
+                      )}
+                    </div>
+                    <div className="text-left md:text-right min-w-[80px]">
+                      <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Expires In</span>
+                      <span className="text-sm font-bold text-on-background">
+                        {getRoomOccupancyInfo(room) ? `${getRoomOccupancyInfo(room)?.expiresInMonths} mo` : '—'}
+                      </span>
                     </div>
                     <div className="flex items-center gap-3">
                       <button 

@@ -65,17 +65,21 @@ export default function RentalApplicationPage() {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: propData } = await supabase
-        .from('properties')
-        .select('*, documents(storage_path)')
-        .eq('id', params.id)
-        .single()
+      const [propResult, roomResult] = await Promise.all([
+        supabase
+          .from('properties')
+          .select('*, documents(storage_path)')
+          .eq('id', params.id)
+          .single(),
+        supabase
+          .from('rooms')
+          .select('*, documents(storage_path)')
+          .eq('id', params.roomId)
+          .single()
+      ])
 
-      const { data: roomData } = await supabase
-        .from('rooms')
-        .select('*, documents(storage_path)')
-        .eq('id', params.roomId)
-        .single()
+      const propData = propResult.data
+      const roomData = roomResult.data
 
       setProperty(propData)
       setRoom(roomData)
@@ -209,7 +213,7 @@ export default function RentalApplicationPage() {
 
       if (appError) throw appError
 
-      await sendApplicationNotification({
+      const notificationPromise = sendApplicationNotification({
         applicantName: `${formData.firstName} ${formData.lastName}`,
         applicantEmail: formData.email,
         applicantAddress: formData.address,
@@ -237,7 +241,7 @@ export default function RentalApplicationPage() {
         fieldOfStudy: formData.fieldOfStudy
       })
 
-      for (const [type, file] of Object.entries(files)) {
+      const uploadPromises = Object.entries(files).map(async ([type, file]) => {
         const fileExt = file.name.split('.').pop()
         const fileName = `${appData.id}/${type}.${fileExt}`
 
@@ -254,7 +258,9 @@ export default function RentalApplicationPage() {
             mime_type: file.type
           }])
         }
-      }
+      })
+
+      await Promise.all([notificationPromise, ...uploadPromises])
 
       setStep(5)
     } catch (err) {
