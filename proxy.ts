@@ -33,8 +33,9 @@ export default async function proxy(request: NextRequest) {
   // Only run auth logic if necessary to avoid overwhelming the dev server
   if (isAdmin || isLogin) {
     const {
-      data: { user },
-    } = await supabase.auth.getUser()
+      data: { session },
+    } = await supabase.auth.getSession()
+    const user = session?.user
 
     if (!user && isAdmin) {
       const url = request.nextUrl.clone()

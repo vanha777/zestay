@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
+import { getEffectiveRoomStatus } from '@/utils/roomStatus'
 
 export default function ManagePropertyPage() {
   const { id } = useParams()
@@ -44,7 +45,8 @@ export default function ManagePropertyPage() {
         .from('rooms')
         .select(`
           *,
-          documents (storage_path, created_at, document_type)
+          documents (storage_path, created_at, document_type),
+          applications (status, personal_info)
         `)
         .eq('property_id', id)
       
@@ -110,7 +112,7 @@ export default function ManagePropertyPage() {
       setRoomFile(null)
       setNewRoom({ name: '', rent_amount: '', status: 'available' })
       
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -219,7 +221,7 @@ export default function ManagePropertyPage() {
       setEditFile(null)
       
       // Refresh local state
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -414,8 +416,8 @@ export default function ManagePropertyPage() {
                     <div>
                       <h4 className="text-xl font-bold font-headline text-on-background tracking-tight">{room.name}</h4>
                       <div className="flex items-center gap-2 mt-1">
-                        <div className={`w-2 h-2 rounded-full ${room.status === 'available' ? 'bg-green-500' : 'bg-amber-500'}`} />
-                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-outline opacity-60">{room.status}</span>
+                        <div className={`w-2 h-2 rounded-full ${getEffectiveRoomStatus(room) === 'available' ? 'bg-green-500' : getEffectiveRoomStatus(room) === 'occupied' ? 'bg-amber-500' : 'bg-outline-variant/60'}`} />
+                        <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-outline opacity-60">{getEffectiveRoomStatus(room)}</span>
                       </div>
                     </div>
                   </div>

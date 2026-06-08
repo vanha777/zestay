@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { isRoomOccupied } from '@/utils/roomStatus'
 
 export default function PortfolioPage() {
   const supabase = createClient()
@@ -17,7 +18,12 @@ export default function PortfolioPage() {
         .from('properties')
         .select(`
           *,
-          rooms (id, status, rent_amount),
+          rooms (
+            id, 
+            status, 
+            rent_amount,
+            applications (status, personal_info)
+          ),
           documents (storage_path, document_type)
         `)
         .order('created_at', { ascending: false })
@@ -53,7 +59,7 @@ export default function PortfolioPage() {
             <div className="flex flex-col gap-0.5">
               <span className="text-[9px] uppercase tracking-[0.2em] text-outline font-bold opacity-60">Occupancy</span>
               <span className="text-2xl font-headline font-bold text-primary">
-                {properties.length > 0 ? Math.round((properties.reduce((acc, p) => acc + (p.rooms?.filter((r: any) => r.status === 'occupied').length || 0), 0) / 
+                {properties.length > 0 ? Math.round((properties.reduce((acc, p) => acc + (p.rooms?.filter((r: any) => isRoomOccupied(r)).length || 0), 0) / 
                   properties.reduce((acc, p) => acc + (p.rooms?.length || 1), 0)) * 100) : 0}%
               </span>
             </div>
@@ -81,7 +87,7 @@ export default function PortfolioPage() {
         <div className="space-y-4">
           {properties.map((prop, index) => {
             const heroImage = prop.documents?.find((d: any) => d.document_type === 'property_image')?.storage_path
-            const occupiedRooms = prop.rooms?.filter((r: any) => r.status === 'occupied').length || 0
+            const occupiedRooms = prop.rooms?.filter((r: any) => isRoomOccupied(r)).length || 0
             const totalRooms = prop.rooms?.length || 0
             const totalRent = prop.rooms?.reduce((acc: number, r: any) => acc + (Number(r.rent_amount) || 0), 0)
 
