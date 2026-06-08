@@ -44,6 +44,7 @@ export function getEffectiveRoomStatus(room: any): 'available' | 'occupied' | 'u
 }
 
 export interface RoomOccupancyInfo {
+  applicationId: string;
   tenantName: string;
   expiresInMonths: number;
   endDate: string;
@@ -84,6 +85,7 @@ export function getRoomOccupancyInfo(room: any): RoomOccupancyInfo | null {
       const diffMonths = Math.ceil(diffDays / 30) // round up to nearest month
 
       return {
+        applicationId: app.id,
         tenantName,
         expiresInMonths: diffMonths,
         endDate: endDate.toLocaleDateString()

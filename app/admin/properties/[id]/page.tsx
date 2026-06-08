@@ -46,7 +46,7 @@ export default function ManagePropertyPage() {
         .select(`
           *,
           documents (storage_path, created_at, document_type),
-          applications (status, personal_info)
+          applications (id, status, personal_info)
         `)
         .eq('property_id', id)
       
@@ -112,7 +112,7 @@ export default function ManagePropertyPage() {
       setRoomFile(null)
       setNewRoom({ name: '', rent_amount: '', status: 'available' })
       
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(status, personal_info)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(id, status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -221,7 +221,7 @@ export default function ManagePropertyPage() {
       setEditFile(null)
       
       // Refresh local state
-      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(status, personal_info)').eq('property_id', id)
+      const { data } = await supabase.from('rooms').select('*, documents(storage_path, created_at, document_type), applications(id, status, personal_info)').eq('property_id', id)
       if (data) {
         data.forEach((r: any) => {
           if (r.documents) {
@@ -429,9 +429,18 @@ export default function ManagePropertyPage() {
                     </div>
                     <div className="text-left md:text-right min-w-[100px]">
                       <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Tenant</span>
-                      <span className="text-sm font-bold text-on-background truncate block max-w-[120px]">
-                        {getRoomOccupancyInfo(room)?.tenantName || '—'}
-                      </span>
+                      {getRoomOccupancyInfo(room) ? (
+                        <Link 
+                          href={`/admin/applicants/${getRoomOccupancyInfo(room)?.applicationId}`}
+                          className="text-sm font-bold text-primary hover:underline underline-offset-4 truncate block max-w-[120px]"
+                        >
+                          {getRoomOccupancyInfo(room)?.tenantName}
+                        </Link>
+                      ) : (
+                        <span className="text-sm font-bold text-on-background/40 block">
+                          —
+                        </span>
+                      )}
                     </div>
                     <div className="text-left md:text-right min-w-[80px]">
                       <span className="text-[9px] uppercase tracking-widest text-outline font-bold block mb-1 opacity-60">Expires In</span>
